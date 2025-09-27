@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Centered Hero with Page Backgrounds and Scroll Snap</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+
+    /* Enable vertical mandatory scroll snapping */
+    scroll-snap-type: y mandatory;
+  }
+  body {
+    overflow-y: scroll;
+  }
+   .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #ffffff;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 9999;
+    box-sizing: border-box;
+  }
+  /* Hamburger menu (hidden by default) */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 4px 0;
+    border-radius: 2px;
+  }
+  /* Logo block */
+  .logo-block {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: #245401;;
+    font-weight: bold;
+  }
+  .logo-sn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#245401;;
+    color: white;
+    font-weight: 700;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    user-select: none;
+  }
+  .divider {
+    width: 1.5px; /* slightly less than block height */
+    height: 30px;
+    background: #999;
+    margin: 0 12px;
+  }
+  .title-text {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.25rem;
+    white-space: nowrap;
+  }
+  /* Responsive - show hamburger and hide title text on small/tablet */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+    .title-text {
+      display: none;
+    }
+  }
+
+  .page {
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start; /* Snap each page into view */
+    display: flex;
+    justify-content: center; /* horizontally center content */
+    align-items: center;     /* vertically center content */
+    text-align: center;
+    color: white;
+  }
+  section.hero {
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+  }
+  section.next-page {
+    background: url('https://images.unsplash.com/photo-1529590003498-7d3f3b0353ec?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+    color: #ddd;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  .phrase-main {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    opacity: 0;
+    filter: blur(6px);
+    transform: scale(1.15);
+    transition: opacity 1.5s ease, filter 1.5s ease, transform 1.5s ease;
+  }
+  .phrase-main.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+  }
+
+  .divider {
+    height: 2px;
+    background: #ccc;
+    width: 0;
+    opacity: 0;
+    transition: width 1.2s ease, opacity 1.2s ease;
+  }
+  .divider.show {
+    width: 40%;
+    opacity: 1;
+  }
+
+  .phrase-sub {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    opacity: 0;
+    max-width: 100%;
+    transition: opacity 1.5s ease;
+  }
+  .phrase-sub.show {
+    opacity: 1;
+  }
+
+  .phrase-highlight {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FFD700; /* yellow */
+    opacity: 0;
+    transition: opacity 1.5s ease;
+  }
+  .phrase-highlight.show {
+    opacity: 1;
+  }
+
+  /* Scroll prompt */
+  .scroll-prompt {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 1rem;
+    color: #eee;
+    font-weight: 500;
+    user-select: none;
+    pointer-events: none;
+    text-shadow: 0 0 5px rgba(0,0,0,0.7);
+    animation: pulseGlow 2.5s ease-in-out infinite;
+  }
+  @keyframes pulseGlow {
+    0%, 100% {
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
+      opacity: 0.8;
+    }
+    50% {
+      text-shadow: 0 0 15px rgba(255, 255, 255, 1);
+      opacity: 1;
+    }
+  }
+</style>
+</head>
+<body>
+    <nav class="navbar">
+  <div class="hamburger" id="hamburger" aria-label="Toggle menu" tabindex="0" role="button">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <a href="/" class="logo-block" aria-label="Home page link">
+    <div class="logo-sn">SN</div>
+    <div class="divider"></div>
+    <div class="title-text">Scholars Nest</div>
+  </a>
+</nav>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  hamburger.addEventListener('click', () => {
+    alert('Hamburger menu clicked - you can add your menu toggle logic here.');
+  });
+  hamburger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      hamburger.click();
+    }
+  });
+</script>
+
+<!-- First full screen hero section -->
+<section class="page hero" role="main" aria-label="Hero section for parents and students">
+  <div class="hero-content">
+    <div class="phrase-main" id="phraseMain">For Parents &amp; Students</div>
+    <div class="divider" id="divider"></div>
+    <div class="phrase-sub" id="phraseSub">
+      Choosing where your child will live while studying is a big decision. Parents want assurance of safety and value, while students dream of independence, new experiences, and opportunities to grow.
+    </div>
+    <div class="phrase-highlight" id="phraseHighlight">Our hostels bring both together.</div>
+  </div>
+</section>
+
+<!-- Next full screen page with different background -->
+<section class="page next-page" aria-label="Next page">
+  Welcome to the next page content!
+</section>
+
+<div class="scroll-prompt">scroll for details</div>
+
+<script>
+  window.addEventListener('load', () => {
+    const phraseMain = document.getElementById('phraseMain');
+    const divider = document.getElementById('divider');
+    const phraseSub = document.getElementById('phraseSub');
+    const phraseHighlight = document.getElementById('phraseHighlight');
+
+    phraseMain.classList.add('show');
+    setTimeout(() => { divider.classList.add('show'); }, 1600);
+    setTimeout(() => { phraseSub.classList.add('show'); }, 2800);
+    setTimeout(() => { phraseHighlight.classList.add('show'); }, 4000);
+  });
+
+  // Remove JS scroll snapping logic; CSS handles snapping now
+</script>
+
+</body>
+</html>
