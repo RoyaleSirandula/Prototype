@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Centered Hero with Page Backgrounds and Scroll Snap</title>
+<title>For Parent &amp; Students </title>
 <style>
   html, body {
     margin: 0;
@@ -27,14 +27,34 @@
     left: 0;
     right: 0;
     height: 60px;
-    background: #ffffff;
-    border-bottom: 1px solid #ccc;
+    background: rgba(146, 146, 146, 0.8); /* translucent white */
+    border-bottom: 1px solid rgba(146, 146, 146, 0.8);
     display: flex;
     align-items: center;
     padding: 0 20px;
     z-index: 9999;
     box-sizing: border-box;
+    justify-content: space-between;
+    backdrop-filter:  blur(10px); /* subtle blur behind navbar */
   }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+  }
+  .nav-links li a {
+    text-decoration: none;
+    color: #245401;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+  }
+  .nav-links li a:hover,
+  .nav-links li a:focus {
+    color: #776f3e; /* olive-gold theme accent */
+    outline: none;
+  }
+
   /* Hamburger menu (hidden by default) */
   .hamburger {
     display: none;
@@ -45,7 +65,7 @@
   .hamburger div {
     width: 25px;
     height: 3px;
-    background: #333;
+    background: #245401;
     margin: 4px 0;
     border-radius: 2px;
   }
@@ -55,14 +75,14 @@
     align-items: center;
     cursor: pointer;
     text-decoration: none;
-    color: #245401;;
+    color: #ffffff;;
     font-weight: bold;
   }
   .logo-sn {
     display: flex;
     justify-content: center;
     align-items: center;
-    background:#245401;;
+    background:#245401;
     color: white;
     font-weight: 700;
     width: 40px;
@@ -81,13 +101,49 @@
     font-size: 1.25rem;
     white-space: nowrap;
   }
-  /* Responsive - show hamburger and hide title text on small/tablet */
-  @media (max-width: 768px) {
+   /* Responsive - show hamburger and hide title text on small/tablet */
+   @media (max-width: 768px) {
     .hamburger {
       display: flex;
     }
     .title-text {
       display: none;
+    }
+    .nav-links {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      flex-direction: column;
+      gap: 0;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+      border-bottom: 1px solid rgba(204, 204, 204, 0.4);
+      box-sizing: border-box;
+      z-index: 9998;
+    }
+    .nav-links.open {
+      max-height: 300px; /* enough height to show all links */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .nav-links li {
+      border-bottom: 1px solid #ddd;
+      width: 100%;
+    }
+    .nav-links li a {
+      display: block;
+      width: 100%;
+      padding: 15px 20px;
+      color: #245401;
+      font-weight: 600;
+    }
+    .nav-links li a:hover,
+    .nav-links li a:focus {
+      background-color: #f0f0c1;
+      color: #1a3500;
+      outline: none;
     }
   }
 
@@ -105,10 +161,57 @@
     background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
     background-size: cover;
   }
-  section.next-page {
+
+ /* section.next-page {
     background: url('https://images.unsplash.com/photo-1529590003498-7d3f3b0353ec?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
     background-size: cover;
-    color: #ddd;
+    color: #ffffff;
+  } */
+   .overlay {
+  width: 100vw;
+  height: 30%;
+  background-color: rgba(0, 0, 0, 0.6); /* translucent dark */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px; /* optional - adjust as desired */
+}
+
+  section.security-page {
+    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+  }
+  section.proximity-page {
+    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+  }
+  section.modernfacility-page {
+    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+  }
+   section.compliance-page {
+    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+  }
+   section.welfare-page {
+    background: url('https://images.unsplash.com/photo-1647430406554-0ab7e7bd1380?q=80&w=1373&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+  }
+   section.financialtransparency-page {
+    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+  }
+  section.reputation-page {
+    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
   }
 
   .hero-content {
@@ -209,42 +312,127 @@
   <a href="/" class="logo-block" aria-label="Home page link">
     <div class="logo-sn">SN</div>
     <div class="divider"></div>
-    <div class="title-text">Scholars Nest</div>
+    <div class="title-text">SCHOLAR'S <br /> NEST</div>
   </a>
+     <ul class="nav-links">
+    <li><a href="index.html" tabindex="0">Home</a></li>
+    <li><a href="about-us" tabindex="0">About Us</a></li>
+    <li><a href="for-schools.html" tabindex="0">For Schools & Community </a></li>
+    <li><a href="parents-students.html" tabindex="0">For Parents & Students </a></li>
+    <li><a href="contact-us" tabindex="0">Contact Us </a></li>
+  </ul>
 </nav>
-
-<script>
-  const hamburger = document.getElementById('hamburger');
-  hamburger.addEventListener('click', () => {
-    alert('Hamburger menu clicked - you can add your menu toggle logic here.');
-  });
-  hamburger.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      hamburger.click();
-    }
-  });
-</script>
 
 <!-- First full screen hero section -->
 <section class="page hero" role="main" aria-label="Hero section for parents and students">
   <div class="hero-content">
-    <div class="phrase-main" id="phraseMain">For Parents &amp; Students</div>
+    <div class="phrase-main" id="phraseMain"> For Parents &amp; Students</div>
     <div class="divider" id="divider"></div>
     <div class="phrase-sub" id="phraseSub">
-      Choosing where your child will live while studying is a big decision. Parents want assurance of safety and value, while students dream of independence, new experiences, and opportunities to grow.
+      Your students’ safety and comfort is non-negotiable.
+     <br />Partnering with us guarantees secure, accountable housing that meets the highest standards schools and agencies demand.
+     <br />We remove risks, uphold trust, and give parents peace of mind.
+     <br />At the same time, we create the independence and growth students seek.
     </div>
-    <div class="phrase-highlight" id="phraseHighlight">Our hostels bring both together.</div>
+    <div class="phrase-highlight" id="phraseHighlight">The result: safety assured, schools protected, and students positioned to succeed.</div>
   </div>
 </section>
 
-<!-- Next full screen page with different background -->
-<section class="page next-page" aria-label="Next page">
-  Welcome to the next page content!
+<section class="page security-page" aria-label="Security and Monitoring">
+    <div class="overlay">
+  <div class="content-container">
+    <h2>Security & Safety</h2>
+    <p>
+      24/7 security team and monitored CCTV ensure peace of mind. <br />
+      Smart key-card entry limits access to residents only. <br />
+      Well-lit paths and secure gates create a safe environment for both students and parents' assurance.
+    </p>
+  </div>
+  </div>
 </section>
 
-<div class="scroll-prompt">scroll for details</div>
+<section class="page proximity-page" aria-label="Proximity and Convenience">
+   <div class="overlay">
+  <div class="content-container">
+    <h2>Proximity & Convenience</h2>
+    <p>
+      Walking distance to campus, libraries, and student hangouts. <br />
+      Nearby cafés and snack spots keep students fueled. <br />
+      Shuttle services available for late classes and outings, ensuring safety and accessibility.
+    </p>
+  </div>
+  </div>
+</section>
 
+<section class="page modernfacility-page" aria-label="Modern Facilities">
+  <div class="overlay">
+  <div class="content-container">
+    <h2>Modern Facilities</h2>
+    <p>
+      Open kitchens with modern appliances for shared cooking. <br />
+      Laundry rooms with washers and dryers on every floor. <br />
+      Individual study tables with strong lighting, plus fast Wi-Fi across all rooms and lounges.
+    </p>
+  </div>
+  </div>
+</section>
+
+<section class="page compliance-page" aria-label="Compliance and Standards">
+  <div class="overlay">
+  <div class="content-container">
+    <h2>Compliance & Standards</h2>
+    <p>
+      Fully licensed and fire-compliant with regular inspections. <br />
+      Transparent house rules keep life balanced and safe. <br />
+      Clear tenancy agreements that protect both students and parents.
+    </p>
+  </div>
+  </div>
+</section>
+
+<section class="page welfare-page" aria-label="Welfare and Community">
+  <div class="overlay">
+  <div class="content-container">
+    <h2>Welfare & Community</h2>
+    <p>
+      Common rooms with couches, TVs, and gaming consoles. <br />
+      Snack bars and vending machines for quick study breaks. <br />
+      Social events like game nights, movie marathons, and talent shows. <br />
+      On-site support team always available for student needs.
+    </p>
+  </div>
+  </div>
+</section>
+
+<section class="page financialtransparency-page" aria-label="Financial Transparency">
+  <div class="overlay">
+  <div class="content-container">
+    <h2>Financial Transparency</h2>
+    <p>
+      All-inclusive pricing with no hidden fees or surprise charges. <br />
+      Utilities like water, electricity, and Wi-Fi included in rent. <br />
+      Parents can easily track payment history online.
+    </p>
+  </div>
+  </div>
+</section>
+
+<section class="page reputation-page" aria-label="Reputation and Trust">
+  <div class="overlay">
+  <div class="content-container">
+    <h2>Reputation & Trust</h2>
+    <p>
+      Endorsed by alumni and trusted by parents. <br />
+      High student satisfaction and low turnover rates. <br />
+      Recognized as one of the safest, most comfortable hostels in the region.
+    </p>
+  </div>
+  </div>
+</section>
+
+
+
+<div class="scroll-prompt">scroll for details</div>
 <script>
   window.addEventListener('load', () => {
     const phraseMain = document.getElementById('phraseMain');
@@ -258,8 +446,21 @@
     setTimeout(() => { phraseHighlight.classList.add('show'); }, 4000);
   });
 
-  // Remove JS scroll snapping logic; CSS handles snapping now
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  hamburger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      hamburger.click();
+    }
+  });
 </script>
+
 
 </body>
 </html>

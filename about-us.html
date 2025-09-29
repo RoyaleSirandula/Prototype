@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>About Us - Nest Hostels</title>
+    <!-- Google Fonts (from index.html) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', 'Roboto', Arial, sans-serif;
+            line-height: 1.7;
+            color: #222;
+            background: #f3f6fa;
+        }
+        /* Navbar styles (from parent-students.html and styles.css) */
+        .navbar {
+            background: #01640c;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+            box-shadow: 0 2px 8px rgba(30,40,60,0.07);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar .logo {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .navbar nav {
+            display: flex;
+            gap: 2rem;
+        }
+        .navbar nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.2s;
+            position: relative;
+        }
+        .navbar nav a:hover,
+        .navbar nav a.active {
+            color: #ffb347;
+        }
+        /* Hero section with background image and dark overlay */
+        .hero-section {
+            background: linear-gradient(rgba(30,42,80,0.7), rgba(30,42,80,0.7)), url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            padding: 5rem 2rem 4rem 2rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .hero-section h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .hero-section p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        /* Description section with background image and dark overlay */
+        .desc-section {
+            background: linear-gradient(rgba(30,42,80,0.6), rgba(30,42,80,0.6)), url('https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: #fff;
+            padding: 3rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 1px;
+            box-shadow: 0 4px 24px rgba(30,42,80,0.09);
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .desc-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 700;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .desc-section p {
+            font-size: 1.05rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 2rem auto;
+        }
+        /* Values section */
+        .values-section {
+            padding: 3rem 2rem;
+            background: #fff;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .values-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 700;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .values-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1100px;
+            margin: auto;
+        }
+        .value-card {
+            flex: 1 1 250px;
+            background: #f3f6fa;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(30,42,80,0.06);
+        }
+        .value-card h3 {
+            color: #1a2a4f;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .value-card p {
+            font-size: 0.98rem;
+        }
+        /* Location section */
+        .location-section {
+            padding: 3rem 2rem;
+            max-width: 1100px;
+            margin: auto;
+            text-align: center;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .location-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .location-section p {
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+        }
+        .location-section iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(30,42,80,0.07);
+        }
+        /* Call to Action section */
+        .cta-section {
+            background: #1a2a4f;
+            color: #fff;
+            text-align: center;
+            padding: 3rem 2rem;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        .cta-section p {
+            font-size: 1.05rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin: auto;
+            font-family: 'Roboto', Arial, sans-serif;
+        }
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .cta-buttons a {
+            background: #ffb347;
+            color: #1a2a4f;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Montserrat', Arial, sans-serif;
+            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 2px 8px rgba(30,42,80,0.07);
+        }
+        .cta-buttons a:last-child {
+            background: #f3f6fa;
+            color: #1a2a4f;
+        }
+        .cta-buttons a:hover {
+            background: #ffd580;
+            color: #1a2a4f;
+        }
+        @media (max-width: 900px) {
+            .values-list {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .desc-section, .location-section {
+                padding: 2rem 1rem;
+            }
+            .hero-section {
+                padding: 3rem 1rem 2.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="index.html" class="logo">Nest Hostels</a>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about-us.html" class="active">About Us</a>
+            <a href="parent-students.html">Parents & Students</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1>About Nest Hostels</h1>
+        <p>
+            A modern and welcoming home for students, designed to provide comfort, security, and opportunities 
+            for growth while studying away from home.
+        </p>
+    </section>
+
+    <!-- Description -->
+    <section class="desc-section">
+        <h2>Who We Are</h2>
+        <p>
+            Nest Hostels is more than just a place to stay — it’s a community. 
+            Located in a safe and accessible neighborhood, we provide students with modern rooms, 
+            vibrant common spaces, and services that make hostel living enjoyable and stress-free.  
+            Whether you’re hitting the books, joining game nights, or making lifelong friends in our lounges, 
+            Nest is designed to help you thrive.
+        </p>
+    </section>
+
+    <!-- Values -->
+    <section class="values-section">
+        <h2>Our Values</h2>
+        <div class="values-list">
+            <div class="value-card">
+                <h3>Safety First</h3>
+                <p>24/7 monitoring, secure access, and staff always on call.</p>
+            </div>
+            <div class="value-card">
+                <h3>Community Living</h3>
+                <p>A warm, inclusive environment that encourages friendships and collaboration.</p>
+            </div>
+            <div class="value-card">
+                <h3>Student Wellness</h3>
+                <p>From gyms and study spaces to snack bars and game nights, balance is built in.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section class="location-section">
+        <h2>Our Location</h2>
+        <p>
+            Conveniently situated near top universities and key transport routes, Nest Hostels gives you 
+            easy access to your classes, the city, and everything in between.
+        </p>
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.081398947178!2d36.817223!3d-1.286389!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMSLCsDE3JzExLjAiUyAzNsKwNDknMDIuMCJF!5e0!3m2!1sen!2ske!4v1630000000000!5m2!1sen!2ske" 
+            allowfullscreen="" loading="lazy">
+        </iframe>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <h2>Join Our Community</h2>
+        <p>
+            Whether you want to schedule a visit or join our open day, we’d love to meet you.
+        </p>
+        <div class="cta-buttons">
+            <a href="contact.html">Reach Us</a>
+            <a href="contact.html#openday">Attend Open Day</a>
+        </div>
+    </section>
+</body>
+</html>

@@ -166,7 +166,7 @@ nav {
       rgba(15, 26, 44, 0.5),
       rgba(15, 26, 44, 0.5)
     ),
-    url("assets/header.jpg");
+    url("https://www.studenthq.co.uk/files/images/students-in-housing.jpg");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -428,14 +428,14 @@ nav {
   gap: 2rem;
 }
 
-.menu__items {
+.partners__list {
   list-style: none;
   margin-block: 4rem;
   display: grid;
   gap: 1rem 4rem;
 }
 
-.menu__items li {
+.partners__list li {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -443,16 +443,16 @@ nav {
   transition: 0.3s;
 }
 
-.menu__items li:hover {
+.partners__list li:hover {
   background-color: var(--primary-color);
 }
 
-.menu__items img {
+.partners__list img {
   max-width: 100px;
   border-radius: 2px;
 }
 
-.menu__items h4 {
+.partners__list h4 {
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
   font-weight: 800;
@@ -461,13 +461,13 @@ nav {
   transition: 0.3s;
 }
 
-.menu__items p {
+.partners__list p {
   max-width: 400px;
   color: var(--text-light);
   transition: 0.3s;
 }
 
-.menu__items li:hover :is(h4, p) {
+.partners__list li:hover :is(h4, p) {
   color: var(--white);
 }
 
@@ -751,11 +751,11 @@ nav {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .menu__header {
+  .partners__header {
     flex-direction: row;
   }
 
-  .menu__items {
+  .partners__list {
     grid-template-columns: repeat(2, 1fr);
   }
 

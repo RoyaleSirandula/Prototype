@@ -21,20 +21,41 @@
   body {
     overflow-y: scroll;
   }
-   .navbar {
+  .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 60px;
-    background: #ffffff;
-    border-bottom: 1px solid #ccc;
+    background: rgba(146, 146, 146, 0.8); /* translucent white */
+    border-bottom: 1px solid rgba(146, 146, 146, 0.8);
     display: flex;
     align-items: center;
     padding: 0 20px;
     z-index: 9999;
     box-sizing: border-box;
+    justify-content: space-between;
+    backdrop-filter:  blur(10px); /* subtle blur behind navbar */
   }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+  }
+  .nav-links li a {
+    text-decoration: none;
+    color: #245401;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: color 0.2s ease;
+  }
+  .nav-links li a:hover,
+  .nav-links li a:focus {
+    color: #776f3e; /* olive-gold theme accent */
+    outline: none;
+  }
+
   /* Hamburger menu (hidden by default) */
   .hamburger {
     display: none;
@@ -45,7 +66,7 @@
   .hamburger div {
     width: 25px;
     height: 3px;
-    background: #333;
+    background: #245401;
     margin: 4px 0;
     border-radius: 2px;
   }
@@ -82,12 +103,48 @@
     white-space: nowrap;
   }
   /* Responsive - show hamburger and hide title text on small/tablet */
-  @media (max-width: 768px) {
+   @media (max-width: 768px) {
     .hamburger {
       display: flex;
     }
     .title-text {
       display: none;
+    }
+    .nav-links {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      flex-direction: column;
+      gap: 0;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+      border-bottom: 1px solid rgba(204, 204, 204, 0.4);
+      box-sizing: border-box;
+      z-index: 9998;
+    }
+    .nav-links.open {
+      max-height: 300px; /* enough height to show all links */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .nav-links li {
+      border-bottom: 1px solid #ddd;
+      width: 100%;
+    }
+    .nav-links li a {
+      display: block;
+      width: 100%;
+      padding: 15px 20px;
+      color: #245401;
+      font-weight: 600;
+    }
+    .nav-links li a:hover,
+    .nav-links li a:focus {
+      background-color: #f0f0c1;
+      color: #1a3500;
+      outline: none;
     }
   }
 
@@ -111,6 +168,17 @@
     background-size: cover;
     color: #ffffff;
   } */
+   .overlay {
+  width: 100vw;
+  height: 30%;
+  background-color: rgba(0, 0, 0, 0.6); /* translucent dark */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 20px; /* optional - adjust as desired */
+}
+
 
   section.security-page {
     background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
@@ -133,7 +201,7 @@
     color: #ffffff;
   }
    section.welfare-page {
-    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+    background: url('https://images.unsplash.com/photo-1647430406554-0ab7e7bd1380?q=80&w=1373&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
     background-size: cover;
     color: #ffffff;
   }
@@ -246,25 +314,20 @@
   <a href="/" class="logo-block" aria-label="Home page link">
     <div class="logo-sn">SN</div>
     <div class="divider"></div>
-    <div class="title-text">Scholars Nest</div>
+    <div class="title-text">SCHOLAR'S <br /> NEST</div>
   </a>
+   <ul class="nav-links">
+    <li><a href="index.html" tabindex="0">Home</a></li>
+    <li><a href="about-us" tabindex="0">About Us</a></li>
+    <li><a href="for-schools.html" tabindex="0">For Schools & Community </a></li>
+    <li><a href="parents-students.html" tabindex="0">For Parents & Students </a></li>
+    <li><a href="contact-us" tabindex="0">Contact Us </a></li>
+  </ul>
 </nav>
 
-<script>
-  const hamburger = document.getElementById('hamburger');
-  hamburger.addEventListener('click', () => {
-    alert('Hamburger menu clicked - you can add your menu toggle logic here.');
-  });
-  hamburger.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      hamburger.click();
-    }
-  });
-</script>
 
 <!-- First full screen hero section -->
-<section class="page hero" role="main" aria-label="Hero section for parents and students">
+<section class="page hero" role="main" aria-label="Hero section for schools and students">
   <div class="hero-content">
     <div class="phrase-main" id="phraseMain"> For Schools &amp; Community</div>
     <div class="divider" id="divider"></div>
@@ -280,6 +343,7 @@
 
 <!-- Next full screen page with different background -->
 <section class="page security-page" aria-label="Security and Monitoring Details">
+  <div class="overlay">
   <div class="content-container">
     <h2>24/7 Security and Monitoring</h2>
     <p>
@@ -289,9 +353,11 @@
        with rapid response protocols in place for emergencies.
     </p>
   </div>
+  </div>
 </section>
 
 <section class="page proximity-page" aria-label="Proximity and Accessibility">
+  <div class="overlay">
   <div class="content-container">
     <h2>Proximity and Accessibility</h2>
     <p>
@@ -299,9 +365,11 @@
       <br /> and supporting the school’s academic mission by minimizing time lost in transit.
     </p>
   </div>
+  </div>
 </section>
 
 <section class="page modernfacility-page" aria-label="Modern, Student-Centered Facilities">
+  <div class="overlay">
   <div class="content-container">
     <h2>Modern, Student-Centered Facilities</h2>
     <p>
@@ -311,9 +379,11 @@
        promoting academic excellence and student wellbeing.
     </p>
   </div>
+  </div>
 </section>
 
 <section class="page compliance-page" aria-label="Health, Safety, and Compliance Standards">
+ <div class="overlay">
   <div class="content-container">
     <h2>Health, Safety, and Compliance Standards</h2>
     <p>
@@ -322,9 +392,11 @@
        <br />and transparent compliance reports available for school review.
     </p>
   </div>
+</div>
 </section>
 
 <section class="page welfare-page" aria-label="Student Welfare and Support Systems">
+  <div class="overlay">
   <div class="content-container">
     <h2>Student Welfare and Support Systems</h2>
     <p>
@@ -333,19 +405,24 @@
        <br />providing guidance and oversight when needed.
     </p>
   </div>
+  </div>
 </section>
 
 <section class="page financialtransparency-page" aria-label="Financial Transparency and Value">
+  <div class="overlay">
   <div class="content-container">
     <h2>Financial Transparency and Value</h2>
     <p>
       Clear, structured pricing tailored for institutions and families, with no hidden charges.
        <br />Our packages deliver value while ensuring resources are directed toward student safety and success.
     </p>
+    </div>
   </div>
+
 </section>
 
 <section class="page reputation-page" aria-label="Institutional Reputation and Accountability">
+  <div class="overlay">
   <div class="content-container">
     <h2>Institutional Reputation and Accountability</h2>
     <p>
@@ -354,11 +431,11 @@
        <br />and supports the school’s image as a safe and nurturing environment.
     </p>
   </div>
+  </div>
 </section>
 
 
 <div class="scroll-prompt">scroll for details</div>
-
 <script>
   window.addEventListener('load', () => {
     const phraseMain = document.getElementById('phraseMain');
@@ -372,8 +449,21 @@
     setTimeout(() => { phraseHighlight.classList.add('show'); }, 4000);
   });
 
-  // Remove JS scroll snapping logic; CSS handles snapping now
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+
+  hamburger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      hamburger.click();
+    }
+  });
 </script>
+
 
 </body>
 </html>
