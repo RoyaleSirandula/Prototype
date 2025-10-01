@@ -7,6 +7,10 @@
       href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css" />
     <title>Nest</title>
   </head>
@@ -24,21 +28,24 @@
           </div>
         </div>
         <ul class="nav__links" id="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="parents-students.html">For Parents & Students</a></li>
-          <li><a href="for-schools.html">For Schools</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="parents.html">For Parents & Students</a></li>
+          <li><a href="schools.html">For Schools & Partners</a></li>
+          <li><a href="room-details.html">Rooms</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
         </ul>
       </div>
     </nav>
 
-    <header class="header" id="home">
-      <div class="section__container header__container">
-        <p class="section__subheader">Experience</p>
-        <h1>comfortable,<br />affordable stays <br /> with Nest</h1>
-        <button class="btn">Take A Tour</button>
-      </div>
-    </header>
+<header class="header" id="home">
+  <div class="section__container header__container">
+    <p class="section__subheader">Experience</p>
+    <h1 id="highlightText">comfortable,<br />exclusive stays <br /> with Nest.</h1>
+    <button class="btn">Get Started</button>
+  </div>
+</header>
+
     <section class="about" id="about">
       <div class="section__container about__container">
         <div class="about__grid">
@@ -80,50 +87,65 @@
 
    <section class="student-life">
      <div class="section__container">
-       <p class="section__subheader">Life at Our Hostels</p>
-       <h2 class="section__header">More Than Just a Room</h2>
-       <p class="section__description">
-       A safe, welcoming environment where comfort meets fun and growth. Parents get peace of mind, while students enjoy a vibrant community.
-        </p>
+    <p class="section__subheader">Life at Our Hostels</p>
+    <h2 class="section__header">More Than Just a Room</h2>
+    <p class="section__description">
+      A safe, welcoming environment where comfort meets fun and growth. Parents get peace of mind, while students enjoy a vibrant community.
+    </p>
 
-       <div class="feature__grid">
-         <div class="feature__card">
-          <span>☕</span>
-        <h4>Café & Open Kitchen</h4>
-        <p>Grab a snack, cook with friends, or enjoy coffee breaks together!</p>
-      </div>
-      <div class="feature__card">
-        <span>🧺</span>
-        <h4>Laundry Rooms</h4>
-        <p>Easy-to-use machines so students stay fresh and neat.</p>
-      </div>
-      <div class="feature__card">
-        <span>📚</span>
-        <h4>Study Corners</h4>
-        <p>Quiet areas with desks and lamps for late-night learning sessions.</p>
-      </div>
-      <div class="feature__card">
-        <span>💪</span>
-        <h4>Fitness & Wellness</h4>
-        <p>Gym access and wellness spaces keep both body and mind healthy.</p>
-      </div>
-      <div class="feature__card">
-        <span>🎮</span>
-        <h4>Common Rooms & Game Nights</h4>
-        <p>Relax, connect, and enjoy activities like movie marathons and e-sports.</p>
-      </div>
-      <div class="feature__card">
-        <span>🍫</span>
-        <h4>Snack Bars</h4>
-        <p>Affordable, student-friendly treats available late into the night.</p>
+    <div class="feature__carousel">
+      <div class="feature__slides">
+        <div class="feature__slide">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Café & Open Kitchen">
+          <div class="feature__caption">
+            <h4>Café & Open Kitchen</h4>
+            <p>Grab a snack, cook with friends, or enjoy coffee breaks together!</p>
+          </div>
+        </div>
+        <div class="feature__slide">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Laundry Rooms">
+          <div class="feature__caption">
+            <h4>Laundry Rooms</h4>
+            <p>Easy-to-use machines so students stay fresh and neat.</p>
+          </div>
+        </div>
+        <div class="feature__slide">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Study Corners">
+          <div class="feature__caption">
+            <h4>Study Corners</h4>
+            <p>Quiet areas with desks and lamps for late-night learning sessions.</p>
+          </div>
+        </div>
+        <div class="feature__slide">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Fitness & Wellness">
+          <div class="feature__caption">
+            <h4>💪 Fitness & Wellness</h4>
+            <p>Gym access and wellness spaces keep both body and mind healthy.</p>
+          </div>
+        </div>
+        <div class="feature__slide">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Common Rooms & Game Nights">
+          <div class="feature__caption">
+            <h4>🎮 Common Rooms & Game Nights</h4>
+            <p>Relax, connect, and enjoy activities like movie marathons and e-sports.</p>
+          </div>
+        </div>
+        <div class="feature__slide">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914" alt="Snack Bars">
+          <div class="feature__caption">
+            <h4>🍫 Snack Bars</h4>
+            <p>Affordable, student-friendly treats available late into the night.</p>
+          </div>
+        </div>
       </div>
     </div>
+    <div class="feature__dots"></div>
   </div>
 </section>
 
 
     <section class="room__container" id="room">
-      <p class="section__subheader">ROOMS</p>
+      <p class="section__subheader">ROOMS X SPACES</p>
       <h2 class="section__header"> View Our Hostel Rooms</h2>
       <div class="room__grid">
         <div class="room__card" data-room-id="shared-dorm" tabindex="0" role="button" aria-pressed="false">
@@ -133,31 +155,21 @@
               <h4>Shared Dorm Room</h4>
               <p>Spacious bunk rooms for teens to socialize, study, and relax together.</p>
             </div>
-            <h3>Ksh 1,200<span>/month</span></h3>
+            <h3>USD 300<span>/Month</span></h3>
           </div>
         </div>
-
-        <div class="room__card" data-room-id="private-single" tabindex="0" role="button" aria-pressed="false">
-          <img src="assets/room-2.jpg" alt="Private Single Room" />
+        <div class="room__card" data-room-id="shared-dorm" tabindex="0" role="button" aria-pressed="false">
+          <img src="assets/room-1.jpg" alt="Shared Dorm Room" />
           <div class="room__card__details">
             <div>
-              <h4>Private Single Room</h4>
-              <p>Cozy, secure space for teens who prefer privacy and quiet time.</p>
+              <h4>Shared Dorm Room</h4>
+              <p>Spacious bunk rooms for teens to socialize, study, and relax together.</p>
             </div>
-            <h3>Ksh 1,800<span>/night</span></h3>
+            <h3>USD 300<span>/Month</span></h3>
           </div>
+        </div>
         </div>
 
-        <div class="room__card" data-room-id="friends-suite" tabindex="0" role="button" aria-pressed="false">
-          <img src="assets/room-3.jpg" alt="Friends Suite" />
-          <div class="room__card__details">
-            <div>
-              <h4>Friends Suite</h4>
-              <p>Ideal for small groups, with shared amenities and a vibrant atmosphere.</p>
-            </div>
-            <h3>Ksh 2,500<span>/night</span></h3>
-          </div>
-        </div>
       </div>
     </section>
 
@@ -181,7 +193,12 @@
     </section>
 <!-- ================= Testimonials Section (new, fully inline) ================= -->
 <section id="intro" 
-  style="position: relative; background:#000; color:#fff; text-align:center; padding:4rem 2rem; overflow:hidden;">
+  style="position: relative; background:linear-gradient(
+      rgba(0, 0, 0, 0.705),
+      rgba(0, 0, 0, 0.622)
+    ), url('https://i.pinimg.com/1200x/dc/49/c2/dc49c2561be8aeb1fd132bf9e463b3bf.jpg') no-repeat center center; 
+    background-attachment: fixed; /* This keeps the background fixed */
+   color:#fff; text-align:center; padding:4rem 2rem; overflow:hidden;">
 
   <h1 style="font-size:3rem; font-weight:700; line-height:1.2; margin-bottom:3rem;">
     What others are<br />saying about Nest.
@@ -257,88 +274,90 @@
 </script>
 
 
-    <section class="partners" id="partners">
-      <div class="section__container partners__container">
-        <div class="partners__header">
-          <div>
+<section class="partners" id="partners">
+  <div class="section__container partners__container">
+    <div class="partners__header">
+      <div>
         <p class="section__subheader">OUR PARTNERS</p>
         <h2 class="section__header">Schools, Organisations & Sustainability Partners Supporting Nest</h2>
         <p class="section__description">
           Scholar's Nest collaborates with leading schools, universities, organisations, and sustainability partners to provide unrivalled service and support for our students.
         </p>
-          </div>
-          <div class="section__nav">
+      </div>
+      <div class="section__nav">
         <span><i class="ri-arrow-left-line"></i></span>
         <span><i class="ri-arrow-right-line"></i></span>
-          </div>
-        </div>
-        <ul class="partners__list">
-          <li>
-        <img src="assets/partner-school-1.png" alt="Greenfield Academy" />
-        <div class="partners__details">
-          <h4>Greenfield Academy</h4>
-          <p>Leading secondary school focused on holistic student development.</p>
-        </div>
-          </li>
-          <li>
-        <img src="assets/partner-school-2.png" alt="Westlands University" />
-        <div class="partners__details">
-          <h4>Westlands University</h4>
-          <p>Top university partnering for student accommodation and support.</p>
-        </div>
-          </li>
-          <li>
-        <img src="assets/partner-school-4.png" alt="Light Academy Mombasa" />
-        <div class="partners__details">
-          <h4>Light Academy Mombasa</h4>
-          <p>International school in Mombasa supporting global student excellence.</p>
-        </div>
-          </li>
-          <li>
-        <img src="assets/partner-school-5.png" alt="Braeburn International School" />
-        <div class="partners__details">
-          <h4>Braeburn International School</h4>
-          <p>Renowned international school fostering academic and personal growth.</p>
-        </div>
-          </li>
-          <li>
-        <img src="assets/partner-org-1.png" alt="EduCare Foundation" />
-        <div class="partners__details">
-          <h4>EduCare Foundation</h4>
-          <p>Non-profit organisation supporting student welfare and scholarships.</p>
-        </div>
-          </li>
-          <li>
-        <img src="assets/partner-org-2.png" alt="Healthy Living Initiative" />
-        <div class="partners__details">
-          <h4>Healthy Living Initiative</h4>
-          <p>Promoting wellness and healthy lifestyles for all Nest residents.</p>
-        </div>
-          </li>
-          <li>
-        <img src="assets/partner-org-3.png" alt="Tech4Teens" />
-        <div class="partners__details">
-          <h4>Tech4Teens</h4>
-          <p>Providing digital skills workshops and resources for students.</p>
-        </div>
-          </li>
-          <li>
-        <img src="assets/partner-sustain-1.png" alt="Green Campus Kenya" />
-        <div class="partners__details">
-          <h4>Green Campus Kenya</h4>
-          <p>Sustainability partner advancing eco-friendly student living.</p>
-        </div>
-          </li>
-          <li>
-        <img src="assets/partner-sustain-2.png" alt="EcoNest Initiative" />
-        <div class="partners__details">
-          <h4>EcoNest Initiative</h4>
-          <p>Supporting renewable energy and waste reduction at Nest hostels.</p>
-        </div>
-          </li>
-        </ul>
       </div>
-    </section>
+    </div>
+    <ul class="partners__list">
+      <li>
+        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="Braeburn International School" />
+        <div class="partners__details">
+          <h4>Braeburn International School, Mombasa</h4>
+          <p>Leading international school with strong academic and holistic programmes.</p>
+        </div>
+      </li>
+      <li>
+        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Light International School Mombasa" />
+        <div class="partners__details">
+          <h4>Light International School, Mombasa</h4>
+          <p>Prestigious international school in Nyali supporting global student excellence.</p>
+        </div>
+      </li>
+      <li>
+         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Aga Khan Academy Mombasa" />
+        <div class="partners__details">
+          <h4>Aga Khan Academy, Mombasa</h4>
+          <p>World-class institution emphasising ethical leadership and community service.</p>
+        </div>
+      </li>
+      <li>
+         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Mombasa Academy" />
+        <div class="partners__details">
+          <h4>Mombasa Academy</h4>
+          <p>High-quality private school in Nyali, with British curriculum and holistic focus.</p>
+        </div>
+      </li>
+      <li>
+         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Jaffery Academy Mombasa" />
+        <div class="partners__details">
+          <h4>Jaffery Academy, Mombasa</h4>
+          <p>International school providing well-rounded education and service programmes.</p>
+        </div>
+      </li>
+
+      <li>
+         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Clean Up Kenya" />
+        <div class="partners__details">
+          <h4>Clean Up Kenya</h4>
+          <p>Empowering children through beach cleanups, environmental education and youth stewardship programmes.</p>
+        </div>
+      </li>
+      <li>
+         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Green Action Project" />
+        <div class="partners__details">
+          <h4>Green Action Project (Be The You Foundation)</h4>
+          <p>Planting fruit tree seedlings in schools and cleaning shores along the Indian Ocean.</p>
+        </div>
+      </li>
+      <li>
+         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Omeriye Foundation" />
+        <div class="partners__details">
+          <h4>Omeriye Foundation</h4>
+          <p>Conducts Nyali beach cleanups and engages youth in environmental awareness acts.</p>
+        </div>
+      </li>
+      <li>
+         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Team Mombasa / Sana Mare" />
+        <div class="partners__details">
+          <h4>Team Mombasa / Sana Mare</h4>
+          <p>Organizes coastal cleanups and educates children on marine pollution and ocean health.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
       
     <section class="section__container news__container" id="news">
       <div class="news__header">
@@ -353,9 +372,9 @@
       </div>
       <div class="news__grid">
         <div class="news__card">
-          <img src="assets/event-1.jpg" alt="Open Day" />
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="Open Day" />
           <div class="news__card__title">
-            <p>13th July 2024</p>
+            <p>13th October 2025</p>
             <p>For Parents & Students</p>
           </div>
           <h4>Open Day: Explore Scholar's Nest</h4>
@@ -364,40 +383,51 @@
           </p>
         </div>
         <div class="news__card">
-          <img src="assets/event-2.jpg" alt="School Showcase" />
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="School Showcase" />
           <div class="news__card__title">
-            <p>27th November 2025</p>
+            <p>23rd November 2025</p>
+            <p>For Parents</p>
+          </div>
+          <h4>Nest Field Day @Muthaiga Golf Club</h4>
+          <p>
+            Nest will have a stand at Muthaiga Golf Club on Chairman's Cup Day. Parents are encouraged to attend, meet our team, interact, and ask any questions about our student housing and services.<br /> See you there!
+          </p>
+        </div>
+        <div class="news__card">
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="School Showcase" />
+          <div class="news__card__title">
+            <p>25-28th November 2025</p>
             <p>For Schools</p>
           </div>
           <h4>School Partnership Showcase</h4>
           <p>
-            Schools are invited to see our facilities and learn about collaboration opportunities for student housing.
+            A four day event where schools and parents are invited to see our facilities and learn about collaboration opportunities for student housing.
           </p>
         </div>
         <div class="news__card">
-          <img src="assets/event-3.jpg" alt="Gym Launch" />
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="Gym Launch" />
           <div class="news__card__title">
             <p>10th January 2026</p>
             <p>New Feature</p>
           </div>
-          <h4>Fitness Center Grand Opening</h4>
+          <h4>Grand Opening </h4>
           <p>
-            Join us for the launch of our new gym and wellness area, designed for student health and wellbeing.
+            Join us in celebrating the launch of our hostels. <br /> Contact us to make a reservation; event details will be shared upon reservation and confirmation
           </p>
         </div>
         <div class="news__card">
-          <img src="assets/event-4.jpg" alt="Game Night" />
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="Game Night" />
           <div class="news__card__title">
             <p>17th October 2025</p>
             <p>Community</p>
           </div>
-          <h4>Student Game & Movie Night</h4>
+          <h4>Student Game & Movie Night!</h4>
           <p>
-            A fun evening for students to connect, relax, and enjoy games and movies in our common room.
+            A fun evening for our residents to connect, relax, and enjoy games and movies in our common room.
           </p>
         </div>
         <div class="news__card">
-          <img src="assets/event-5.jpg" alt="Parent Info" />
+          <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="Parent Info" />
           <div class="news__card__title">
             <p>24th November 2025</p>
             <p>For Parents</p>
