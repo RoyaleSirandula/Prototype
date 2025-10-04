@@ -1,333 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>For Schools &amp; Community</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    scroll-behavior: smooth;
-    overflow-y: scroll;
-
-    /* Enable vertical mandatory scroll snapping */
-    scroll-snap-type: y mandatory;
-  }
-  body {
-    overflow-y: scroll;
-  }
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.85); /* translucent white */
-    border-bottom: 1px solid rgba(204, 204, 204, 0.5);
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-    z-index: 9999;
-    box-sizing: border-box;
-    justify-content: space-between;
-    backdrop-filter: saturate(180%) blur(10px); /* subtle blur behind navbar */
-  }
-
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 24px;
-  }
-  .nav-links li a {
-    text-decoration: none;
-    color: #245401;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: color 0.2s ease;
-  }
-  .nav-links li a:hover,
-  .nav-links li a:focus {
-    color: #776f3e; /* olive-gold theme accent */
-    outline: none;
-  }
-
-  /* Hamburger menu (hidden by default) */
-  .hamburger {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    margin-right: 20px;
-  }
-  .hamburger div {
-    width: 25px;
-    height: 3px;
-    background: #245401;
-    margin: 4px 0;
-    border-radius: 2px;
-  }
-
-  /* Logo block */
-  .logo-block {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-    color: #245401;
-    font-weight: bold;
-  }
-  .logo-sn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #245401;
-    color: white;
-    font-weight: 700;
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
-    user-select: none;
-  }
-  .divider {
-    width: 1.5px; /* slightly less than block height */
-    height: 30px;
-    background: #999;
-    margin: 0 12px;
-  }
-  .title-text {
-    font-family: "Poppins", sans-serif;
-    font-size: 1.25rem;
-    white-space: nowrap;
-  }
-
-  /* Responsive - show hamburger and hide title text on small/tablet */
-  @media (max-width: 768px) {
-    .hamburger {
+  <meta charset="UTF-8" />
+  <title>Trippy Blurred Checkerboard</title>
+  <style>
+    body {
+      background: #222;
+      margin: 0;
+      min-height: 100vh;
       display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .title-text {
-      display: none;
-    }
-    .nav-links {
-      position: fixed;
-      top: 60px;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      flex-direction: column;
-      gap: 0;
+    .trippy-bg {
+      width: 600px;
+      height: 400px;
+      position: relative;
       overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.4s ease;
-      border-bottom: 1px solid rgba(204, 204, 204, 0.4);
-      box-sizing: border-box;
-      z-index: 9998;
+      border-radius: 28px;
+      box-shadow: 0 4px 32px #0008;
+      cursor: pointer;
+      /* Blur whole container for extra softness */
+      filter: blur(1px) contrast(1.2) saturate(1.2);
+      transition: filter 0.4s cubic-bezier(.25,1.7,.55,.95);
     }
-    .nav-links.open {
-      max-height: 300px; /* enough height to show all links */
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-    .nav-links li {
-      border-bottom: 1px solid #ddd;
+    .checkerboard {
       width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        #fff 0 40px,
+        #ffe85c 40px 80px
+      ), repeating-linear-gradient(
+        -45deg,
+        #fff 0 40px,
+        #ffe85c 40px 80px
+      );
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      opacity: 0.95;
+      filter: blur(25px) brightness(1.16);
+      z-index: 1;
+      pointer-events: none;
+      transition: filter 0.3s cubic-bezier(.21,1.6,.45,.85), opacity 0.3s;
     }
-    .nav-links li a {
-      display: block;
-      width: 100%;
-      padding: 15px 20px;
-      color: #245401;
-      font-weight: 600;
+    /* glowing inner shadow for mild trip effect */
+    .trippy-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      box-shadow: 0 0 64px 32px #ffe6449d, 0 0 32px 8px rgba(255, 255, 255, 0.723);
+      pointer-events: none;
+      border-radius: 28px;
+      opacity: 0.5;
+      z-index: 2;
+      transition: opacity 0.3s;
     }
-    .nav-links li a:hover,
-    .nav-links li a:focus {
-      background-color: #f0f0c1;
-      color: #1a3500;
-      outline: none;
-    }
-  }
-
-  .page {
-    height: 100vh;
-    width: 100vw;
-    scroll-snap-align: start; /* Snap each page into view */
-    display: flex;
-    justify-content: center; /* horizontally center content */
-    align-items: center;     /* vertically center content */
-    text-align: center;
-    color: white;
-  }
-  section.hero {
-    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-    background-size: cover;
-  }
-
-  section.security-page {
-    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
-    background-size: cover;
-    color: #ffffff;
-  }
-  section.proximity-page {
-    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=1920&q=80&auto=format&fit=crop') no-repeat center center;
-    background-size: cover;
-    color: #ffffff;
-  }
-  section.modernfacility-page {
-    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=1920&q=80&auto=format&fit=crop') no-repeat center center;
-    background-size: cover;
-    color: #ffffff;
-  }
-  section.compliance-page {
-    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=1920&q=80&auto=format&fit=crop') no-repeat center center;
-    background-size: cover;
-    color: #ffffff;
-  }
-  section.welfare-page {
-    background: url('https://images.unsplash.com/photo-1647430406554-0ab7e7bd1380?q=80&w=1373&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
-    background-size: cover;
-    color: #ffffff;
-  }
-  section.financialtransparency-page {
-    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=1920&q=80&auto=format&fit=crop') no-repeat center center;
-    background-size: cover;
-    color: #ffffff;
-  }
-  section.reputation-page {
-    background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&w=1920&q=80&auto=format&fit=crop') no-repeat center center;
-    background-size: cover;
-    color: #ffffff;
-  }
-
-  .hero-content {
-    max-width: 800px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 0 20px;
-    box-sizing: border-box;
-  }
-
-  .phrase-main {
-    font-size: 3rem;
-    font-weight: 700;
-    color: #fff;
-    opacity: 0;
-    filter: blur(6px);
-    transform: scale(1.15);
-    transition: opacity 1.5s ease, filter 1.5s ease, transform 1.5s ease;
-  }
-  .phrase-main.show {
-    opacity: 1;
-    filter: blur(0);
-    transform: scale(1);
-  }
-
-  .divider {
-    height: 2px;
-    background: #ccc;
-    width: 0;
-    opacity: 0;
-    transition: width 1.2s ease, opacity 1.2s ease;
-  }
-  .divider.show {
-    width: 40%;
-    opacity: 1;
-  }
-
-  .phrase-sub {
-    font-size: 1.25rem;
-    line-height: 1.6;
-    opacity: 0;
-    max-width: 100%;
-    transition: opacity 1.5s ease;
-  }
-  .phrase-sub.show {
-    opacity: 1;
-  }
-
-  .phrase-highlight {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #FFD700; /* yellow */
-    opacity: 0;
-    transition: opacity 1.5s ease;
-  }
-  .phrase-highlight.show {
-    opacity: 1;
-  }
-
-  /* Scroll prompt */
-  .scroll-prompt {
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    font-size: 1rem;
-    color: #eee;
-    font-weight: 500;
-    user-select: none;
-    pointer-events: none;
-    text-shadow: 0 0 5px rgba(0,0,0,0.7);
-    animation: pulseGlow 2.5s ease-in-out infinite;
-  }
-  @keyframes pulseGlow {
-    0%, 100% {
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
-      opacity: 0.8;
-    }
-    50% {
-      text-shadow: 0 0 15px rgba(255, 255, 255, 1);
-      opacity: 1;
-    }
-  }
-</style>
+  </style>
 </head>
 <body>
-  <nav class="navbar">
-    <div class="hamburger" id="hamburger" aria-label="Toggle menu" tabindex="0" role="button">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-
-    <a href="/" class="logo-block" aria-label="Home page link">
-      <div class="logo-sn">SN</div>
-      <div class="divider"></div>
-      <div class="title-text">Scholars Nest</div>
-    </a>
-
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#home" tabindex="0">Home</a></li>
-      <li><a href="#about" tabindex="0">About</a></li>
-      <li><a href="#hostels" tabindex="0">Hostels</a></li>
-      <li><a href="#security" tabindex="0">Security</a></li>
-      <li><a href="#contact" tabindex="0">Contact</a></li>
-    </ul>
-  </nav>
-
+  <div class="trippy-bg" id="trippy-bg">
+    <div class="checkerboard" id="checker"></div>
+  </div>
   <script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('navLinks');
-
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
+    const checker = document.getElementById('checker');
+    const bg = document.getElementById('trippy-bg');
+    bg.addEventListener('mousemove', e => {
+      // Get cursor position relative to the div
+      const rect = bg.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      // Map it to background position for a trippy sway
+      const relativeX = (x / rect.width - 0.5) * 50; // -25 to 25px
+      const relativeY = (y / rect.height - 0.5) * 50; // -25 to 25px
+      checker.style.backgroundPosition = `${relativeX}px ${relativeY}px, ${-relativeX}px ${-relativeY}px`;
+      checker.style.filter = `blur(${18 + ((relativeX ** 2 + relativeY ** 2) ** 0.5) / 1.8}px) brightness(1.23)`;
+      bg.style.filter = `blur(${2 + Math.abs(relativeX) / 16}px) contrast(1.2) saturate(1.2)`;
     });
-    hamburger.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        hamburger.click();
-      }
+    bg.addEventListener('mouseleave', () => {
+      checker.style.backgroundPosition = `0px 0px, 0px 0px`;
+      checker.style.filter = 'blur(25px) brightness(1.16)';
+      bg.style.filter = 'blur(1px) contrast(1.2) saturate(1.2)';
     });
   </script>
-
-  <!-- Your page sections below ... -->
-
-  <div class="scroll-prompt">scroll for details</div>
 </body>
 </html>

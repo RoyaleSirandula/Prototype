@@ -109,7 +109,7 @@ ScrollReveal().reveal(".feature__card", {
 // news container
 ScrollReveal().reveal(".news__card", {
   ...scrollRevealOption,
-  interval: 500,
+  interval: 100,
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -134,3 +134,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+document.querySelectorAll('.hostel-card').forEach(card => {
+  card.addEventListener('mouseenter', () => {
+    card.classList.add('expanded');
+  });
+  card.addEventListener('mouseleave', () => {
+    card.classList.remove('expanded');
+  });
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const headings = document.querySelectorAll(".bg-photo-section h2");
+  const paragraphs = document.querySelectorAll(".bg-photo-section p");
+
+  const observerOptions = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  headings.forEach(el => observer.observe(el));
+  paragraphs.forEach(el => observer.observe(el));
+});
+
+// Initialize Google map (replace with actual API call & key)
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -1.2692, lng: 36.8148 }, // Coordinates near Westlands Nairobi
+    zoom: 15,
+    styles: [
+      {
+        "featureType": "water",
+        "stylers": [{ "color": "#245401" }]
+      },
+      {
+        "featureType": "landscape",
+        "stylers": [{ "color": "#f6ac0f" }]
+      },
+      {
+        "featureType": "road",
+        "stylers": [{ "color": "#357d01" }]
+      }
+    ],
+  });
+}
