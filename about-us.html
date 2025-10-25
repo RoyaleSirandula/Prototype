@@ -39,10 +39,217 @@
 <header class="header-about" id="home">
   <div class="section__container header__container">
     <p class="section__subheader">Get To Know More</p>
-    <h1 id="highlightText">about<br /> us</h1>
-    <button class="btn">Let's Get Going</button>
+    <h1 id="highlightText">about<br /> us,<br /> our values<br />& vision</h1>
+    <button class="btn" onclick="document.querySelector('#about-panel').scrollIntoView({behavior: 'smooth'})">What is Scholar's Nest?</button>
+
   </div>
 </header>
+
+<!-- About Us Panel -->
+    <section id="about-panel" class="about-panel">
+      <div id="about-label" class="about-label">WHAT EXACTLY IS SCHOLAR'S NEST?</div>
+      <div class="about-summary">
+        <span style="color: #FFD700;">Scholar’s Nest™</span> is a refreshing student living community by
+        <span style="color: #FFD700;">Nest™</span>, a visionary real estate firm redefining modern accommodation. Designed for comfort,
+        affordability, and focus, it blends fully serviced rooms with study-friendly spaces
+        and vibrant social zones that foster belonging. From study lounges, fast internet speeds, green spaces, in-house chefs and serene pools to 24/7 service,
+        top-tier security, and collaborations with leading schools, every detail supports academic excellence
+        and personal growth. More than housing, <span style="color: #FFD700;">Scholar’s Nest™</span> is a lifestyle hub where students thrive, connect,
+        and create their best stories.
+      </div>
+     <div class="about-stats">
+        <div class="stat-group">
+         <div class="about-num">150+</div>
+         <div class="about-labelstat" style="color: #FFD700;">Units Managed</div>
+       </div>
+       <div class="stat-group">
+         <div class="about-num">10+</div>
+         <div class="about-labelstat" style="color: #FFD700;">Partner Schools</div>
+       </div>
+       <div class="stat-group">
+          <div class="about-num">98%</div>
+          <div class="about-labelstat" style="color: #FFD700;">Resident Satisfaction Rate</div>
+        </div>
+       <div class="stat-group">
+          <div class="about-num">24/7</div>
+          <div class="about-labelstat" style="color: #FFD700;">Security & Facility Support</div>
+       </div>
+       <div class="stat-group">
+         <div class="about-num">15+</div>
+         <div class="about-labelstat" style="color: #FFD700;">Community Events Hosted Annually</div>
+       </div>
+      </div>
+   </section>
+   <!--Info Sections-->
+<section class="about-missionvision">
+  <div class="section__container about-mv__container">
+    <div class="about-mv__item">
+      <h2>Our Mission</h2>
+      <p>
+        To provide safe, affordable, and comfortable student accommodations that foster academic excellence,
+        personal growth, and a vibrant community spirit.
+      </p>
+    </div>
+    <div class="about-mv__item">
+      <h2>Our Vision</h2>
+      <p>
+        To be the leading provider of student living solutions, recognized for our commitment to quality,
+        innovation, and the holistic well-being of our residents.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- Mosaic Section -->
+<section class="mosaic-section">
+<div class="photo-grid">
+    <div class="card card-large"></div>
+    <div class="card card-small-top-left"></div>
+    <div class="card card-small-top-right"></div>
+    <div class="card card-medium-center"></div>
+    <div class="card card-large-right"></div>
+    <div class="card card-medium-bottom-left"></div>
+    <div class="card card-small-bottom-middle"></div>
+    <div class="card card-small-bottom-right"></div>
+    <div class="card card-small-bottom-far-right"></div>
+  </div>
+
+
+  </section>
+
+
+  <!-- Values Section -->
+<section class="about-values">
+  <div class="section__container about-values__container">
+    <h2>Our Core Values</h2>
+    <div class="about-values__items">
+      <div class="about-value__item">
+        <h3>Community</h3>
+        <p>Fostering a sense of belonging and connection among residents.</p>
+      </div>
+      <div class="about-value__item">
+        <h3>Integrity</h3>
+        <p>Upholding honesty, transparency, and ethical practices in all we do.</p>
+      </div>
+      <div class="about-value__item">
+        <h3>Excellence</h3>
+        <p>Striving for the highest standards in service, facilities, and resident experience.</p>
+      </div>
+      <div class="about-value__item">
+        <h3>Innovation</h3>
+        <p>Continuously improving and adapting to meet the evolving needs of our residents.</p>
+      </div>
+      <div class="about-value__item">
+        <h3>Well-being</h3>
+        <p>Prioritizing the physical, mental, and emotional health of our community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section-grid">
+  <div class="section-header">
+    <div>
+      <div class="caption">Every Dream Needs A Team</div>
+      <h2 class="title">Meet Ours</h2>
+      <div class="subtitle">Adminstration</div>
+    </div>
+    
+  </div>
+  <div class="card-grid">
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+    <div class="card"></div>
+  </div>
+  <div class="description">
+      <p>
+        Our team brings years of combined industry experience across design,
+        engineering, and project management. We prioritize quality service,
+        clear communication, and meticulous execution, working collaboratively to deliver reliable solutions
+        on time and aligned with your goals.
+      </p>
+    </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+.section-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 44px 20px;
+  font-family: 'Raleway', Arial, sans-serif;
+  background: #fff;
+}
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 48px;
+  margin-bottom: 36px;
+}
+.section-header > div:first-child {
+  min-width: 230px;
+  max-width: 270px;
+}
+.caption {
+  color: var(--secondary-color);
+  font-size: 20px;
+  margin-bottom: 6px;
+  letter-spacing: 0.2px;
+}
+.title {
+  font-size: 2rem;
+  margin: 0 0 6px 0;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1.1;
+}
+.subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #bababa;
+  margin-bottom: 4px;
+}
+.description {
+  color: var(--text-light);
+  font-size: 1.06rem;
+  max-width: 800px;
+  line-height: 1.47;
+  margin-top: 0;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 160px);
+  gap: 4px;
+  margin-top: 6px;
+}
+.card {
+  background: linear-gradient(135deg, #d1d3d6 0%, #bcbec0 100%);
+  border-radius: 4px;
+  box-shadow: 0 2px 14px 0 #d6d7db63;
+}
+@media (max-width: 900px) {
+  .section-header {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .description{
+    max-width: 100%;
+  }
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 120px);
+    gap: 4px;
+  }
+}
+</style>
+
+<!--footer-->
 <footer class="footer">
       <div class="section__container footer__container">
         <div class="footer__col">
@@ -69,13 +276,15 @@
             </li>
           </ul>
         </div>
-        <div class="footer__col">
+      <div class="footer__col">
           <h4>Services</h4>
           <div class="footer__links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
             <li><a href="parents-students.html">For Parents & Students</a></li>
-            <li><a href="for-schools.html">For Schools</a></li>
+            <li><a href="schools-partners.html">For Schools & Partners</a></li>
+            <li><a href="room-details.html">Rooms</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
           </div>
         </div>
         <div class="footer__col">

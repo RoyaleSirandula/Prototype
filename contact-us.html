@@ -40,15 +40,15 @@
   <div class="section__container header__container">
     <p class="section__subheader">Ready to book your stay?</p>
     <h1 id="highlightText">contact<br /> us <br /> today</h1>
-    <button class="btn">Let's Get Going</button>
+    <button class="btn" onclick="document.querySelector('#bg-photo-section').scrollIntoView({behavior: 'smooth'})">Talk To Us</button>
   </div>
 </header>
 
 <!-- about section -->
 
-<section class="bg-photo-section">
+<section id="bg-photo-section" class="bg-photo-section">
   <div class="contact-pair">
-    <h2>Phone:</h2>
+    <h2>Ring Us On:</h2>
     <p>+254 719837909</p>
   </div>
   <div class="contact-pair">
@@ -56,18 +56,19 @@
     <p><a href="mailto:info@scholarsnest.com" style="color: var(--extra-light); text-decoration: underline;">info@scholarsnest.com</a></p>
   </div>
   <div class="contact-pair">
-    <h2>Location:</h2>
+    <h2>Come See Us:</h2>
     <p>Delta Towers, 4th Floor, <br /> Suite 3, Westlands Nairobi</p>
   </div>
+  <button class="btn" onclick="document.querySelector('#map').scrollIntoView({behavior: 'smooth'})">Get Directions</button>
 </section>
 
-<div id="map" style="width: 100%; height: 400px; margin-top: 2rem; border-radius: 1px; box-shadow: 0 0 10px rgba(36, 84, 1, 0.4);"></div>
+<div id="map" style="width: 100%; height: 50vw; margin-top: 2rem; border-radius: 1px; box-shadow: 0 0 10px rgba(36, 84, 1, 0.4);"></div>
 
 <!-- end of about section -->
 
 <!--footer and shii-->
 <footer class="footer">
-      <div class="section__container footer__container">
+      <div class="section__container footer__contain</div>er">
         <div class="footer__col">
           <div class="logo footer__logo">
             <div>SN</div>
@@ -92,13 +93,15 @@
             </li>
           </ul>
         </div>
-        <div class="footer__col">
+    <div class="footer__col">
           <h4>Services</h4>
           <div class="footer__links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
             <li><a href="parents-students.html">For Parents & Students</a></li>
-            <li><a href="for-schools.html">For Schools</a></li>
+            <li><a href="schools-partners.html">For Schools & Partners</a></li>
+            <li><a href="room-details.html">Rooms</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
           </div>
         </div>
         <div class="footer__col">

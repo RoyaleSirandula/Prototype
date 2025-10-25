@@ -88,6 +88,29 @@ ScrollReveal().reveal(".header__container h1", {
   ...scrollRevealOption,
   delay: 500,
 });
+ScrollReveal().reveal(".about-label", {
+  ...scrollRevealOption,
+  delay: 200,
+  viewFactor: 0.01, // start when a tiny portion enters viewport
+  mobile: true,
+  reset: false,
+});
+
+ScrollReveal().reveal(".about-summary", {
+  ...scrollRevealOption,
+  delay: 400,
+  viewFactor: 0.01,
+  mobile: true,
+  reset: false,
+});
+
+ScrollReveal().reveal(".about-stats", {
+  ...scrollRevealOption,
+  delay: 600,
+  viewFactor: 0.01,
+  mobile: true,
+  reset: false,
+});
 
 ScrollReveal().reveal(".header__container .btn", {
   ...scrollRevealOption,
@@ -185,3 +208,45 @@ function initMap() {
     ],
   });
 }
+// Intersection Observer to fade in overlay text on scroll into view
+  const introSection = document.getElementById('introSection');
+  const overlay = document.getElementById('overlayContent');
+  const video = document.getElementById('introVideo');
+  const toggleBtn = document.getElementById('toggleBtn');
+
+  const options = {
+    root: null,
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        introSection.classList.add('show');
+      } else {
+        if(!introSection.classList.contains('video-active')) {
+          introSection.classList.remove('show');
+        }
+      }
+    });
+  }, options);
+
+  observer.observe(introSection);
+
+  let playing = false;
+
+  toggleBtn.addEventListener('click', () => {
+    if (!playing) {
+      introSection.classList.add('video-active');
+      introSection.classList.remove('show');
+      video.play();
+      playing = true;
+    } else {
+      video.pause();
+      introSection.classList.remove('video-active');
+      introSection.classList.add('show');
+      playing = false;
+    }
+  });
+
+  video.pause(); // Start paused and blurred

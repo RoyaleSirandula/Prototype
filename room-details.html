@@ -40,13 +40,219 @@
   <div class="section__container header__container">
     <p class="section__subheader">A secure and supportive environment—empowering students to succeed and giving parents peace of mind.</p>
     <h1 id="highlightText">rooms <br /> &amp; spaces</h1>
-    <button class="btn">Let's Get Going</button>
+    <button class="btn" onclick="document.querySelector('#roomsSection').scrollIntoView({behavior: 'smooth'})">Look Up Rooms</button>
+
   </div>
 </header>
 
-<section class="bg-photo-section">
-    <h2>ROOMS</h2>
-  </section>
+<section id="roomsSection" class="photo-slider-section">
+  <div class="photo-slider-container">
+    <div class="photo-slider">
+      <div class="photo-slide" data-room="0">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80" alt="Room 1">
+      </div>
+      <div class="photo-slide" data-room="1">
+        <img src="https://images.unsplash.com/photo-1590490359683-7c87f0bdfdfd?auto=format&fit=crop&w=1600&q=80" alt="Room 2">
+      </div>
+      <div class="photo-slide" data-room="2">
+        <img src="https://images.unsplash.com/photo-1616486253440-7e64d1f3e3f3?auto=format&fit=crop&w=1600&q=80" alt="Room 3">
+      </div>
+    </div>
+
+    <div class="photo-slider-controls">
+      <button id="photoPrevBtn" class="photo-nav-btn"><i class="ri-arrow-left-s-line"></i></button>
+      <button id="photoNextBtn" class="photo-nav-btn"><i class="ri-arrow-right-s-line"></i></button>
+    </div>
+
+    <div class="photo-transition-line" id="photoTransitionLine"></div>
+  </div>
+
+  <div class="room-info-panel" id="photoRoomInfoPanel">
+    <h2 id="photoRoomTitle">Room Details</h2>
+    <p id="photoRoomDesc">Click on a photo to view its details.</p>
+    <ul id="photoRoomFeatures"></ul>
+  </div>
+</section>
+
+<style>
+.photo-slider-section {
+  position: relative;
+  padding: 4rem 0;
+  background: #fafafa;
+  overflow: hidden;
+}
+
+.photo-slider-container {
+  position: relative;
+  max-width: 1100px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.photo-slider {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.photo-slide {
+  min-width: 100%;
+  cursor: pointer;
+}
+
+.photo-slide img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.4s ease;
+}
+
+.photo-slide img:hover {
+  transform: scale(1.03);
+}
+
+.photo-slider-controls {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.photo-nav-btn {
+  background: rgba(0,0,0,0.5);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+.photo-nav-btn:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.photo-transition-line {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.room-info-panel {
+  position: fixed;
+  top: 50%;
+  right: -400px;
+  transform: translateY(-50%);
+  width: 350px;
+  background: #fff;
+  box-shadow: -4px 4px 20px rgba(0,0,0,0.2);
+  padding: 1.5rem;
+  border-radius: 16px 0 0 16px;
+  transition: right 0.4s ease;
+  z-index: 20;
+}
+
+.room-info-panel.active {
+  right: 0;
+}
+
+.room-info-panel h2 {
+  margin-bottom: 0.5rem;
+}
+
+.room-info-panel ul {
+  list-style: disc;
+  margin-left: 1.5rem;
+}
+</style>
+
+<script>
+const photoSlider = document.querySelector('.photo-slider');
+const photoSlides = document.querySelectorAll('.photo-slide');
+const photoPrevBtn = document.getElementById('photoPrevBtn');
+const photoNextBtn = document.getElementById('photoNextBtn');
+const photoTransitionLine = document.getElementById('photoTransitionLine');
+const roomInfoPanel = document.getElementById('photoRoomInfoPanel');
+const roomTitle = document.getElementById('photoRoomTitle');
+const roomDesc = document.getElementById('photoRoomDesc');
+const roomFeatures = document.getElementById('photoRoomFeatures');
+
+let photoIndex = 0;
+
+const roomData = [
+  {
+    title: "Executive Suite",
+    desc: "Spacious suite with balcony, ideal for students seeking a private and peaceful study space.",
+    features: ["Private bathroom", "Smart study desk", "Balcony view", "WiFi & power outlets"]
+  },
+  {
+    title: "Classic Twin Room",
+    desc: "Comfortable shared room with ample storage and strong community feel.",
+    features: ["Two single beds", "Shared lounge", "Laundry access", "Quiet study area"]
+  },
+  {
+    title: "Deluxe Single Room",
+    desc: "Modern room with minimalist design, offering both comfort and privacy.",
+    features: ["Queen bed", "Air conditioning", "Wardrobe", "High-speed internet"]
+  }
+];
+
+function updateSlider() {
+  photoSlider.style.transform = `translateX(-${photoIndex * 100}%)`;
+  photoTransitionLine.style.transform = 'scaleX(1)';
+  setTimeout(() => {
+    photoTransitionLine.style.transform = 'scaleX(0)';
+  }, 500);
+}
+
+photoNextBtn.addEventListener('click', () => {
+  photoIndex = (photoIndex + 1) % photoSlides.length;
+  updateSlider();
+});
+
+photoPrevBtn.addEventListener('click', () => {
+  photoIndex = (photoIndex - 1 + photoSlides.length) % photoSlides.length;
+  updateSlider();
+});
+
+photoSlides.forEach(slide => {
+  slide.addEventListener('click', e => {
+    const roomIndex = e.currentTarget.dataset.room;
+    const data = roomData[roomIndex];
+    roomTitle.textContent = data.title;
+    roomDesc.textContent = data.desc;
+    roomFeatures.innerHTML = data.features.map(f => `<li>${f}</li>`).join('');
+    roomInfoPanel.classList.add('active');
+  });
+});
+
+document.addEventListener('click', e => {
+  if (!roomInfoPanel.contains(e.target) && !e.target.closest('.photo-slide')) {
+    roomInfoPanel.classList.remove('active');
+  }
+});
+
+// Smooth scroll to this section
+document.querySelectorAll('a[href="#roomsSection"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector('#roomsSection').scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
 
 <footer class="footer">
       <div class="section__container footer__container">
@@ -74,13 +280,15 @@
             </li>
           </ul>
         </div>
-        <div class="footer__col">
+         <div class="footer__col">
           <h4>Services</h4>
           <div class="footer__links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
             <li><a href="parents-students.html">For Parents & Students</a></li>
-            <li><a href="for-schools.html">For Schools</a></li>
+            <li><a href="schools-partners.html">For Schools & Partners</a></li>
+            <li><a href="room-details.html">Rooms</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
           </div>
         </div>
         <div class="footer__col">

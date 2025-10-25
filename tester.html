@@ -1,87 +1,197 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Trippy Blurred Checkerboard</title>
+<section class="room-selection">
   <style>
-    body {
-      background: #222;
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .trippy-bg {
-      width: 600px;
-      height: 400px;
+    .room-selection {
       position: relative;
+      width: 100%;
+      height: 80vh;
       overflow: hidden;
-      border-radius: 28px;
-      box-shadow: 0 4px 32px #0008;
-      cursor: pointer;
-      /* Blur whole container for extra softness */
-      filter: blur(1px) contrast(1.2) saturate(1.2);
-      transition: filter 0.4s cubic-bezier(.25,1.7,.55,.95);
+      background: #000;
+      color: #fff;
+      font-family: "Urbanist", sans-serif;
     }
-    .checkerboard {
+
+    .slides {
+      position: relative;
       width: 100%;
       height: 100%;
-      background: repeating-linear-gradient(
-        45deg,
-        #fff 0 40px,
-        #ffe85c 40px 80px
-      ), repeating-linear-gradient(
-        -45deg,
-        #fff 0 40px,
-        #ffe85c 40px 80px
-      );
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      opacity: 0.95;
-      filter: blur(25px) brightness(1.16);
-      z-index: 1;
-      pointer-events: none;
-      transition: filter 0.3s cubic-bezier(.21,1.6,.45,.85), opacity 0.3s;
     }
-    /* glowing inner shadow for mild trip effect */
-    .trippy-bg::before {
-      content: "";
+
+    .slide {
       position: absolute;
-      inset: 0;
-      box-shadow: 0 0 64px 32px #ffe6449d, 0 0 32px 8px rgba(255, 255, 255, 0.723);
-      pointer-events: none;
-      border-radius: 28px;
-      opacity: 0.5;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transform: scale(1.05) translateX(100%);
+      transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: scale(1) translateX(0);
       z-index: 2;
-      transition: opacity 0.3s;
+    }
+
+    .slide.prev {
+      transform: scale(1.05) translateX(-100%);
+      opacity: 0;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+
+    .slide.active img {
+      transform: scale(1.05);
+    }
+
+    .chevrons {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 30px;
+      z-index: 10;
+    }
+
+    .chevrons button {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #fff;
+      font-size: 1.8rem;
+      padding: 8px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: background 0.3s ease;
+    }
+
+    .chevrons button:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .transition-line {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: white;
+      transform: scaleY(0);
+      transform-origin: top;
+      z-index: 9;
+    }
+
+    .transition-line.active {
+      animation: moveLine 0.8s ease forwards;
+    }
+
+    @keyframes moveLine {
+      0% {
+        transform: scaleY(0);
+      }
+      50% {
+        transform: scaleY(1);
+      }
+      100% {
+        transform: scaleY(0);
+      }
+    }
+
+    /* Room details side panel */
+    .room-details {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 350px;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 2rem;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+      transform: translateX(100%);
+      transition: transform 0.6s ease;
+      z-index: 11;
+    }
+
+    .room-details.open {
+      transform: translateX(0);
+    }
+
+    .room-details h2 {
+      margin-bottom: 1rem;
+    }
+
+    .room-details p {
+      line-height: 1.5;
+      font-size: 0.95rem;
     }
   </style>
-</head>
-<body>
-  <div class="trippy-bg" id="trippy-bg">
-    <div class="checkerboard" id="checker"></div>
+
+  <div class="slides">
+    <div class="slide active"><img src="https://i.pinimg.com/1200x/ad/ba/75/adba75ca63bba24a35eec31ac5cc3e48.jpg" alt="Room 1"></div>
+    <div class="slide"><img src="https://i.pinimg.com/736x/60/ee/d1/60eed19d91e1a199d3fcece4005c2d21.jpg" alt="Room 2"></div>
+    <div class="slide"><img src="https://i.pinimg.com/1200x/58/c5/b0/58c5b0b347cedfeed8524c5185d5280e.jpg" alt="Room 3"></div>
   </div>
+
+  <div class="chevrons">
+    <button id="prev">&#10094;</button>
+    <button id="next">&#10095;</button>
+  </div>
+
+  <div class="transition-line" id="transitionLine"></div>
+
+  <div class="room-details" id="roomDetails">
+    <h2>Room Details</h2>
+    <p>Elegant space with natural lighting, high-end finishes, and a cozy atmosphere designed for comfort and relaxation.</p>
+  </div>
+
   <script>
-    const checker = document.getElementById('checker');
-    const bg = document.getElementById('trippy-bg');
-    bg.addEventListener('mousemove', e => {
-      // Get cursor position relative to the div
-      const rect = bg.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      // Map it to background position for a trippy sway
-      const relativeX = (x / rect.width - 0.5) * 50; // -25 to 25px
-      const relativeY = (y / rect.height - 0.5) * 50; // -25 to 25px
-      checker.style.backgroundPosition = `${relativeX}px ${relativeY}px, ${-relativeX}px ${-relativeY}px`;
-      checker.style.filter = `blur(${18 + ((relativeX ** 2 + relativeY ** 2) ** 0.5) / 1.8}px) brightness(1.23)`;
-      bg.style.filter = `blur(${2 + Math.abs(relativeX) / 16}px) contrast(1.2) saturate(1.2)`;
+    const slides = document.querySelectorAll(".slide");
+    const nextBtn = document.getElementById("next");
+    const prevBtn = document.getElementById("prev");
+    const line = document.getElementById("transitionLine");
+    const details = document.getElementById("roomDetails");
+    const section = document.querySelector(".room-selection");
+    let current = 0;
+    let direction = "right";
+
+    function showSlide(index) {
+      slides.forEach((s) => s.classList.remove("active", "prev"));
+      slides[current].classList.add("prev");
+      slides[index].classList.add("active");
+
+      const moveDir = direction === "right" ? "left" : "right";
+      line.style.left = moveDir === "left" ? "0" : "calc(100% - 3px)";
+      line.classList.remove("active");
+      void line.offsetWidth;
+      line.classList.add("active");
+
+      current = index;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      direction = "right";
+      const next = (current + 1) % slides.length;
+      showSlide(next);
+      details.classList.add("open");
     });
-    bg.addEventListener('mouseleave', () => {
-      checker.style.backgroundPosition = `0px 0px, 0px 0px`;
-      checker.style.filter = 'blur(25px) brightness(1.16)';
-      bg.style.filter = 'blur(1px) contrast(1.2) saturate(1.2)';
+
+    prevBtn.addEventListener("click", () => {
+      direction = "left";
+      const prev = (current - 1 + slides.length) % slides.length;
+      showSlide(prev);
+      details.classList.add("open");
+    });
+
+    section.addEventListener("click", (e) => {
+      if (!details.contains(e.target) && !e.target.closest(".chevrons")) {
+        details.classList.remove("open");
+      }
     });
   </script>
-</body>
-</html>
+</section>

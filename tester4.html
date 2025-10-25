@@ -1,0 +1,297 @@
+<section id="design-layout-section" class="design-layouts-section">
+  <div class="layout-header">
+    <div class="header-text">
+      <div class="caption">Life At Nest</div>
+      <h2 class="title">Gallery</h2>
+      <div class="subtitle">Sights & Sounds - <br /> Karibu Nyumbani</div>
+    </div>
+    <div class="description">
+      <span style="color: #ffae00;">Scholar’s Nest™</span> provides an inspiring student housing experience that combines modern comfort, safety, and community spirit. 
+      Our thoughtfully designed spaces feature beautifully staged interiors, panoramic views, and carefully curated amenities that make it easy for students to focus, 
+      relax, and connect. We foster an environment where every detail—from natural light to acoustics—supports well-being and academic success. 
+      At <span style="color: #ffae00">Scholar’s Nest™</span>, students find more than just accommodation: they find a vibrant community that supports personal growth, lifelong friendships, and memorable experiences.
+    </div>
+  </div>
+
+  <div class="carousel-wrapper">
+    <div class="carousel">
+      <!-- GRID slides with flip cards -->
+      <div class="grid-slide">
+        <div class="layout-grid">
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.pinimg.com/736x/ad/17/6b/ad176b309792e0825685d71786c0298b.jpg" alt="4:5 image" />
+              </div>
+              <div class="card-back">
+                4:5 Info
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.pinimg.com/736x/07/63/23/0763238ab54d7fb3f51e1fb346540fba.jpg" alt="Banner image" />
+              </div>
+              <div class="card-back">
+                Banner Info
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.pinimg.com/736x/28/ba/69/28ba69503407e113fb922a417b17878a.jpg" alt="9:18 image" />
+              </div>
+              <div class="card-back">
+                9:18 Info
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.pinimg.com/736x/09/d3/c6/09d3c6f740f41baac67af48631c3cc80.jpg" alt="3:4 image" />
+              </div>
+              <div class="card-back">
+                3:4 Info
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.pinimg.com/736x/b8/1b/96/b81b96971350293fbe63e96f57087588.jpg" alt="1:1 image" />
+              </div>
+              <div class="card-back">
+                1:1 Info
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-inner">
+              <div class="card-front">
+                <img src="https://i.pinimg.com/1200x/96/5e/77/965e77fec489590ea6b16103ea765bf1.jpg" alt="16:9 image" />
+              </div>
+              <div class="card-back">
+                16:9 Info
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional grid slides can be added just like above -->
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+  :root {
+    --base-font: 'Raleway', Arial, sans-serif;
+  }
+
+  html, body {
+    font-family: var(--base-font);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .design-layouts-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0px;
+    font-family: var(--base-font);
+    background: #fff;
+    color: #222;
+  }
+  .layout-header {
+    position: relative;
+    background-color: #000000;
+  }
+  .layout-header::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #000000;
+    z-index: -1;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+  .layout-header {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+    padding: 24px; /* keep padding inside */
+    box-sizing: border-box;
+  }
+  .header-text {
+    min-width: 230px;
+    max-width: 280px;
+  }
+  .caption {
+    color: #eeeeee;
+    font-size: 14px;
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
+  }
+  .title {
+    font-size: 2.1rem;
+    color: #ffae00;
+    margin: 0 0 6px 0;
+    font-weight: 700;
+  }
+  .subtitle {
+    font-weight: 500;
+    color: var(--text-light);
+    font-size: 1.4rem;
+  }
+  .description {
+    max-width: 600px;
+    font-size: 1.03rem;
+    color: #eeeeee;
+    line-height: 1.4;
+  }
+  .carousel-wrapper {
+    overflow-x: auto;
+    padding: 1px;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    background-color: #000000;
+    user-select: none;
+    border-radius: 1px;
+    margin-top: 0px;
+    /* Make full viewport width, breaking out of container */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+  .carousel {
+    display: flex;
+    gap: 2px;
+  }
+  .grid-slide {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    height: 500px;
+    width: 700px; /* width for each grid slide */
+  }
+  .layout-grid {
+    display: grid;
+    grid-template-columns: 6fr 4fr 3fr;
+    grid-template-rows: repeat(3, 160px);
+    gap: 2px;
+    align-items: stretch;
+    width: 100%;
+  }
+  .card {
+    perspective: 1000px;
+    background: linear-gradient(135deg, #d1d3d6 0%, #bcbec0 100%);
+    border-radius: 2px;
+    box-shadow: 0 2px 14px 0 #d6d7db63;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+    color: #999;
+    position: relative;
+    cursor: pointer;
+  }
+  /* Styles for the images in cards */
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+    display: block;
+  }
+  /* Card inner for 3D flip */
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  /* Flip horizontally */
+  .flip-horizontal .card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+  /* Flip vertically */
+  .flip-vertical .card-inner.flipped {
+    transform: rotateX(180deg);
+  }
+  /* Front and back sides */
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 2px;
+  }
+  .card-front {
+    z-index: 2;
+  }
+  .card-back {
+    background: #333;
+    color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg); /* Default horizontal flip back */
+    padding: 1rem;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.card').forEach((card) => {
+    const cardInner = document.createElement('div');
+    cardInner.classList.add('card-inner');
+
+    const front = document.createElement('div');
+    front.classList.add('card-front');
+    while(card.firstChild) {
+      front.appendChild(card.firstChild);
+    }
+
+    const back = document.createElement('div');
+    back.classList.add('card-back');
+    back.textContent = 'Description or info here.';
+
+    card.appendChild(cardInner);
+    cardInner.appendChild(front);
+    cardInner.appendChild(back);
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        const card = entry.target;
+        const inner = card.querySelector('.card-inner');
+        if(!card.classList.contains('flip-horizontal') && !card.classList.contains('flip-vertical')){
+          if(Math.random() > 0.5){
+            card.classList.add('flip-horizontal');
+            inner.style.backfaceVisibility = 'hidden';
+          } else {
+            card.classList.add('flip-vertical');
+            inner.style.backfaceVisibility = 'hidden';
+          }
+        }
+        inner.classList.add('flipped');
+        setTimeout(() => {
+          inner.classList.remove('flipped');
+        }, 800);
+      }
+    });
+  }, {threshold: 0.5});
+
+  document.querySelectorAll('.card').forEach(card => observer.observe(card));
+</script>
