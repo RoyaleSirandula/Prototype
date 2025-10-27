@@ -46,14 +46,75 @@
 
 <div id="section__container partners__container" class="section__container partners__container">
   <div id="assurance__header" class="assurance__header">
-   <p class="section__subheader">Designed to take you further......</p>
-        <h2 class="section__header">Because Trusting Nest Unlocks More.</h2>
-        <p class="section__description">
-          Scholar’s Nest is not merely chosen; it’s preferred. For guardians, it eliminates uncertainty — your investment in safety, education, and character is protected by gold-standard operations. 
-          For residents, it is the launchpad for ambition, status, and enduring friendships.
-        </p>
+    <p class="section__subheader"><span class="line">Designed to take you further......</span></p>
 
-      </div>
+    <h2 class="section__header">
+      <span class="line">Because Trusting Nest</span><br />
+      <span class="line">Unlocks More.</span>
+    </h2>
+
+    <p class="section__description" data-split="sentences">
+      Scholar’s Nest is not merely chosen; it’s preferred. For guardians, it eliminates uncertainty — your investment in safety, education, and character is protected by gold-standard operations. For residents, it is the launchpad for ambition, status, and enduring friendships.
+    </p>
+
+    <script>
+      (function () {
+        const container = document.getElementById('assurance__header');
+        if (!container) return;
+
+        // Split paragraph into sentence spans
+        const para = container.querySelector('[data-split="sentences"]');
+        if (para) {
+          // Match sentences including their ending punctuation (keeps punctuation)
+          const raw = para.textContent.trim();
+          const parts = raw.match(/[^.!?]+[.!?]*/g) || [raw];
+          para.innerHTML = ''; // clear
+          parts.forEach((s, i) => {
+            const span = document.createElement('span');
+            span.className = 'sentence';
+            // keep inline flow but allow transform animation
+            span.style.display = 'inline-block';
+            span.style.whiteSpace = 'pre-wrap';
+            span.textContent = s.trim();
+            // add a small space after each sentence (preserve spacing)
+            const spacer = document.createTextNode(i === parts.length - 1 ? '' : ' ');
+            para.appendChild(span);
+            para.appendChild(spacer);
+          });
+        }
+
+        // Collect items to animate: all .line and .sentence inside this container
+        const items = Array.from(container.querySelectorAll('.line, .sentence'));
+        // Add initial hidden class (.fade-up already defined in page styles)
+        items.forEach(it => {
+          if (!it.classList.contains('fade-up')) it.classList.add('fade-up');
+        });
+
+        if (!('IntersectionObserver' in window)) {
+          // fallback: reveal immediately with slight staggers
+          items.forEach((el, i) => {
+            el.style.transitionDelay = `${i * 180}ms`;
+            requestAnimationFrame(() => el.classList.add('in-view'));
+          });
+          return;
+        }
+
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            // stagger reveal, lines first (they appear in DOM order so this works)
+            items.forEach((el, i) => {
+              el.style.transitionDelay = `${i * 180}ms`;
+              requestAnimationFrame(() => el.classList.add('in-view'));
+            });
+            obs.unobserve(entry.target);
+          });
+        }, { threshold: 0.2 });
+
+        io.observe(container);
+      })();
+    </script>
+  </div>
 </div>
 <!--INDEPTH REVIEWS-->
 <!--SAFETY-->
@@ -76,13 +137,13 @@
   
  
   <div class="photo-grid">
-    <div class="card card-large"> <img src="https://i.pinimg.com/736x/3c/a1/ff/3ca1ffcc770daaf1cf12c4f344e8240c.jpg" alt="4:5 image description" /></div>
+    <div class="card card-large"> <img src="https://i.pinimg.com/1200x/c6/fd/8e/c6fd8e98a08483e742f8926c9139a39a.jpg" alt="4:5 image description" /></div>
     <div class="card card-small-top-left"><img src="https://i.pinimg.com/736x/58/3f/95/583f9558b60da8c93c2041fbfd7a41b2.jpg"></div>
     <div class="card card-small-top-right"><img src="https://i.pinimg.com/736x/94/ce/30/94ce30d224f63d6c2def219553b1bd94.jpg"/></div>
     <div class="card card-medium-center"><img src=""/></div>
     <div class="card card-large-right"><img src="https://i.pinimg.com/1200x/b0/eb/c1/b0ebc15be702d3a3f6577fcd25992542.jpg"/></div>
-    <div class="card card-medium-bottom-left"><img src=""/></div>
-    <div class="card card-small-bottom-middle"><img src=""/></div>
+    <div class="card card-medium-bottom-left"><img src="https://i.pinimg.com/736x/3c/a1/ff/3ca1ffcc770daaf1cf12c4f344e8240c.jpg.jpg"/></div>
+    <div class="card card-small-bottom-middle"><img src="https://i.pinimg.com/1200x/d7/6b/57/d76b574cfea0bc5fd171d1279cfd2116.jpg"/></div>
     <div class="card card-small-bottom-right"><img src=""/></div>
     <div class="card card-small-bottom-far-right"><img src=""/></div>
   </div>
@@ -107,8 +168,8 @@
     </div>
   </div>
   <div class="photo-grid">
-    <div class="card card-large"><img src=""/></div>
-    <div class="card card-small-top-left"><img src=""/></div>
+    <div class="card card-large"><img src="https://i.pinimg.com/1200x/d3/fc/ae/d3fcae632f4ba9d3d48098800545e7b3.jpg"/></div>
+    <div class="card card-small-top-left"><img src="https://i.pinimg.com/736x/81/be/9b/81be9b09413bb17321632c65895a4a3e.jpg"/></div>
     <div class="card card-small-top-right"><img src="https://i.pinimg.com/736x/45/72/8f/45728f59ef78839bcf6a932ea1157eaa.jpg"/></div>
     <div class="card card-medium-center"><img src="https://i.pinimg.com/736x/c0/ee/76/c0ee76c5fdf7943e24dabd726d7ac83a.jpg"/></div>
     <div class="card card-large-right"><img src="https://i.pinimg.com/1200x/41/cb/9b/41cb9b4c61ee3dc396844b166c4fb462.jpg"/></div>
@@ -143,15 +204,15 @@
     </div>
   </div>
   <div class="photo-grid">
-    <div class="card card-large"><img src=""/></div>
-    <div class="card card-small-top-left"><img src=""/></div>
-    <div class="card card-small-top-right"><img src=""/></div>
-    <div class="card card-medium-center"><img src=""/></div>
-    <div class="card card-large-right"><img src=""/></div>
-    <div class="card card-medium-bottom-left"><img src=""/></div>
+    <div class="card card-large"><img src="https://i.pinimg.com/1200x/06/38/ee/0638ee58331a27256ad1a35507baea29.jpg"/></div>
+    <div class="card card-small-top-left"><img src="https://i.pinimg.com/1200x/41/e0/6a/41e06ad61a09250ff0fbea3155f53b95.jpg"/></div>
+    <div class="card card-small-top-right"><img src="https://i.pinimg.com/736x/0f/d5/90/0fd5908aca279a9c43cae3983b56d0fe.jpg"/></div>
+    <div class="card card-medium-center"><img src="https://i.pinimg.com/1200x/48/3f/7a/483f7a0d914a0840cf6e549ec997102f.jpg"/></div>
+    <div class="card card-large-right"><img src="https://i.pinimg.com/1200x/8a/1c/cf/8a1ccfc4fe906d0949882624f71bd4b5.jpg"/></div>
+    <div class="card card-medium-bottom-left"><img src="https://i.pinimg.com/1200x/90/39/30/90393096bdf9052309b7e90a260def67.jpg"/></div>
     <div class="card card-small-bottom-middle"><img src=""/></div>
     <div class="card card-small-bottom-right"><img src=""/></div>
-    <div class="card card-small-bottom-far-right"><img src=""/></div>
+    <div class="card card-small-bottom-far-right"><img src="https://i.pinimg.com/1200x/18/63/a6/1863a653d33e1e6f22c7298e5fa1bec1.jpg"/></div>
   </div>
   
 </section>
@@ -180,14 +241,14 @@
     </div>
   </div>
  <div class="photo-grid">
-  <div class="card card-large"><img src=""/></div>
-  <div class="card card-small-top-left"><img src=""/></div>
-  <div class="card card-small-top-right"><img src=""/></div>
-  <div class="card card-medium-center"><img src=""/></div>
-  <div class="card card-large-right"><img src=""/></div>
+  <div class="card card-large"><img src="https://i.pinimg.com/1200x/a1/05/9b/a1059b9af60d1b3e6554390457cb2d18.jpg"/></div>
+  <div class="card card-small-top-left"><img src="https://i.pinimg.com/736x/a0/c2/37/a0c237c1b8d17998d3c9166274203589.jpg"/></div>
+  <div class="card card-small-top-right"><img src="https://i.pinimg.com/1200x/65/2a/75/652a75f2f15af37a7a13dc57ded22239.jpg"/></div>
+  <div class="card card-medium-center"><img src="https://i.pinimg.com/1200x/62/99/9f/62999fe47044b3e5515273e9780b27a1.jpg"/></div>
+  <div class="card card-large-right"><img src="https://i.pinimg.com/736x/e6/33/e4/e633e48d6aa06f944174f99f43f5bf06.jpg"/></div>
   <div class="card card-medium-bottom-left"><img src=""/></div>
-  <div class="card card-small-bottom-middle"><img src=""/></div>
-  <div class="card card-small-bottom-right"><img src=""/></div>
+  <div class="card card-small-bottom-middle"><img src="https://i.pinimg.com/1200x/bf/32/ae/bf32ae5fd40462819b28ca3cf94ae964.jpg"/></div>
+  <div class="card card-small-bottom-right"><img src="https://i.pinimg.com/736x/2a/64/37/2a64372ca1c4a0abfcc263b814e08711.jpg"/></div>
   <div class="card card-small-bottom-far-right"><img src=""/></div>
 </div>
 </section>
@@ -213,13 +274,13 @@
     </div>
   </div>
   <div class="photo-grid">
-  <div class="card card-large"><img src=""/></div>
-  <div class="card card-small-top-left"><img src=""/></div>
-  <div class="card card-small-top-right"><img src=""/></div>
+  <div class="card card-large"><img src="https://i.pinimg.com/1200x/22/65/01/226501cc753291761455c89979a44001.jpg"/></div>
+  <div class="card card-small-top-left"><img src="https://i.pinimg.com/1200x/52/f0/0d/52f00d0b66d0f57e6b1139220790d01d.jpg"/></div>
+  <div class="card card-small-top-right"><img src="https://i.pinimg.com/736x/0b/fd/ba/0bfdba6b662815f49075b516cdc13871.jpg"/></div>
   <div class="card card-medium-center"><img src=""/></div>
-  <div class="card card-large-right"><img src=""/></div>
-  <div class="card card-medium-bottom-left"><img src=""/></div>
-  <div class="card card-small-bottom-middle"><img src=""/></div>
+  <div class="card card-large-right"><img src="https://i.pinimg.com/736x/58/7e/2b/587e2b7a546b4fd19a93ea292487396e.jpg"/></div>
+  <div class="card card-medium-bottom-left"><img src="https://i.pinimg.com/1200x/8d/1a/98/8d1a9832f0aa6c09fdd68f2e7282943d.jpg"/></div>
+  <div class="card card-small-bottom-middle"><img src="https://i.pinimg.com/736x/99/76/c1/9976c1bba18e81b6e2e1c2211c72dea9.jpg"/></div>
   <div class="card card-small-bottom-right"><img src=""/></div>
   <div class="card card-small-bottom-far-right"><img src=""/></div>
 </div>
@@ -245,7 +306,7 @@
       <p>
         Recreation is not an afterthought — it’s part of your rhythm here. 
         Enjoy <span style="color: var(--secondary-color)">indoor cinema nights, gaming lounges, basketball courts, table tennis, and serene pools</span> for unwinding. 
-        And on weekends, join guided trips to <span style="color: var(--secondary-color)">parks, festivals, and beach clean-ups</span> — because balance matters.
+        And on weekends, join guided trips to <span style="color: var(--secondary-color)">parks, festivals, and beach clean-ups and festivals</span> — because balance matters.
         <blockquote style="font-style: italic; color: var(--text-light); margin-top: 1rem; border-left: 4px solid var(--secondary-color); padding-left: 1rem;">
         “Training at Scholar’s Nest changed everything for me. The <span style='color: var(--secondary-color)'>pool was my sanctuary</span> after long practice sessions — it helped me recover faster and stay focused. 
         Every morning, my <span style='color: var(--secondary-color)'>athlete-focused meal prep</span> was ready, fueling me for the day ahead. 
@@ -263,15 +324,15 @@
   </div>
   </div>
    <div class="photo-grid">
-  <div class="card card-large"><img src=""/></div>
+  <div class="card card-large"><img src="https://i.pinimg.com/736x/7a/ea/1e/7aea1ed3f73a1f6f242df188d0792a19.jpg"/></div>
   <div class="card card-small-top-left"><img src=""/></div>
-  <div class="card card-small-top-right"><img src=""/></div>
-  <div class="card card-medium-center"><img src=""/></div>
-  <div class="card card-large-right"><img src=""/></div>
-  <div class="card card-medium-bottom-left"><img src=""/></div>
-  <div class="card card-small-bottom-middle"><img src=""/></div>
-  <div class="card card-small-bottom-right"><img src=""/></div>
-  <div class="card card-small-bottom-far-right"><img src=""/></div>
+  <div class="card card-small-top-right"><img src="https://i.pinimg.com/736x/3a/e2/72/3ae27203bd0c78be937543750966c18a.jpg"/></div>
+  <div class="card card-medium-center"><img src="https://i.pinimg.com/1200x/5e/dd/fc/5eddfc5cc72b35679d0009b7e490cdd4.jpg"/></div>
+  <div class="card card-large-right"><img src="https://i.pinimg.com/736x/ff/6b/61/ff6b61c9820e7655bf3b85d65ba4fb3d.jpg"/></div>
+  <div class="card card-medium-bottom-left"><img src="https://i.pinimg.com/1200x/5a/e3/ce/5ae3ce393e0e34ab26e4ab3b04139026.jpg"/></div>
+  <div class="card card-small-bottom-middle"><img src="https://i.pinimg.com/736x/0f/28/d6/0f28d6256930fce505bf97ee71938755.jpg"/></div>
+  <div class="card card-small-bottom-right"><img src="https://i.pinimg.com/736x/2e/f9/be/2ef9bef1a108f77beed46214f106fabf.jpg"/></div>
+  <div class="card card-small-bottom-far-right"><img src="https://i.pinimg.com/1200x/11/ee/36/11ee36e5bb13dec6adabc6c4ccd96ebd.jpg"/></div>
 </div>
 
 </section>
@@ -308,15 +369,15 @@
   </div>
   </div>
    <div class="photo-grid">
-  <div class="card card-large"><img src=""/></div>
-  <div class="card card-small-top-left"><img src=""/></div>
-  <div class="card card-small-top-right"><img src=""/></div>
+  <div class="card card-large"><img src="https://i.pinimg.com/736x/d1/24/37/d124377275763f1644c8f97efd8fdb89.jpg"/></div>
+  <div class="card card-small-top-left"><img src="https://i.pinimg.com/736x/4b/75/37/4b753791d8721de86ee989da4e4a5d2a.jpg"/></div>
+  <div class="card card-small-top-right"><img src="https://i.pinimg.com/1200x/bf/6d/30/bf6d306b5361201d4f10bd9b856de3c0.jpg"/></div>
   <div class="card card-medium-center"><img src=""/></div>
-  <div class="card card-large-right"><img src=""/></div>
-  <div class="card card-medium-bottom-left"><img src=""/></div>
-  <div class="card card-small-bottom-middle"><img src=""/></div>
+  <div class="card card-large-right"><img src="https://i.pinimg.com/736x/48/40/de/4840ded4982a34bf8bd8a119ea48918f.jpg"/></div>
+  <div class="card card-medium-bottom-left"><img src="https://i.pinimg.com/1200x/3c/d9/fa/3cd9fa0dabea793acfbcd3aa746f586f.jpg"/></div>
+  <div class="card card-small-bottom-middle"><img src="https://i.pinimg.com/736x/83/42/37/83423769fba69414d5192f8c9bff31a2.jpg"/></div>
   <div class="card card-small-bottom-right"><img src=""/></div>
-  <div class="card card-small-bottom-far-right"><img src=""/></div>
+  <div class="card card-small-bottom-far-right"><img src="https://i.pinimg.com/1200x/87/c6/7a/87c67a3ecaeebafadbc813976b6ea16e.jpg"/></div>
 </div>
 
   
