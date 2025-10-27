@@ -1,25 +1,33 @@
+// GitHub Copilot
+
+// Toggle mobile menu button and icon
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
 const menuBtnIcon = menuBtn.querySelector("i");
 
 menuBtn.addEventListener("click", (e) => {
+  // open/close nav and swap the icon class
   navLinks.classList.toggle("open");
 
   const isOpen = navLinks.classList.contains("open");
   menuBtnIcon.setAttribute("class", isOpen ? "ri-close-line" : "ri-menu-line");
 });
 
+// Close nav when a link inside nav is clicked (mobile behavior)
 navLinks.addEventListener("click", (e) => {
   navLinks.classList.remove("open");
   menuBtnIcon.setAttribute("class", "ri-menu-line");
 });
 
+// Highlight effect on header H1 that follows the mouse via CSS variables
 const headerH1 = document.getElementById('highlightText');
 
+// Initialize CSS vars to a safe default
 headerH1.style.setProperty('--mouse-x', '100%');
 headerH1.style.setProperty('--mouse-y', '100%');
 
 headerH1.addEventListener('mousemove', (e) => {
+  // Calculate mouse position relative to element and set CSS vars
   const rect = headerH1.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
@@ -27,59 +35,68 @@ headerH1.addEventListener('mousemove', (e) => {
   headerH1.style.setProperty('--mouse-y', `${y}px`);
 });
 
+
+// Feature slides (carousel) with dots and autoplay
 const slides = document.querySelectorAll('.feature__slide');
-    const slidesContainer = document.querySelector('.feature__slides');
-    const dotsContainer = document.querySelector('.feature__dots');
-    let currentIndex = 0;
-    const slideCount = slides.length;
-    let autoplayInterval;
+const slidesContainer = document.querySelector('.feature__slides');
+const dotsContainer = document.querySelector('.feature__dots');
+let currentIndex = 0;
+const slideCount = slides.length;
+let autoplayInterval;
 
-    // Create dots
-    slides.forEach((_, i) => {
-      const dot = document.createElement('div');
-      dot.classList.add('feature__dot');
-      if (i === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => goToSlide(i));
-      dotsContainer.appendChild(dot);
-    });
+// Create dot controls dynamically and wire click handlers
+slides.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.classList.add('feature__dot');
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(dot);
+});
 
-    const dots = document.querySelectorAll('.feature__dot');
+const dots = document.querySelectorAll('.feature__dot');
 
-    function goToSlide(index) {
-      currentIndex = index;
-      slidesContainer.style.transform = `translateX(-${index * 100}%)`;
-      updateDots();
-      resetAutoplay();
-    }
+function goToSlide(index) {
+  // Move slides container to show the requested slide
+  currentIndex = index;
+  slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+  updateDots();
+  resetAutoplay();
+}
 
-    function updateDots() {
-      dots.forEach(dot => dot.classList.remove('active'));
-      dots[currentIndex].classList.add('active');
-    }
+function updateDots() {
+  // Update active state on dots
+  dots.forEach(dot => dot.classList.remove('active'));
+  dots[currentIndex].classList.add('active');
+}
 
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % slideCount;
-      goToSlide(currentIndex);
-    }
+function nextSlide() {
+  // Advance to next slide (wrap around)
+  currentIndex = (currentIndex + 1) % slideCount;
+  goToSlide(currentIndex);
+}
 
-    function startAutoplay() {
-      autoplayInterval = setInterval(nextSlide, 10000);
-    }
+function startAutoplay() {
+  // Start automatic slide advance every 10s
+  autoplayInterval = setInterval(nextSlide, 10000);
+}
 
-    function resetAutoplay() {
-      clearInterval(autoplayInterval);
-      startAutoplay();
-    }
+function resetAutoplay() {
+  // Restart autoplay (useful after manual navigation)
+  clearInterval(autoplayInterval);
+  startAutoplay();
+}
 
-    startAutoplay();
+startAutoplay();
 
+
+// ScrollReveal configuration and usage for entrance animations
 const scrollRevealOption = {
   distance: "50px",
   origin: "bottom",
   duration: 1000,
 };
 
-// header container
+// Reveal header container elements
 ScrollReveal().reveal(".header__container .section__subheader", {
   ...scrollRevealOption,
 });
@@ -117,24 +134,24 @@ ScrollReveal().reveal(".header__container .btn", {
   delay: 1000,
 });
 
-// room container
+// Reveal lists of cards with an interval between each
 ScrollReveal().reveal(".room__card", {
   ...scrollRevealOption,
   interval: 500,
 });
 
-// feature container
 ScrollReveal().reveal(".feature__card", {
   ...scrollRevealOption,
   interval: 500,
 });
 
-// news container
 ScrollReveal().reveal(".news__card", {
   ...scrollRevealOption,
   interval: 100,
 });
 
+
+// Make room cards clickable and keyboard-accessible
 document.addEventListener('DOMContentLoaded', () => {
   const roomCards = document.querySelectorAll('.room__card');
 
@@ -142,6 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     card.style.cursor = 'pointer';
 
     card.addEventListener('click', () => {
+      // Read data-room-id and navigate to details page
       const roomId = card.getAttribute('data-room-id');
       if (roomId) {
         window.location.href = `room-details.html?id=${encodeURIComponent(roomId)}`;
@@ -158,6 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// Expand hostel cards on hover
 document.querySelectorAll('.hostel-card').forEach(card => {
   card.addEventListener('mouseenter', () => {
     card.classList.add('expanded');
@@ -166,6 +185,8 @@ document.querySelectorAll('.hostel-card').forEach(card => {
     card.classList.remove('expanded');
   });
 });
+
+// IntersectionObserver to animate headings/paragraphs in .bg-photo-section as they enter viewport
 document.addEventListener("DOMContentLoaded", function () {
   const headings = document.querySelectorAll(".bg-photo-section h2");
   const paragraphs = document.querySelectorAll(".bg-photo-section p");
@@ -177,6 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        // Add visible class and stop observing that element
         entry.target.classList.add("visible");
         observer.unobserve(entry.target);
       }
@@ -188,6 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Initialize Google map (replace with actual API call & key)
+// This function is intended to be used as the callback for the Google Maps API script
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -1.2692, lng: 36.8148 }, // Coordinates near Westlands Nairobi
@@ -208,45 +231,50 @@ function initMap() {
     ],
   });
 }
-// Intersection Observer to fade in overlay text on scroll into view
-  const introSection = document.getElementById('introSection');
-  const overlay = document.getElementById('overlayContent');
-  const video = document.getElementById('introVideo');
-  const toggleBtn = document.getElementById('toggleBtn');
 
-  const options = {
-    root: null,
-    threshold: 0.5,
-  };
+// Intersection Observer to fade in overlay text on scroll into view for the intro section
+const introSection = document.getElementById('introSection');
+const overlay = document.getElementById('overlayContent');
+const video = document.getElementById('introVideo');
+const toggleBtn = document.getElementById('toggleBtn');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        introSection.classList.add('show');
-      } else {
-        if(!introSection.classList.contains('video-active')) {
-          introSection.classList.remove('show');
-        }
-      }
-    });
-  }, options);
+const options = {
+  root: null,
+  threshold: 0.5,
+};
 
-  observer.observe(introSection);
-
-  let playing = false;
-
-  toggleBtn.addEventListener('click', () => {
-    if (!playing) {
-      introSection.classList.add('video-active');
-      introSection.classList.remove('show');
-      video.play();
-      playing = true;
-    } else {
-      video.pause();
-      introSection.classList.remove('video-active');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // When intro section is at least 50% visible, show overlay text
       introSection.classList.add('show');
-      playing = false;
+    } else {
+      // If not intersecting and video isn't active, hide overlay
+      if(!introSection.classList.contains('video-active')) {
+        introSection.classList.remove('show');
+      }
     }
   });
+}, options);
 
-  video.pause(); // Start paused and blurred
+observer.observe(introSection);
+
+let playing = false;
+
+// Toggle play/pause of intro video and adjust overlay classes
+toggleBtn.addEventListener('click', () => {
+  if (!playing) {
+    introSection.classList.add('video-active');
+    introSection.classList.remove('show');
+    video.play();
+    playing = true;
+  } else {
+    video.pause();
+    introSection.classList.remove('video-active');
+    introSection.classList.add('show');
+    playing = false;
+  }
+});
+
+// Ensure video starts paused and possibly blurred/overlaid
+video.pause(); // Start paused and blurred

@@ -29,7 +29,7 @@
         <ul class="nav__links" id="nav-links">
           <li><a href="index.html">Home</a></li>
           <li><a href="about-us.html">About Us</a></li>
-          <li><a href="parents.html">For Parents & Students</a></li>
+          <li><a href="parents.html">For Guardians & Residents</a></li>
           <li><a href="schools.html">For Schools & Partners</a></li>
           <li><a href="room-details.html">Rooms</a></li>
           <li><a href="contact-us.html">Contact Us</a></li>
@@ -41,9 +41,9 @@
   <div class="section__container header__container">
     <p class="section__subheader">Experience</p>
    <h1 id="highlightText">
-  comfortable,<br />
-  exclusive stays <br />
-  with <span class="color-cycle">Nest™</span>.
+     comfortable,<br />
+     exclusive stays <br />
+     with <span class="color-cycle">Nest™</span>.
 </h1>
     <button class="btn" onclick="document.querySelector('#design-layout-section').scrollIntoView({behavior: 'smooth'})">Get Started</button>
   </div>
@@ -369,6 +369,28 @@
     const walk = (x - startX) * 2; 
     slider.scrollLeft = scrollLeft - walk;
   });
+   // Count up animation
+  function countUp(element, target, duration = 2000) {
+    let start = 0;
+    const stepTime = Math.max(Math.floor(duration / target), 20);
+    function step() {
+      start++;
+      element.textContent = start + "+";
+      if (start < target) {
+        setTimeout(step, stepTime);
+      }
+    }
+    step();
+  }
+
+  // Trigger when page loads
+  window.addEventListener('load', () => {
+    const numbers = document.querySelectorAll('.stat-number');
+    numbers.forEach((numEl) => {
+      const target = parseInt(numEl.getAttribute('data-target'), 10);
+      countUp(numEl, target, 1500);
+    });
+  });
 </script>
 
 <section class="intro" id="introSection">
@@ -444,30 +466,7 @@
   </div>
 </section>
 
-<script>
-  // Count up animation
-  function countUp(element, target, duration = 2000) {
-    let start = 0;
-    const stepTime = Math.max(Math.floor(duration / target), 20);
-    function step() {
-      start++;
-      element.textContent = start + "+";
-      if (start < target) {
-        setTimeout(step, stepTime);
-      }
-    }
-    step();
-  }
 
-  // Trigger when page loads
-  window.addEventListener('load', () => {
-    const numbers = document.querySelectorAll('.stat-number');
-    numbers.forEach((numEl) => {
-      const target = parseInt(numEl.getAttribute('data-target'), 10);
-      countUp(numEl, target, 1500);
-    });
-  });
-</script>
 
 
 <section class="partners" id="partners">
@@ -673,8 +672,8 @@
           <div class="footer__links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about-us.html">About Us</a></li>
-            <li><a href="parents-students.html">For Parents & Students</a></li>
-            <li><a href="schools-partners.html">For Schools & Partners</a></li>
+            <li><a href="parents.html">For Guardians & Residents</a></li>
+            <li><a href="schools.html">For Schools & Partners</a></li>
             <li><a href="room-details.html">Rooms</a></li>
             <li><a href="contact-us.html">Contact Us</a></li>
           </div>
@@ -693,7 +692,7 @@
               <span><i class="ri-record-mail-line"></i></span>
               <div>
                 <h5>Email</h5>
-                <p>info@scholarsnest.com</p>
+                <p><a href="mailto:scholarsnestke@gmail.com">scholarsnestke@gmail.com</a></p>
               </div>
             </li>
             <li>

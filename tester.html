@@ -1,197 +1,103 @@
-<section class="room-selection">
-  <style>
-    .room-selection {
-      position: relative;
-      width: 100%;
-      height: 80vh;
-      overflow: hidden;
-      background: #000;
-      color: #fff;
-      font-family: "Urbanist", sans-serif;
-    }
-
-    .slides {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    .slide {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      opacity: 0;
-      transform: scale(1.05) translateX(100%);
-      transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1), opacity 1s ease;
-    }
-
-    .slide.active {
-      opacity: 1;
-      transform: scale(1) translateX(0);
-      z-index: 2;
-    }
-
-    .slide.prev {
-      transform: scale(1.05) translateX(-100%);
-      opacity: 0;
-    }
-
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1s ease;
-    }
-
-    .slide.active img {
-      transform: scale(1.05);
-    }
-
-    .chevrons {
-      position: absolute;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 30px;
-      z-index: 10;
-    }
-
-    .chevrons button {
-      background: rgba(255, 255, 255, 0.15);
-      border: none;
-      color: #fff;
-      font-size: 1.8rem;
-      padding: 8px 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      backdrop-filter: blur(6px);
-      transition: background 0.3s ease;
-    }
-
-    .chevrons button:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    .transition-line {
-      position: absolute;
-      top: 0;
-      height: 100%;
-      width: 3px;
-      background: white;
-      transform: scaleY(0);
-      transform-origin: top;
-      z-index: 9;
-    }
-
-    .transition-line.active {
-      animation: moveLine 0.8s ease forwards;
-    }
-
-    @keyframes moveLine {
-      0% {
-        transform: scaleY(0);
-      }
-      50% {
-        transform: scaleY(1);
-      }
-      100% {
-        transform: scaleY(0);
-      }
-    }
-
-    /* Room details side panel */
-    .room-details {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 350px;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      color: #fff;
-      padding: 2rem;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
-      transform: translateX(100%);
-      transition: transform 0.6s ease;
-      z-index: 11;
-    }
-
-    .room-details.open {
-      transform: translateX(0);
-    }
-
-    .room-details h2 {
-      margin-bottom: 1rem;
-    }
-
-    .room-details p {
-      line-height: 1.5;
-      font-size: 0.95rem;
-    }
-  </style>
-
-  <div class="slides">
-    <div class="slide active"><img src="https://i.pinimg.com/1200x/ad/ba/75/adba75ca63bba24a35eec31ac5cc3e48.jpg" alt="Room 1"></div>
-    <div class="slide"><img src="https://i.pinimg.com/736x/60/ee/d1/60eed19d91e1a199d3fcece4005c2d21.jpg" alt="Room 2"></div>
-    <div class="slide"><img src="https://i.pinimg.com/1200x/58/c5/b0/58c5b0b347cedfeed8524c5185d5280e.jpg" alt="Room 3"></div>
+<section class="partners-section" aria-label="Strategic Partners">
+  <div class="partners-pretitle">Our Network</div>
+  <h2 class="partners-title">Trusted Alliances, Unmatched Impact</h2>
+  <p class="partners-summary">
+    We forge partnerships with industry leaders and innovative disruptors—each synergy engineered for transformative growth and unparalleled service excellence.
+  </p>
+  <div class="partners-grid">
+    <div class="partner-logo"><img src="ahrefs.png" alt="Ahrefs"></div>
+    <div class="partner-logo"><img src="microsoft.png" alt="Microsoft"></div>
+    <div class="partner-logo"><img src="helpscout.png" alt="HelpScout"></div>
+    <div class="partner-logo"><img src="jotform.png" alt="Jotform"></div>
+    <div class="partner-logo"><img src="amazon.png" alt="Amazon"></div>
+    <div class="partner-logo"><img src="notion.png" alt="Notion"></div>
+    <div class="partner-logo"><img src="linkedin.png" alt="LinkedIn"></div>
+    <div class="partner-logo"><img src="circle.png" alt="Circle"></div>
   </div>
-
-  <div class="chevrons">
-    <button id="prev">&#10094;</button>
-    <button id="next">&#10095;</button>
-  </div>
-
-  <div class="transition-line" id="transitionLine"></div>
-
-  <div class="room-details" id="roomDetails">
-    <h2>Room Details</h2>
-    <p>Elegant space with natural lighting, high-end finishes, and a cozy atmosphere designed for comfort and relaxation.</p>
-  </div>
-
-  <script>
-    const slides = document.querySelectorAll(".slide");
-    const nextBtn = document.getElementById("next");
-    const prevBtn = document.getElementById("prev");
-    const line = document.getElementById("transitionLine");
-    const details = document.getElementById("roomDetails");
-    const section = document.querySelector(".room-selection");
-    let current = 0;
-    let direction = "right";
-
-    function showSlide(index) {
-      slides.forEach((s) => s.classList.remove("active", "prev"));
-      slides[current].classList.add("prev");
-      slides[index].classList.add("active");
-
-      const moveDir = direction === "right" ? "left" : "right";
-      line.style.left = moveDir === "left" ? "0" : "calc(100% - 3px)";
-      line.classList.remove("active");
-      void line.offsetWidth;
-      line.classList.add("active");
-
-      current = index;
-    }
-
-    nextBtn.addEventListener("click", () => {
-      direction = "right";
-      const next = (current + 1) % slides.length;
-      showSlide(next);
-      details.classList.add("open");
-    });
-
-    prevBtn.addEventListener("click", () => {
-      direction = "left";
-      const prev = (current - 1 + slides.length) % slides.length;
-      showSlide(prev);
-      details.classList.add("open");
-    });
-
-    section.addEventListener("click", (e) => {
-      if (!details.contains(e.target) && !e.target.closest(".chevrons")) {
-        details.classList.remove("open");
-      }
-    });
-  </script>
+  <button class="partner-cta">Become a Partner</button>
 </section>
+
+<style>
+.partners-section {
+  max-width: 900px;
+  margin: 0 auto 4rem auto;
+  padding: 2.5rem 1rem;
+  background: #fff;
+  text-align: center;
+}
+.partners-pretitle {
+  font-size: 0.88rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #7b68ee;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.partners-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: #121228;
+}
+.partners-summary {
+  color: #555;
+  max-width: 530px;
+  margin: 0 auto 2.5rem auto;
+  font-size: 1.13rem;
+  font-weight: 400;
+}
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(150px, 1fr) );
+  gap: 1.6rem 2.4rem;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 2.5rem auto;
+  max-width: 700px;
+}
+/* Ensure max 4 columns, center grid if row is partially filled */
+@media (min-width: 800px) {
+  .partners-grid {
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+  }
+}
+.partner-logo {
+  background: #fafafc;
+  border: 1px solid #ececf4;
+  border-radius: 12px;
+  padding: 1.3rem 1.5rem;
+  min-height: 58px;
+  min-width: 140px;
+  box-shadow: 0 2px 6px rgb(123 104 238 / 0.04);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: box-shadow 0.25s;
+}
+.partner-logo:hover {
+  box-shadow: 0 6px 18px rgb(123 104 238 / 0.11);
+}
+.partner-logo img {
+  max-height: 36px;
+  max-width: 100%;
+  object-fit: contain;
+}
+.partner-cta {
+  background: #7b68ee;
+  color: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1.04rem;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.75rem 2.35rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px #bdb6ee33;
+}
+.partner-cta:hover {
+  background: #604bcc;
+}
+</style>

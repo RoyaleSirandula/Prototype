@@ -1,215 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Persuasive Document Principles</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Schools, Partners & Community | Scholar’s Nest™</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --grid-color: rgba(200, 0, 0, 0.05);
-      --black: #111;
-      --white: #fff;
-      --accent: #000; /* use #fff for dark modes */
-      --font-primary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;500&display=swap');
 
-    html, body {
-      background: var(--white);
-      color: var(--black);
-      font-family: var(--font-primary);
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-size: 18px;
-    }
     body {
       margin: 0;
-      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.6;
+      font-size: 18px;
     }
-
     .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-      position: relative;
-      background: var(--white);
-      overflow-x: hidden;
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 1rem;
     }
-
-    .grid {
-      background-image:
-        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-      background-size: 120px 36px;
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
     h1, h2, h3 {
-      font-family: var(--font-primary);
-      font-weight: 400;
-      margin: 2.5rem 0 1.5rem 0;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      z-index: 2;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+      color: #111;
     }
     h1 {
       font-size: 2.8rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
     h2 {
       font-size: 2rem;
+      margin-top: 3rem;
+      border-bottom: 3px solid #0794f2;
+      padding-bottom: 0.4rem;
     }
-
+    h3 {
+      font-size: 1.5rem;
+      margin-top: 1.5rem;
+      color: #0794f2;
+    }
+    p,strong {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      color: #333;
+    }
+    strong {
+      font-weight: 500;
+    }
+    .intro-video-banner {
+      width: 100%;
+      height: 320px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-bottom: 2rem;
+      background: #f5f7fa;
+      box-shadow: 0 0 12px rgba(0,0,0,0.12);
+    }
     .section {
-      position: relative;
-      z-index: 2;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
     }
-
-    .stat-row {
-      display: flex;
+    .highlight-box {
+      background: #def3ff;
+      border-left: 6px solid #0794f2;
+      padding: 1rem 1.5rem;
+      margin: 1rem 0 2rem 0;
+      font-style: italic;
+      color: #075a9c;
+      font-weight: 500;
+      border-radius: 3px;
+    }
+    ul {
+      list-style: disc inside;
+      margin-left: 1rem;
+      color: #444;
+      font-size: 1rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
       gap: 2rem;
-      margin: 2.5rem 0 0 0;
+      text-align: center;
+      margin: 2rem 0 3rem 0;
     }
     .stat {
-      font-size: 2.7rem;
-      font-weight: 400;
-      flex: 1 1 0;
-      color: var(--accent);
-      text-align: center;
+      font-weight: 700;
+      font-size: 2.3rem;
+      color: #0794f2;
+      margin-bottom: 0.3rem;
+      font-family: 'Montserrat', sans-serif;
     }
-
-    .description-row {
+    .stat-label {
+      font-weight: 300;
+      font-size: 1rem;
+      color: #555;
+    }
+    blockquote {
+      border-left: 4px solid #0794f2;
+      margin: 1.5rem 0;
+      padding-left: 1rem;
+      font-style: italic;
+      color: #024d8c;
+      font-weight: 500;
+    }
+    .partner-endorsement {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #333;
+      margin-top: 0.4rem;
+      font-style: normal;
+    }
+    .content-columns {
       display: flex;
-      gap: 2rem;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .content-column {
+      flex: 1 1 320px;
+      min-width: 280px;
+    }
+    .badge {
+      display: inline-block;
+      border-radius: 15px;
+      background: #0794f2;
+      color: #fff;
+      padding: 0.3rem 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-right: 0.8rem;
       margin-top: 1rem;
     }
-    .desc {
-      flex: 1 1 0;
+    /* Community Life & Resident Programs */
+    .engagement-list {
+      list-style: none;
+      padding-left: 0;
       font-size: 1rem;
+      margin: 1rem 0 0 0;
+    }
+    .engagement-list li {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
       color: #444;
-      line-height: 1.4;
     }
-
-    .visual-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 1.5rem;
+    .engagement-list li::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: #0794f2;
+      font-weight: 700;
       font-size: 1rem;
-    }
-    .visual-table caption {
-      text-align: left;
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-bottom: 1rem;
-    }
-    .visual-table th, .visual-table td {
-      border: 1px solid #ddd;
-      padding: 0.5rem 0.75rem;
-      text-align: left;
-      font-weight: 400;
-    }
-
-    .visual-voice {
-      font-size: 2.5rem;
-      margin: 2.5rem 0 0 0;
-      letter-spacing: -0.01em;
-    }
-
-    @media (max-width: 800px) {
-      .container { padding: 1rem; }
-      .stat, .stat-row { flex-direction: column; }
-      h1 { font-size: 2rem; }
-      .visual-voice { font-size: 1.5rem; }
+      line-height: 1;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="grid"></div>
-    <div class="section">
-      <h1>Documents are most persuasive<br>
-      when structured around clear,<br>
-      logical progression.</h1>
+  <main class="container">
+    <section class="section intro">
+      <h1>A Community of Shared Excellence</h1>
+      <video autoplay muted loop class="intro-video-banner" playsinline>
+        <source src="community_banner.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <p>Scholar’s Nest™ stands as the meeting point between visionary education, hospitality, and purpose. Our ecosystem is built in collaboration with schools, partners, and community programs that share one belief — that learning extends far beyond the classroom.</p>
+    </section>
 
-      <div class="description-row">
-        <div class="desc">The reader should never wonder why a page exists or how it connects to what came before.</div>
-        <div class="desc">Transitions between sections can be subtle, but they must exist.</div>
-        <div class="desc">A longer presentation can be accessible if information is paced and delivered in a way that respects attention span.</div>
-        <div class="desc">Grouping related points into sections, using headings that describe rather than label, and creating visual rest points throughout all can extend the reader’s engagement.</div>
-      </div>
+    <section class="section partner-schools">
+      <h2>Partner Schools — Trusted Academic Networks</h2>
+      <h3>Close Ties, Strong Futures</h3>
+      <p>We work hand-in-hand with a select network of top-tier high schools and universities, ensuring students experience a seamless transition between academic and residential life.</p>
+      <p>Each partner institution is chosen for its commitment to academic excellence, character formation, and innovation. Together, we curate mentorship programs, weekend seminars, and talent showcases that elevate both academic and personal growth.</p>
+      <ul>
+        <li><strong>Priority Housing Partnerships:</strong> Students enjoy first-placement privileges and tailored residential orientation.</li>
+        <li><strong>Shared Mentorship Programs:</strong> Joint workshops on university readiness, innovation challenges, and community service.</li>
+      </ul>
+      <blockquote>“We’ve observed measurable academic improvement among our students housed at Scholar’s Nest. Their routines, wellness, and focus reflect the power of intentional living.”</blockquote>
+      <p class="partner-endorsement">— Dr. E. Karanja, Academic Director, Windsor International Academy.</p>
+    </section>
 
-      <div class="stat-row">
-        <div class="stat">12</div>
-        <div class="stat">34%</div>
-        <div class="stat">$567</div>
-        <div class="stat">£89</div>
-      </div>
-    </div>
+    <section class="section university-pathways">
+      <h2>University Pathways & Global Opportunities</h2>
+      <h3>Beyond Graduation — Towards the World</h3>
+      <p>For our senior residents, we offer an exclusive Global Pathways Program, designed to help ambitious students unlock opportunities in the United States, Canada, Japan, and Europe.</p>
+      <ul>
+        <li><strong>In-house Education Consultants:</strong> Certified experts guide residents through essay writing, scholarship applications, and university selections.</li>
+        <li><strong>Global Alumni Mentorships:</strong> Former Nest residents thriving abroad mentor new aspirants.</li>
+        <li><strong>Exam Readiness Support:</strong> SAT, IELTS, and university prep sessions conducted on-site.</li>
+        <li><strong>Signature Annual Event — The Pathways Fair:</strong> Prestigious expo with representatives from world-class universities.</li>
+      </ul>
+      <blockquote>“I arrived at my dream university in Canada because Scholar’s Nest gave me direction, resources, and confidence. They didn’t just house me — they raised my ambition.”</blockquote>
+      <p class="partner-endorsement">— Faith M., Resident Alumnus.</p>
+    </section>
 
-    <div class="section">
-      <h2>Visual hierarchy</h2>
-      <div class="stat-row">
-        <div class="stat" style="font-size:2.5rem;text-align:left;">$100m<br>
-          <span style="font-size:1rem;font-weight:300;">Tone in professional documents</span>
-        </div>
-        <div class="stat" style="font-size:2rem;text-align:left;">$75m<br>
-          <span style="font-size:1rem;font-weight:300;">A consistent typographic scale</span>
-        </div>
-      </div>
-      <p style="max-width: 430px; font-size:1rem; margin-top:1.3rem; color:#bbb;">
-        As visual hierarchy becomes more complex, so does the need for consistency.
-        When a document uses three levels of headings, or multiple data styles, the rules governing their use must remain constant.
-        This consistency reduces reader effort: once they’ve learned what a certain style indicates, they can apply that understanding throughout.
-        The moment these cues become inconsistent, trust in the structure begins to break down.
-      </p>
-    </div>
+    <section class="section strategic-partners">
+      <h2>Strategic Partners — Powering Everyday Excellence</h2>
+      <h3>Built on Trusted Expertise</h3>
+      <p>Every aspect of life at Scholar’s Nest™ is shaped through partnerships with accredited professionals and organizations setting global standards in security, sustainability, and service.</p>
+      <ul>
+        <li><strong>Nest™ Real Estate Group:</strong> Founding parent firm, redefining urban living spaces with architectural finesse.</li>
+        <li><strong>Hospitality & Culinary Institutions:</strong> Training chefs and staff for five-star quality, safety, hygiene, and experience.</li>
+        <li><strong>Sustainability Partners:</strong> Collaborations with Haller Park Foundation, Ocean Conservancy, and Trees for the Future.</li>
+        <li><strong>Technology & Smart Living Partners:</strong> Smart access, energy monitoring, and eco-efficient systems integration.</li>
+      </ul>
+      <blockquote>“Through each partnership, we renew our commitment to innovation, integrity, and impact — ensuring every resident experiences the best of modern living.”</blockquote>
+    </section>
 
-    <div class="section">
-      <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
-        <div style="flex:3;">
-          <p>
-            Business presentations are often part of a sequence. They reference past reports, inform future action, and are shared across teams. This continuity means design must remain steady. Each transition has impact—tone, structure and grid share it through.
-            <br><br>
-            Design choices should reflect the ongoing nature of the work—building trust through predictability, not novelty.
-            <br><br>
-            Not all content receives the same level of emphasis. Knowing what to highlight—and what to support visually—is the key gift of hierarchy. Good document design asks what not to omit: what matters most, what deserves visual holding feels overlooked. When everything is solid, nothing feels missed. When every section both introduces and moves on—through subtle transitions—each time is both a place for statement and a place for context. There is no chance to clarify what one block or someone thought hidden. The layout must make meaning readable. The most consistent documents build and resolve it purposefully—through better visual engagement, through structure and headings. In this context becomes a form of explanation.
-          </p>
-        </div>
-        <div style="flex:4;">
-          <p>
-            A document’s credibility is built not just through the accuracy of its content, but through the confidence of its presentation. Readers are more likely to believe what is well-organized, clearly expressed, and visible in accessible weights and rhythm. Credibility is built—and accumulated—through alignment, clarity, and consistency over the course of a few well-structured pages.<br><br>
-            Every good document carries a rhythm—fast and slow sections, short and long pages, dense analysis and airy summaries. Managing the pace within a quiet but powerful design places each section both refined and balanced; with care, the overall experience becomes much more readable, more instructive, and more effective in holding attention.
-          </p>
-        </div>
-        <div style="flex:2;">
-          <table class="visual-table">
-            <caption>Headline Figure</caption>
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>Primary ratio</td><td>4–10</td></tr>
-              <tr><td>Outgoings</td><td>4–10</td></tr>
-              <tr><td>Operational result</td><td>4–10</td></tr>
-              <tr><td>Net outcome</td><td>4–10</td></tr>
-              <tr><td>Total position</td><td>4–10</td></tr>
-              <tr><td>Outstanding amounts</td><td>4–10</td></tr>
-              <tr><td>Per-unit value</td><td>4–10</td></tr>
-              <tr><td>Performance ratio</td><td>4–10</td></tr>
-              <tr><td>Net cash movement</td><td>4–10</td></tr>
-            </tbody>
-          </table>
-        </div>
+    <section class="section impact">
+      <h2>Community & Environmental Impact</h2>
+      <h3>Living Responsibly, Together</h3>
+      <p>Scholar’s Nest™ encourages students to engage in purposeful living through community outreach and environmental stewardship.</p>
+      <ul>
+        <li>Tree Planting Drives to promote environmental literacy and carbon offsetting.</li>
+        <li>Beach Cleanups in collaboration with conservation groups to restore local coastlines.</li>
+        <li>Wildlife Park Visits to Haller Park and conservation areas.</li>
+        <li>Sustainability Festivals & Beach Events blending music, learning, and action.</li>
+      </ul>
+      <p>Every resident contributes to a cleaner, greener, and more conscious world — one experience at a time.</p>
+    </section>
+
+    <section class="section community-life">
+      <h2>Community Life — The Nest Experience</h2>
+      <h3>A Family of Dreamers and Achievers</h3>
+      <p>Residents describe Scholar’s Nest™ as a thriving micro-society of thinkers, doers, and visionaries.</p>
+      <ul class="engagement-list">
+        <li>The Nest Forum: student-led debates and TEDx-style sessions.</li>
+        <li>Nest Cinematic Nights: movie nights under the stars in open lounges.</li>
+        <li>Cultural Evenings & Barbecues celebrating diversity, food, and friendships.</li>
+        <li>Sports & Fitness Clubs including swimming, basketball, table tennis, and coastal runs.</li>
+      </ul>
+      <p>Every week blends focus, friendship, and fun balanced to maintain academic drive and wellbeing.</p>
+    </section>
+
+    <section class="section resident-programs">
+      <h2>Resident-Led Programs</h2>
+      <h3>Empowerment from Within</h3>
+      <ul class="engagement-list">
+        <li>Nest Champions: leadership program nurturing future community influencers.</li>
+        <li>Study Buddies: peer academic support and tutoring.</li>
+        <li>Community Sundays: volunteering and outreach visits to local schools and homes.</li>
+      </ul>
+      <blockquote>“Living here taught me more than books ever could — teamwork, empathy, and initiative.”</blockquote>
+      <p class="partner-endorsement">— Jordan K., Resident Coordinator.</p>
+    </section>
+
+    <section class="section recognition">
+      <h2>Recognition & Media Mentions</h2>
+      <p>Celebrated for quality and innovation, Scholar’s Nest™ is featured as a model for student accommodation — combining comfort, purpose, and sustainability.</p>
+      <div>
+        <span class="badge">Partnered with Leading Schools</span>
+        <span class="badge">Sustainability Verified</span>
+        <span class="badge">Parent-Trusted Housing 2025</span>
       </div>
-      <div class="visual-voice">Visual voice</div>
-    </div>
-  </div>
+    </section>
+  </main>
 </body>
 </html>
