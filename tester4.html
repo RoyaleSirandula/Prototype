@@ -1,297 +1,332 @@
-<section id="design-layout-section" class="design-layouts-section">
-  <div class="layout-header">
-    <div class="header-text">
-      <div class="caption">Life At Nest</div>
-      <h2 class="title">Gallery</h2>
-      <div class="subtitle">Sights & Sounds - <br /> Karibu Nyumbani</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <title>Schools & Community - Nest</title>
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav__bar">
+        <div class="nav__header">
+          <div class="logo nav__logo">
+            <div>SN</div>
+            <span>SCHOLAR'S <br /> NEST</span>
+          </div>
+          <div class="nav__menu__btn" id="menu-btn">
+            <i class="ri-menu-line"></i>
+          </div>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about-us.html">About Us</a></li>
+          <li><a href="parents.html">For Guardians & Residents</a></li>
+          <li><a href="schools.html">For Schools & Partners</a></li>
+          <li><a href="room-details.html">Rooms</a></li>
+          <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </nav>
+<header class="header-schools" id="home">
+  <div class="section__container header__container">
+    <p class="section__subheader">We want you to be involved...</p>
+    <h1 id="highlightText">schools, partners <br /> &amp; community</h1>
+    <button class="btn">Let's Get Going</button>
+  </div>
+</header>
+<section class="section__container" id="partners">
+  <p class="section__subheader">Be Part of the Vision</p>
+<h2 class="section__header">
+  <span class="line">Shaping Brighter Futures,</span><br />
+  <span class="line">Together</span>
+</h2>
+<p class="section__description" data-split="sentences">
+  Partner with schools, organizations, and communities creating inspiring places where students live, learn, and thrive.
+</p>
+
+
+<script>
+      (function () {
+        const container = document.getElementById('assurance__header');
+        if (!container) return;
+
+        // Split paragraph into sentence spans
+        const para = container.querySelector('[data-split="sentences"]');
+        if (para) {
+          // Match sentences including their ending punctuation (keeps punctuation)
+          const raw = para.textContent.trim();
+          const parts = raw.match(/[^.!?]+[.!?]*/g) || [raw];
+          para.innerHTML = ''; // clear
+          parts.forEach((s, i) => {
+            const span = document.createElement('span');
+            span.className = 'sentence';
+            // keep inline flow but allow transform animation
+            span.style.display = 'inline-block';
+            span.style.whiteSpace = 'pre-wrap';
+            span.textContent = s.trim();
+            // add a small space after each sentence (preserve spacing)
+            const spacer = document.createTextNode(i === parts.length - 1 ? '' : ' ');
+            para.appendChild(span);
+            para.appendChild(spacer);
+          });
+        }
+
+        // Collect items to animate: all .line and .sentence inside this container
+        const items = Array.from(container.querySelectorAll('.line, .sentence'));
+        // Add initial hidden class (.fade-up already defined in page styles)
+        items.forEach(it => {
+          if (!it.classList.contains('fade-up')) it.classList.add('fade-up');
+        });
+
+        if (!('IntersectionObserver' in window)) {
+          // fallback: reveal immediately with slight staggers
+          items.forEach((el, i) => {
+            el.style.transitionDelay = `${i * 180}ms`;
+            requestAnimationFrame(() => el.classList.add('in-view'));
+          });
+          return;
+        }
+
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            // stagger reveal, lines first (they appear in DOM order so this works)
+            items.forEach((el, i) => {
+              el.style.transitionDelay = `${i * 180}ms`;
+              requestAnimationFrame(() => el.classList.add('in-view'));
+            });
+            obs.unobserve(entry.target);
+          });
+        }, { threshold: 0.2 });
+
+        io.observe(container);
+      })();
+    </script>
+
+
+  <!-- 1. Visionary Partnerships -->
+  <div class="partnership__block">
+    <div class="partnership__content">
+      <h3>Nest Real Estate Partnerships</h3>
+      <p>
+        Nest Real Estate drives the Scholar’s Nest™ vision—building tomorrow’s
+        communities for today’s learners and their families.
+      </p>
+      <ul class="stats">
+        <li><strong>10,000+</strong> beds planned by 2030</li>
+        <li><strong>6</strong> cities in development</li>
+      </ul>
+      <button class="btn">Partner with Us in Shaping the Future</button>
     </div>
-    <div class="description">
-      <span style="color: #ffae00;">Scholar’s Nest™</span> provides an inspiring student housing experience that combines modern comfort, safety, and community spirit. 
-      Our thoughtfully designed spaces feature beautifully staged interiors, panoramic views, and carefully curated amenities that make it easy for students to focus, 
-      relax, and connect. We foster an environment where every detail—from natural light to acoustics—supports well-being and academic success. 
-      At <span style="color: #ffae00">Scholar’s Nest™</span>, students find more than just accommodation: they find a vibrant community that supports personal growth, lifelong friendships, and memorable experiences.
+    <div class="partnership__image">
+      <img src="images/nest-realestate.jpg" alt="Nest Real Estate Expansion" />
     </div>
   </div>
 
-  <div class="carousel-wrapper">
-    <div class="carousel">
-      <!-- GRID slides with flip cards -->
-      <div class="grid-slide">
-        <div class="layout-grid">
-          <div class="card">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="https://i.pinimg.com/736x/ad/17/6b/ad176b309792e0825685d71786c0298b.jpg" alt="4:5 image" />
-              </div>
-              <div class="card-back">
-                4:5 Info
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="https://i.pinimg.com/736x/07/63/23/0763238ab54d7fb3f51e1fb346540fba.jpg" alt="Banner image" />
-              </div>
-              <div class="card-back">
-                Banner Info
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="https://i.pinimg.com/736x/28/ba/69/28ba69503407e113fb922a417b17878a.jpg" alt="9:18 image" />
-              </div>
-              <div class="card-back">
-                9:18 Info
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="https://i.pinimg.com/736x/09/d3/c6/09d3c6f740f41baac67af48631c3cc80.jpg" alt="3:4 image" />
-              </div>
-              <div class="card-back">
-                3:4 Info
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="https://i.pinimg.com/736x/b8/1b/96/b81b96971350293fbe63e96f57087588.jpg" alt="1:1 image" />
-              </div>
-              <div class="card-back">
-                1:1 Info
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-inner">
-              <div class="card-front">
-                <img src="https://i.pinimg.com/1200x/96/5e/77/965e77fec489590ea6b16103ea765bf1.jpg" alt="16:9 image" />
-              </div>
-              <div class="card-back">
-                16:9 Info
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Additional grid slides can be added just like above -->
-
+  <!-- 2. School Partnerships -->
+  <div class="school__partners">
+    <h3>Academic Partnerships</h3>
+    <p>Collaborate to bring quality living and learning experiences.</p>
+    <div class="logo__grid">
+      <img src="images/school1.png" alt="Partner School 1" />
+      <img src="images/school2.png" alt="Partner School 2" />
+      <img src="images/school3.png" alt="Partner School 3" />
+      <img src="images/school4.png" alt="Partner School 4" />
     </div>
+
+    <div class="testimonial__grid">
+      <div class="testimonial">
+        <img src="images/dean.jpg" alt="Dean" />
+        <blockquote>
+          “Scholar’s Nest™ enhances our students’ growth both academically and
+          personally.”
+        </blockquote>
+      </div>
+      <div class="testimonial">
+        <img src="images/principal.jpg" alt="Principal" />
+        <blockquote>
+          “A trusted environment that bridges home and learning seamlessly.”
+        </blockquote>
+      </div>
+    </div>
+    <button class="btn">Bring Your Students to Scholar’s Nest</button>
+  </div>
+
+  <!-- 3. University / Agent Partnerships -->
+  <div class="agent__partners">
+    <h3>University & Agent Collaborations</h3>
+    <p>
+      Strengthening pathways through shared recruitment success and alumni
+      growth.
+    </p>
+    <div class="testimonial__grid">
+      <div class="testimonial">
+        <img src="images/agent.jpg" alt="Agent" />
+        <blockquote>
+          “Our partnership has boosted student placements and confidence.”
+        </blockquote>
+      </div>
+      <div class="testimonial">
+        <img src="images/parent.jpg" alt="Parent" />
+        <blockquote>
+          “The support and guidance make transitions smooth for our students.”
+        </blockquote>
+      </div>
+    </div>
+    <button class="btn">Explore University Partnership Opportunities</button>
+  </div>
+
+  <!-- 4. Sustainability Partnerships -->
+  <div class="sustainability__partners">
+    <h3>Sustainability in Action</h3>
+    <p>
+      Working with local and global partners to create eco-conscious student
+      communities.
+    </p>
+    <div class="impact__grid">
+      <div class="impact__tile">🌿 Water & Energy Reduction</div>
+      <div class="impact__tile">🍴 Food Waste Repurposing</div>
+      <div class="impact__tile">🚜 Local Farm Support</div>
+      <div class="impact__tile">🌍 Student Eco Activities</div>
+    </div>
+
+    <div class="testimonial__grid">
+      <div class="testimonial">
+        <img src="images/partner.jpg" alt="Sustainability Partner" />
+        <blockquote>
+          “Together, we’re empowering youth to champion green living.”
+        </blockquote>
+      </div>
+      <div class="testimonial">
+        <img src="images/conservationist.jpg" alt="Conservationist" />
+        <blockquote>
+          “The commitment to the planet shows in every action they take.”
+        </blockquote>
+      </div>
+    </div>
+
+    <button class="btn">Join Our Sustainability Mission</button>
+  </div>
+
+  <!-- 5. Community Section -->
+  <div class="community__partners">
+    <h3>Pride of Place: Our Extended Community</h3>
+    <p>
+      A safe, vibrant neighborhood where residents, students, and local leaders
+      thrive together.
+    </p>
+
+    <ul class="community__stats">
+      <li><strong>200+</strong> trees planted</li>
+      <li><strong>50+</strong> community events</li>
+      <li><strong>24/7</strong> gated security</li>
+    </ul>
+
+    <div class="testimonial__grid">
+      <div class="testimonial">
+        <img src="images/community1.jpg" alt="Resident" />
+        <blockquote>
+          “Living near Scholar’s Nest™ brings life and vibrancy to our town.”
+        </blockquote>
+      </div>
+      <div class="testimonial">
+        <img src="images/community2.jpg" alt="Leader" />
+        <blockquote>
+          “They’ve created a welcoming, sustainable environment for everyone.”
+        </blockquote>
+      </div>
+    </div>
+
+    <button class="btn">Visit and Connect With Scholar’s Nest</button>
+  </div>
+
+  <!-- 6. Universal CTA -->
+  <div class="universal__cta">
+    <h3>Ready to Partner?</h3>
+    <p>Reach out to collaborate with schools, institutions, and communities.</p>
+    <button class="btn">Contact Us</button>
   </div>
 </section>
 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap');
+<footer class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <div class="logo footer__logo">
+            <div>SN</div>
+            <span>SCHOLAR'S <br />NEST</span>
+          </div>
+            <p class="section__description">
+            Scholar's Nest provides safe, affordable, and comfortable student accommodations.<br />
+             Book your stay with us and join a vibrant community focused on learning, growth, and well-being.
+            </p>
+          <ul class="footer__socials">
+            <li>
+              <a href="#"><i class="ri-youtube-fill"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-instagram-line"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-facebook-fill"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="ri-linkedin-fill"></i></a>
+            </li>
+          </ul>
+        </div>
+         <div class="footer__col">
+          <h4>Services</h4>
+          <div class="footer__links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="parents.html">For Guardians & Residents</a></li>
+            <li><a href="schools.html">For Schools & Partners</a></li>
+            <li><a href="room-details.html">Rooms</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+          </div>
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <div class="footer__links">
+            <li>
+              <span><i class="ri-phone-fill"></i></span>
+              <div>
+                <h5>Phone Number</h5>
+                <p>+254 719837909</p>
+              </div>
+            </li>
+            <li>
+              <span><i class="ri-record-mail-line"></i></span>
+              <div>
+                <h5>Email</h5>
+                <p><a href="mailto:scholarsnestke@gmail.com">scholarsnestke@gmail.com</a></p>
+              </div>
+            </li>
+            <li>
+              <span><i class="ri-map-pin-2-fill"></i></span>
+              <div>
+                <h5>Location</h5>
+                <p>Delta Towers, 4th Floor, <br /> Suite 3, Westlands Nairobi</p>
+              </div>
+            </li>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bar">
+        Copyright © 2025 Scholar's Nest Kenya. All rights reserved.
+      </div>
+    </footer>
 
-  :root {
-    --base-font: 'Raleway', Arial, sans-serif;
-  }
-
-  html, body {
-    font-family: var(--base-font);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  .design-layouts-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0px;
-    font-family: var(--base-font);
-    background: #fff;
-    color: #222;
-  }
-  .layout-header {
-    position: relative;
-    background-color: #000000;
-  }
-  .layout-header::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: #000000;
-    z-index: -1;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-  }
-  .layout-header {
-    display: flex;
-    gap: 48px;
-    align-items: flex-start;
-    padding: 24px; /* keep padding inside */
-    box-sizing: border-box;
-  }
-  .header-text {
-    min-width: 230px;
-    max-width: 280px;
-  }
-  .caption {
-    color: #eeeeee;
-    font-size: 14px;
-    margin-bottom: 6px;
-    letter-spacing: 0.2px;
-  }
-  .title {
-    font-size: 2.1rem;
-    color: #ffae00;
-    margin: 0 0 6px 0;
-    font-weight: 700;
-  }
-  .subtitle {
-    font-weight: 500;
-    color: var(--text-light);
-    font-size: 1.4rem;
-  }
-  .description {
-    max-width: 600px;
-    font-size: 1.03rem;
-    color: #eeeeee;
-    line-height: 1.4;
-  }
-  .carousel-wrapper {
-    overflow-x: auto;
-    padding: 1px;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
-    background-color: #000000;
-    user-select: none;
-    border-radius: 1px;
-    margin-top: 0px;
-    /* Make full viewport width, breaking out of container */
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-  }
-  .carousel {
-    display: flex;
-    gap: 2px;
-  }
-  .grid-slide {
-    scroll-snap-align: start;
-    flex-shrink: 0;
-    height: 500px;
-    width: 700px; /* width for each grid slide */
-  }
-  .layout-grid {
-    display: grid;
-    grid-template-columns: 6fr 4fr 3fr;
-    grid-template-rows: repeat(3, 160px);
-    gap: 2px;
-    align-items: stretch;
-    width: 100%;
-  }
-  .card {
-    perspective: 1000px;
-    background: linear-gradient(135deg, #d1d3d6 0%, #bcbec0 100%);
-    border-radius: 2px;
-    box-shadow: 0 2px 14px 0 #d6d7db63;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
-    font-size: 18px;
-    color: #999;
-    position: relative;
-    cursor: pointer;
-  }
-  /* Styles for the images in cards */
-  .card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 2px;
-    display: block;
-  }
-  /* Card inner for 3D flip */
-  .card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-  }
-  /* Flip horizontally */
-  .flip-horizontal .card-inner.flipped {
-    transform: rotateY(180deg);
-  }
-  /* Flip vertically */
-  .flip-vertical .card-inner.flipped {
-    transform: rotateX(180deg);
-  }
-  /* Front and back sides */
-  .card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 2px;
-  }
-  .card-front {
-    z-index: 2;
-  }
-  .card-back {
-    background: #333;
-    color: #eee;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotateY(180deg); /* Default horizontal flip back */
-    padding: 1rem;
-  }
-</style>
-
-<script>
-  document.querySelectorAll('.card').forEach((card) => {
-    const cardInner = document.createElement('div');
-    cardInner.classList.add('card-inner');
-
-    const front = document.createElement('div');
-    front.classList.add('card-front');
-    while(card.firstChild) {
-      front.appendChild(card.firstChild);
-    }
-
-    const back = document.createElement('div');
-    back.classList.add('card-back');
-    back.textContent = 'Description or info here.';
-
-    card.appendChild(cardInner);
-    cardInner.appendChild(front);
-    cardInner.appendChild(back);
-  });
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        const card = entry.target;
-        const inner = card.querySelector('.card-inner');
-        if(!card.classList.contains('flip-horizontal') && !card.classList.contains('flip-vertical')){
-          if(Math.random() > 0.5){
-            card.classList.add('flip-horizontal');
-            inner.style.backfaceVisibility = 'hidden';
-          } else {
-            card.classList.add('flip-vertical');
-            inner.style.backfaceVisibility = 'hidden';
-          }
-        }
-        inner.classList.add('flipped');
-        setTimeout(() => {
-          inner.classList.remove('flipped');
-        }, 800);
-      }
-    });
-  }, {threshold: 0.5});
-
-  document.querySelectorAll('.card').forEach(card => observer.observe(card));
-</script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

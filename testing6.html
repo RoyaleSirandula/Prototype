@@ -1,0 +1,150 @@
+<section class="carousel" id="roomsSection">
+  <div class="slide active">
+    <img src="" alt="Modern Ensuite">
+    <div class="slide__text">
+      <h2>Modern Ensuite Rooms</h2>
+      <p>Comfortable private spaces designed for focus and rest, ideal for senior residents balancing study and self-care.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="" alt="Shared Apartments">
+    <div class="slide__text">
+      <h2>Shared Apartments</h2>
+      <p>Affordable and social living options that promote friendships, shared meals, and collaborative study sessions.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="" alt="Study Pods">
+    <div class="slide__text">
+      <h2>Study & Collaboration Pods</h2>
+      <p>Bright, quiet, and fully equipped study pods for individual work or small group discussions.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="" alt="Outdoor Lounge">
+    <div class="slide__text">
+      <h2>Outdoor Lounge & Gardens</h2>
+      <p>Relax under the evening sky, join yoga or reflection sessions, and unwind with friends in green spaces.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <img src="" alt="Fitness Area">
+    <div class="slide__text">
+      <h2>Fitness & Wellness Area</h2>
+      <p>Exclusive resident gym and wellness area promoting healthy routines and mindfulness practices.</p>
+    </div>
+  </div>
+
+  <button id="prev" class="carousel__btn"><i class="ri-arrow-left-s-line"></i></button>
+  <button id="next" class="carousel__btn"><i class="ri-arrow-right-s-line"></i></button>
+</section>
+<style>
+  :root {
+  --secondary-color: #415a77;
+  --white: #fff;
+}
+
+.carousel {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide__text {
+  position: absolute;
+  bottom: 4rem;
+  right: 3rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--white);
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 400px;
+  animation: fadeUp 1.2s ease forwards;
+}
+
+.slide__text h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.slide__text p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  color: var(--white);
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.carousel__btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+#prev { left: 1rem; }
+#next { right: 1rem; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+
+<script>
+ 
+  const slides = document.querySelectorAll(".slide");
+  let index = 0;
+  const next = document.getElementById("next");
+  const prev = document.getElementById("prev");
+
+  function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    slides[i].classList.add("active");
+  }
+
+  next.onclick = () => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  };
+
+  prev.onclick = () => {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+  };
+
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+  }, 7000);
+</script>
