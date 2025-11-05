@@ -412,7 +412,7 @@ nav {
   position: relative;
   gap: 0.2rem;
   align-items: center;
-  border-bottom: 6px solid var(--secondary-color); /* or any color you prefer */
+  border-bottom: px solid var(--secondary-color); /* or any color you prefer */
 }
 
 /* Left side: paragraph content */
@@ -609,46 +609,6 @@ nav {
 .bg-photo-section p.visible {
   opacity: 1;
   transform: translateX(0);
-}
-
-/* =========================
-  9. BOOKING FORM
-  ========================= */
-.booking {
-  background-color: var(--primary-color);
-}
-
-.booking__container form {
-  max-width: 350px;
-  margin: auto;
-  display: grid;
-  gap: 2rem;
-}
-
-.input__group {
-  display: grid;
-  gap: 1rem;
-}
-
-.input__group label {
-  font-weight: 600;
-  color: var(--white);
-}
-
-.input__group input {
-  width: 100%;
-  font-size: 1rem;
-  padding: 0.5rem;
-  color: var(--white);
-  background-color: transparent;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid var(--text-light);
-  border-radius: 5px;
-}
-
-.input__group input::placeholder {
-  color: var(--text-light);
 }
 
 /* =========================
@@ -1012,15 +972,16 @@ nav {
   align-items: center;
   gap: 1rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0s;
 }
 
 .partners__list li:hover {
-  background-color: var(--primary-color);
+  border-bottom: var(--secondary-color) 2px solid;
 }
 
 .partners__list img {
   max-width: 100px;
+  max-height: 100px;
   border-radius: 2px;
 }
 
@@ -1030,17 +991,21 @@ nav {
   font-weight: 800;
   font-family: var(--header-font);
   color: var(--text-dark);
-  transition: 0.3s;
+  transition: 0s;
 }
 
 .partners__list p {
   max-width: 400px;
   color: var(--text-light);
-  transition: 0.3s;
+  transition: 0s;
 }
 
-.partners__list li:hover :is(h4, p) {
-  color: var(--white);
+.partners__list li:hover :is(p) {
+  color: var(--text-light);
+}
+
+.partners__list li:hover :is(h4) {
+  color: var(--secondary-color);
 }
 
 /* =========================
