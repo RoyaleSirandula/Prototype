@@ -1,150 +1,97 @@
-<section class="carousel" id="roomsSection">
-  <div class="slide active">
-    <img src="" alt="Modern Ensuite">
-    <div class="slide__text">
-      <h2>Modern Ensuite Rooms</h2>
-      <p>Comfortable private spaces designed for focus and rest, ideal for senior residents balancing study and self-care.</p>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="" alt="Shared Apartments">
-    <div class="slide__text">
-      <h2>Shared Apartments</h2>
-      <p>Affordable and social living options that promote friendships, shared meals, and collaborative study sessions.</p>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="" alt="Study Pods">
-    <div class="slide__text">
-      <h2>Study & Collaboration Pods</h2>
-      <p>Bright, quiet, and fully equipped study pods for individual work or small group discussions.</p>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="" alt="Outdoor Lounge">
-    <div class="slide__text">
-      <h2>Outdoor Lounge & Gardens</h2>
-      <p>Relax under the evening sky, join yoga or reflection sessions, and unwind with friends in green spaces.</p>
-    </div>
-  </div>
-
-  <div class="slide">
-    <img src="" alt="Fitness Area">
-    <div class="slide__text">
-      <h2>Fitness & Wellness Area</h2>
-      <p>Exclusive resident gym and wellness area promoting healthy routines and mindfulness practices.</p>
-    </div>
-  </div>
-
-  <button id="prev" class="carousel__btn"><i class="ri-arrow-left-s-line"></i></button>
-  <button id="next" class="carousel__btn"><i class="ri-arrow-right-s-line"></i></button>
-</section>
 <style>
-  :root {
-  --secondary-color: #415a77;
-  --white: #fff;
-}
-
-.carousel {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-  opacity: 1;
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.slide__text {
-  position: absolute;
-  bottom: 4rem;
-  right: 3rem;
-  background: rgba(0, 0, 0, 0.5);
-  color: var(--white);
-  padding: 1.5rem;
-  border-radius: 10px;
-  max-width: 400px;
-  animation: fadeUp 1.2s ease forwards;
-}
-
-.slide__text h2 {
-  margin-bottom: 0.5rem;
-  font-size: 1.8rem;
-}
-
-.slide__text p {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.carousel__btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.3);
-  border: none;
-  color: var(--white);
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 50%;
-  transition: background 0.3s ease;
-}
-
-.carousel__btn:hover {
-  background: rgba(0, 0, 0, 0.6);
-}
-
-#prev { left: 1rem; }
-#next { right: 1rem; }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-</style>
-
-<script>
- 
-  const slides = document.querySelectorAll(".slide");
-  let index = 0;
-  const next = document.getElementById("next");
-  const prev = document.getElementById("prev");
-
-  function showSlide(i) {
-    slides.forEach(s => s.classList.remove("active"));
-    slides[i].classList.add("active");
+  .animated-section {
+    position: relative;
+    height: 50vh;
+    background: url('https://i.pinimg.com/1200x/0a/81/3f/0a813f5ad42db5822f78c01f98bf2493.jpg') center center/cover no-repeat;
+    overflow: hidden;
+    cursor: default;
   }
 
-  next.onclick = () => {
-    index = (index + 1) % slides.length;
-    showSlide(index);
-  };
+  .animated-section::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* cover entire section */
+    background-color: rgba(0, 0, 0, 0.5); /* dark tint */
+    z-index: 1;
+  }
 
-  prev.onclick = () => {
-    index = (index - 1 + slides.length) % slides.length;
-    showSlide(index);
-  };
+  .animated-section > * {
+    position: relative; /* stack above overlay */
+    z-index: 2;
+  }
 
-  setInterval(() => {
-    index = (index + 1) % slides.length;
-    showSlide(index);
-  }, 7000);
+  .text1, .see-store-button {
+    position: absolute;
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+
+  .text1 {
+    top: 10%;
+    right: 10%;
+    transform: translateY(-100%);
+    font-size: 6rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+  }
+
+  .see-store-button {
+    bottom: 10%;
+    left: 10%;
+    transform: translateY(100%);
+    font-size: 1.4rem;
+    color: white;
+    font-weight: bold;
+    background: var(--secondary-color);
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+  }
+
+  .text1.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .see-store-button.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<section class="animated-section" id="animatedSection">
+  <div class="text1" id="text1">What are you <br /> waiting for?</div>
+  <button class="see-store-button" id="seeStoreButton">See what's in store</button>
+</section>
+
+<script>
+  const section = document.getElementById('animatedSection');
+  const text1 = document.getElementById('text1');
+  const button = document.getElementById('seeStoreButton');
+
+  // Ensure button hidden initially and positioned
+  button.style.opacity = '0';
+
+  // Intersection observer to detect when section is at least 50% visible
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        // Trigger text1 animation sliding down
+        text1.classList.add('visible');
+
+        // After text1 finishes sliding down, trigger button
+        text1.addEventListener('transitionend', () => {
+          button.classList.add('visible');
+        }, {once: true});
+
+        // Stop observing after first trigger
+        observer.unobserve(section);
+      }
+    });
+  }, {threshold: 0.5});
+
+  observer.observe(section);
 </script>

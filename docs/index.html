@@ -26,14 +26,14 @@
             <i class="ri-menu-line"></i>
           </div>
         </div>
-        <ul class="nav__links" id="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about-us.html">About Us</a></li>
-          <li><a href="parents.html">Guardians & Residents</a></li>
-          <li><a href="schools.html">Schools & Partners</a></li>
-          <li><a href="room-details.html">Rooms & Spaces</a></li>
-          <li><a href="contact-us.html">Contact Us</a></li>
-        </ul>
+         <ul class="nav__links" id="nav-links">
+    <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+    <li><a href="about-us.html">About Us</a></li>
+    <li><a href="parents.html">Guardians & Residents</a></li>
+    <li><a href="schools.html">Schools & Partners</a></li>
+    <li><a href="room-details.html">Rooms & Spaces</a></li>
+    <li><a href="contact-us.html">Contact Us</a></li>
+  </ul>
       </div>
     </nav>
 
@@ -57,10 +57,10 @@
       <div class="subtitle">Sights & Sounds - <br /> Karibu Nyumbani</div>
     </div>
     <div class="description">
-      <span style="color: var(--secondary-color)">Scholar’s Nest™</span> provides an inspiring student housing experience that combines modern comfort, safety, and community spirit. 
+      <span style="color: var(--secondary-color)">Scholar’s Nest™</span> by <span style="color: var(--secondary-color)">Nest™ </span>provides an inspiring student housing experience that combines modern comfort, safety, and community spirit. 
       Our thoughtfully designed spaces feature beautifully staged interiors, panoramic views, and carefully curated amenities that make it easy for students to focus, 
       relax, and connect. We foster an environment where every detail—from natural light to acoustics—supports well-being and academic success. 
-      At <span style="color: var(--secondary-color)">Scholar’s Nest™</span>, students find more than just accommodation: they find a vibrant community that supports personal growth, lifelong friendships, and memorable experiences.
+      At Scholar’s Nest™, students find more than just accommodation: they find a vibrant community that supports personal growth, lifelong friendships, and memorable experiences.
       Life here is anything but ordinary. It’s a lifestyle crafted for the modern student — where elegance meets purpose. Every room, hallway, and shared space is designed to inspire focus and connection,
       helping you live and learn effortlessly in rhythm with success. <br /> <span style="color: var(--secondary-color)">Scroll sideways to view the gallery. >></span>
     </div>
@@ -393,22 +393,6 @@
     });
   });
 </script>
-<!-- ================= Intro video (inline) ================= -->
-<section class="intro" id="introSection">
-  <video id="introVideo" muted loop preload="auto">
-    <source src="assets/luxury.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-  <div class="overlay" id="overlayContent">
-    <h2>Meet Our <br /> Stewards</h2>
-    <p>
-      Whether you're looking for a supportive place to focus on your studies or a lively community to make new friends, 
-      Scholar's Nest offers student hostels designed for comfort, safety, and personal growth.
-      Discover a welcoming environment where every day brings new opportunities to learn, connect, and thrive.
-    </p>
-    <button id="toggleBtn">Watch Video</button>
-  </div>
-</section>
 
 <!-- ================= Testimonials Section (inline) ================= -->
 <section id="intro" 
@@ -466,6 +450,152 @@
 
   </div>
 </section>
+<style>
+  .animated-section {
+    position: relative;
+    height: 50vh;
+    background: url('https://i.pinimg.com/1200x/70/48/cf/7048cf7da30a2ea730e38d92944a022b.jpg') center center/cover no-repeat;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .animated-section::before {
+    content: "";
+    position: absolute;
+    inset: 0; /* cover entire section */
+    background-color: rgba(0, 0, 0, 0.5); /* dark tint */
+    z-index: 1;
+  }
+
+  .animated-section > * {
+    position: relative; /* stack above overlay */
+    z-index: 2;
+  }
+
+  .text1, .see-store-button {
+    position: absolute;
+    opacity: 0;
+    transition: transform 1s ease, opacity 1s ease;
+  }
+
+  .text1 {
+    top: 10%;
+    right: 10%;
+    transform: translateY(-100%);
+    font-size: 6rem;
+    color: var(--secondary-color);
+    font-weight: 700;
+  }
+
+  .see-store-button {
+    bottom: 10%;
+    left: 10%;
+    transform: translateY(100%);
+    font-size: 1rem;
+    color: white;
+    font-weight: 400px;
+    background: var(--secondary-color);
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+  }
+  .see-store-button:hover {
+    bottom: 10%;
+    left: 10%;
+    transform: translateY(100%);
+    font-size: 1rem;
+    color: var(--secondary-color);
+    font-weight: 400px;
+    background: white;
+    padding: 0.6em 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+  }
+
+  .text1.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .see-store-button.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Tablet layout */
+@media (max-width: 1024px) {
+  .text1 {
+    font-size: 4rem;
+    top: 8%;
+    right: 8%;
+  }
+
+  .see-store-button {
+    font-size: 1.2rem;
+    bottom: 8%;
+    left: 8%;
+    padding: 0.5em 1em;
+  }
+}
+
+/* Phone layout */
+@media (max-width: 480px) {
+  .text1 {
+    font-size: 2.5rem;
+    top: 6%;
+    right: 6%;
+  }
+
+  .see-store-button {
+    font-size: 1rem;
+    bottom: 6%;
+    left: 6%;
+    padding: 0.4em 0.8em;
+  }
+}
+</style>
+
+<section class="animated-section" id="animatedSection">
+  <div class="text1" id="text1">  <span style="color: inherit; -webkit-text-fill-color: transparent; -webkit-text-stroke: 2px currentColor; text-stroke: 2px currentColor;"> What are you <br /> waiting for?</span></div>
+ <a href="parents.html#assurance__header" class="see-store-button" id="seeStoreButton" role="button">See what's in store</a>
+
+</section>
+
+<script>
+  const section = document.getElementById('animatedSection');
+  const text1 = document.getElementById('text1');
+  const button = document.getElementById('seeStoreButton');
+
+  // Ensure button hidden initially and positioned
+  button.style.opacity = 'o.5';
+
+  // Intersection observer to detect when section is at least 50% visible
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        // Trigger text1 animation sliding down
+        text1.classList.add('visible');
+
+        // After text1 finishes sliding down, trigger button
+        text1.addEventListener('transitionend', () => {
+          button.classList.add('visible');
+        }, {once: true});
+
+        // Stop observing after first trigger
+        observer.unobserve(section);
+      }
+    });
+  }, {threshold: 0.5});
+
+  observer.observe(section);
+</script>
+
 
 <!-- ================= Partners Section (inline) ================= -->
 <section class="partners" id="partners">
@@ -473,7 +603,7 @@
     <div class="partners__header">
       <div>
         <p class="section__subheader">OUR PARTNERS</p>
-        <h2 class="section__header">Schools, Organisations & Sustainability Partners Supporting Nest</h2>
+        <h2 class="section__header">Organisations, Sustainability Partners & Institutions Supporting Nest</h2>
         <p class="section__description">
           Scholar's Nest collaborates with leading schools, universities, organisations, and sustainability partners to provide unrivalled service and support for our students.
         </p>
@@ -486,56 +616,56 @@
 
     <ul class="partners__list">
       <li>
-        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="Braeburn International School" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_0eabhaP1-2T8Wjvq6pZM4k_BGtgPFeL0pg&s" alt="Braeburn International School" />
         <div class="partners__details">
           <h4>Braeburn International School, Mombasa</h4>
           <p>Leading international school with strong academic and holistic programmes.</p>
         </div>
       </li>
       <li>
-        <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Light International School Mombasa" />
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNpcr5H-jctwSCixNhVS2qo3WzMZ1OSSDXQA&s"  alt="Light International School Mombasa" />
         <div class="partners__details">
           <h4>Light International School, Mombasa</h4>
           <p>Prestigious international school in Nyali supporting global student excellence.</p>
         </div>
       </li>
       <li>
-         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Aga Khan Academy Mombasa" />
+         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQmbLg7iWL2NreSrdsuWuNDxxbAdbaTrEm4Q&s"  alt="Aga Khan Academy Mombasa" />
         <div class="partners__details">
           <h4>Aga Khan Academy, Mombasa</h4>
           <p>World-class institution emphasising ethical leadership and community service.</p>
         </div>
       </li>
       <li>
-         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Mombasa Academy" />
+         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCmxDqkZNPOl0RDn3TC2k0aTq33HhSB_HcVQ&s"  alt="Mombasa Academy" />
         <div class="partners__details">
           <h4>Mombasa Academy</h4>
           <p>High-quality private school in Nyali, with British curriculum and holistic focus.</p>
         </div>
       </li>
       <li>
-         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Jaffery Academy Mombasa" />
+         <img src="https://jafferyacademy.org/wp-content/uploads/2021/08/cropped-New-Jaffery-Logo-2019-1024x727-1.png"  alt="Jaffery Academy Mombasa" />
         <div class="partners__details">
           <h4>Jaffery Academy, Mombasa</h4>
           <p>International school providing well-rounded education and service programmes.</p>
         </div>
       </li>
       <li>
-         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Clean Up Kenya" />
+         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAlIxvwhN8sHZhZrV5i5OPGvJYTfOhPSDasg&s"  alt="Clean Up Kenya" />
         <div class="partners__details">
           <h4>Clean Up Kenya</h4>
           <p>Empowering children through beach cleanups, environmental education and youth stewardship programmes.</p>
         </div>
       </li>
       <li>
-         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Green Action Project" />
+         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR896NFe4S-e9RKiIQpKZU7rB8AA6qDxpQXFQ&s"  alt="Green Action Project" />
         <div class="partners__details">
           <h4>Green Action Project (Be The You Foundation)</h4>
           <p>Planting fruit tree seedlings in schools and cleaning shores along the Indian Ocean.</p>
         </div>
       </li>
       <li>
-         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600"  alt="Omeriye Foundation" />
+         <img src="https://media.licdn.com/dms/image/v2/D4D0BAQFSBkNPJw2SWA/company-logo_200_200/company-logo_200_200/0/1683283555031?e=2147483647&v=beta&t=mGon8fN8V3XDVudksBOnG6UJqdWicfpJRUQ80pnpPGM"  alt="Omeriye Foundation" />
         <div class="partners__details">
           <h4>Omeriye Foundation</h4>
           <p>Conducts Nyali beach cleanups and engages youth in environmental awareness acts.</p>

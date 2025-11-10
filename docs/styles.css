@@ -104,10 +104,15 @@ nav {
 
 .nav__links a {
   color: var(--text-light);
-  transition: 0.3s;
+  transition: 0.3s ease-in-out;
 }
 
 .nav__links a:hover {
+  color: var(--secondary-color);
+}
+
+/* This makes the active/current page link stay colored */
+.nav__links a.active {
   color: var(--secondary-color);
 }
 
@@ -223,7 +228,7 @@ nav {
     rgba(15, 26, 44, 0.5),
     rgba(15, 26, 44, 0.5)
    ),
-  url("https://i.pinimg.com/1200x/79/da/a6/79daa68aaff2cc38b6a94d3a59370a4f.jpg");
+  url("https://i.pinimg.com/736x/a3/bd/99/a3bd99af7361c111214d4d462bfc9739.jpg");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -543,7 +548,7 @@ nav {
   30% { color: #ffda5e; }
   40% { color: #ffcf3f; }
   50% { color: #ffc82b; }
-  60% { color: #ffc400; }
+  60% { color: #f6ac0f; }
   70% { color: #ffc82b; }
   80% { color: #ffcf3f; }
   90% { color: #ffda5e; }
@@ -1233,14 +1238,13 @@ nav {
   overflow-x: auto;
   gap: 1rem;
   scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
   -webkit-overflow-scrolling: touch;
   height: 75vh;
   align-items: center;
 }
 
 .carousel img {
-  height: 75vh;
+  height: 100vh;
   width: auto;
   border-radius: 8px;
   scroll-snap-align: start;
@@ -1320,42 +1324,7 @@ nav {
   cursor: pointer;
 }
 
-/* =========================
-  22. HOSTEL CARD (EXPANDABLE)
-  ========================= */
-.hostel-card {
-  position: relative;
-  width: 320px;
-  height: 200px;
-  overflow: hidden;
-  border-radius: 1px;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.3);
-  cursor: pointer;
-  will-change: transform, width;
-  background: #0000002c;
-  display: flex;
-  transform-origin: left center;
-  transition: width 0.6s ease, box-shadow 0.4s ease;
-  margin-bottom: 1.5rem;
-}
 
-.hostel-card.expanded {
-  width:var(--max-width);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-}
-
-.hostel-card img {
-  width: 320px;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-  will-change: transform;
-  flex-shrink: 0;
-}
-
-.hostel-card.expanded img {
-  transform: scale(1.08) translateY(-7px);
-}
 
 .overlay {
   position: relative;
@@ -1464,11 +1433,6 @@ nav {
    background-color: transparent;
   }
 
-  .booking__container form {
-   max-width: 100%;
-   grid-template-columns: repeat(4, 1fr);
-   align-items: center;
-  }
 
   .about::before {
    height: 75%;

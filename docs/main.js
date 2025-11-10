@@ -278,3 +278,11 @@ toggleBtn.addEventListener('click', () => {
 
 // Ensure video starts paused and possibly blurred/overlaid
 video.pause(); // Start paused and blurred
+
+const currentPage = window.location.pathname.split('/').pop();
+
+document.querySelectorAll('.nav__links a').forEach(link => {
+  if(link.getAttribute('href') === currentPage) {
+    link.classList.add('active');
+  }
+});

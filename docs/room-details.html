@@ -31,7 +31,7 @@
           <li><a href="about-us.html">About Us</a></li>
           <li><a href="parents.html">Guardians & Residents</a></li>
           <li><a href="schools.html">Schools & Partners</a></li>
-          <li><a href="room-details.html">Rooms & Spaces</a></li>
+          <li><a href="room-details.html" class="active" aria-current="page">Rooms & Spaces</a></li>
           <li><a href="contact-us.html">Contact Us</a></li>
         </ul>
       </div>
@@ -121,17 +121,32 @@
   position: absolute;
   bottom: 4rem;
   right: 3rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);
   color: var(--white);
   padding: 1.5rem;
-  border-radius: 10px;
+  border-radius: 6px;
   max-width: 400px;
   animation: fadeUp 1.2s ease forwards;
+  border-bottom: 2px solid var(--secondary-color);
+}
+
+.slide__text:hover {
+  position: absolute;
+  bottom: 4rem;
+  right: 3rem;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--white);
+  padding: 1.5rem;
+  border-radius: 3px;
+  max-width: 400px;
+  animation: fadeUp 1.2s ease forwards;
+  border-bottom: 2px solid var(--secondary-color);
 }
 
 .slide__text h2 {
   margin-bottom: 0.5rem;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
 }
 
 .slide__text p {
@@ -149,12 +164,13 @@
   font-size: 2rem;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  border-radius: 50%;
+  border-radius: 1%;
   transition: background 0.3s ease;
 }
 
 .carousel__btn:hover {
   background: rgba(0, 0, 0, 0.6);
+  color: var(--secondary-color);
 }
 
 #prev { left: 1rem; }
