@@ -37,13 +37,14 @@
       </div>
     </nav>
 <header class="header-room-details" id="home">
-  <div class="section__container header__container">
+  <div class="section__container-lead header__container">
     <p class="section__subheader">A secure and supportive environment—empowering students to succeed and giving parents peace of mind.</p>
-    <h1 id="highlightText">rooms <br /><span style="color: inherit; -webkit-text-fill-color: transparent; -webkit-text-stroke: 2px currentColor; text-stroke: 2px currentColor;">&amp;</span> spaces</h1>
+    <h1 id="highlightText">rooms <br /><span style="color: inherit; -webkit-text-fill-color: transparent; -webkit-text-stroke: 2px currentColor; text-stroke: 2px currentColor;">&amp;</span> 
+      spaces</h1>
     <button class="btn" onclick="document.querySelector('#roomsSection').scrollIntoView({behavior: 'smooth'})">Look Up Rooms</button>
-
   </div>
 </header>
+
 <section class="carousel" id="roomsSection">
   <div class="slide active">
     <img src="https://i.pinimg.com/736x/0c/4f/60/0c4f60883756dcaf375fb5810b452af8.jpg" alt="Modern Ensuite">
@@ -184,32 +185,39 @@
 </style>
 
 <script>
- 
+document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll(".slide");
+  if (!slides.length) return; // guard
+
   let index = 0;
   const next = document.getElementById("next");
   const prev = document.getElementById("prev");
 
   function showSlide(i) {
     slides.forEach(s => s.classList.remove("active"));
-    slides[i].classList.add("active");
+    if (slides[i]) slides[i].classList.add("active");
   }
 
-  next.onclick = () => {
+  next?.addEventListener('click', () => {
     index = (index + 1) % slides.length;
     showSlide(index);
-  };
+  });
 
-  prev.onclick = () => {
+  prev?.addEventListener('click', () => {
     index = (index - 1 + slides.length) % slides.length;
     showSlide(index);
-  };
+  });
+
+  // start on the first slide
+  showSlide(index);
 
   setInterval(() => {
     index = (index + 1) % slides.length;
     showSlide(index);
   }, 15000);
+});
 </script>
+
 <script src="https://unpkg.com/scrollreveal"></script>
     <script src="main.js"></script>
 

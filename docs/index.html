@@ -38,7 +38,7 @@
     </nav>
 
 <header class="header" id="home">
-  <div class="section__container header__container">
+  <div class="section__container-lead header__container">
     <p class="section__subheader" data-split="sentences">Experience</p>
    <h1 id="highlightText">
      comfortable,<br />
@@ -322,6 +322,7 @@
     }
     .description {
       max-width: 100%;
+      font-size: 0.9rem;
     }
     .carousel-wrapper {
       overflow-x: auto;
@@ -344,56 +345,6 @@
   }
 </style>
 
-<script>
-  const slider = document.querySelector('.carousel-wrapper');
-  let isDown = false;
-  let startX;
-  let scrollLeft;
-  slider.addEventListener('mousedown', (e) => {
-    isDown = true; 
-    slider.classList.add('active');
-    startX = e.pageX - slider.offsetLeft;
-    scrollLeft = slider.scrollLeft;
-  });
-  slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
-  slider.addEventListener('mouseup', () => {
-    isDown = false;
-    slider.classList.remove('active');
-  });
-  slider.addEventListener('mousemove', (e) => {
-    if(!isDown) return;
-    e.preventDefault();
-    const x = e.pageX - slider.offsetLeft;
-    const walk = (x - startX) * 2; 
-    slider.scrollLeft = scrollLeft - walk;
-  });
-   // Count up animation
-  function countUp(element, target, duration = 2000) {
-    let start = 0;
-    const stepTime = Math.max(Math.floor(duration / target), 20);
-    function step() {
-      start++;
-      element.textContent = start + "+";
-      if (start < target) {
-        setTimeout(step, stepTime);
-      }
-    }
-    step();
-  }
-
-  // Trigger when page loads
-  window.addEventListener('load', () => {
-    const numbers = document.querySelectorAll('.stat-number');
-    numbers.forEach((numEl) => {
-      const target = parseInt(numEl.getAttribute('data-target'), 10);
-      countUp(numEl, target, 1500);
-    });
-  });
-</script>
-
 <!-- ================= Testimonials Section (inline) ================= -->
 <section id="intro" 
   style="position: relative; background:linear-gradient(
@@ -403,199 +354,168 @@
     background-attachment: fixed; /* This keeps the background fixed */
    color:#fff; text-align:center; padding:4rem 2rem; overflow:hidden;">
 
-  <h1 style="font-size:3rem; font-weight:700; line-height:1.2; margin-bottom:3rem;">
-    What others are<br />saying about Nest.
-  </h1>
+ <h1 style="font-size:clamp(1.8rem, 4vw, 3rem); font-weight:700; line-height:1.2; margin-bottom:3rem;">
+  What others are<br />saying about Nest.
+</h1>
 
   <div style="display:flex; gap:3rem; justify-content:center; flex-wrap:wrap; max-width:900px; margin:0 auto;">
-    
-    <div style="flex:1 1 200px; text-align:center;">
-      <div class="stat-number" data-target="10" 
-        style="font-size:2.8rem; font-weight:400; color:#ffae00; margin-bottom:0.5rem;">
-        0+
-      </div>
-      <div style="font-size:1.2rem; font-weight:600; margin-bottom:0.2rem;">
-        Partner Schools & Institutions
-      </div>
-      <div style="font-size:1rem; font-weight:200; color:rgba(255,255,255,0.7);">
-        Trusted academic institutions
-      </div>
-    </div>
 
-    <div style="flex:1 1 200px; text-align:center;">
-      <div class="stat-number" data-target="100" 
-        style="font-size:2.8rem; font-weight:400; color:#ffae00; margin-bottom:0.5rem;">
-        0+
-      </div>
-      <div style="font-size:1.2rem; font-weight:600; margin-bottom:0.2rem;">
-        Happy Students
-      </div>
-      <div style="font-size:1rem; font-weight:200; color:rgba(255,255,255,0.7);">
-        Lives transformed through quality housing
-      </div>
+  <div style="flex:1 1 200px; text-align:center;">
+    <div class="stat-number" data-target="10" 
+      style="font-size:clamp(1.8rem, 4vw, 2.8rem); font-weight:400; color:#ffae00; margin-bottom:0.5rem;">
+      0+
     </div>
-
-    <div style="flex:1 1 200px; text-align:center;">
-      <div class="stat-number" data-target="80" 
-        style="font-size:2.8rem; font-weight:400; color:#ffae00; margin-bottom:0.5rem;">
-        0+
-      </div>
-      <div style="font-size:1.2rem; font-weight:600; margin-bottom:0.2rem;">
-        Verified Reviews
-      </div>
-      <div style="font-size:1rem; font-weight:200; color:rgba(255,255,255,0.7);">
-        Real experiences from residents
-      </div>
+    <div style="font-size:clamp(1rem, 2.5vw, 1.2rem); font-weight:600; margin-bottom:0.2rem;">
+      Partner Schools & Institutions
     </div>
-
+    <div style="font-size:clamp(0.9rem, 2vw, 1rem); font-weight:200; color:rgba(255,255,255,0.7);">
+      Trusted academic institutions
+    </div>
   </div>
+
+  <div style="flex:1 1 200px; text-align:center;">
+    <div class="stat-number" data-target="100" 
+      style="font-size:clamp(1.8rem, 4vw, 2.8rem); font-weight:400; color:#ffae00; margin-bottom:0.5rem;">
+      0+
+    </div>
+    <div style="font-size:clamp(1rem, 2.5vw, 1.2rem); font-weight:600; margin-bottom:0.2rem;">
+      Happy Students
+    </div>
+    <div style="font-size:clamp(0.9rem, 2vw, 1rem); font-weight:200; color:rgba(255,255,255,0.7);">
+      Lives transformed through quality housing
+    </div>
+  </div>
+
+  <div style="flex:1 1 200px; text-align:center;">
+    <div class="stat-number" data-target="80" 
+      style="font-size:clamp(1.8rem, 4vw, 2.8rem); font-weight:400; color:#ffae00; margin-bottom:0.5rem;">
+      0+
+    </div>
+    <div style="font-size:clamp(1rem, 2.5vw, 1.2rem); font-weight:600; margin-bottom:0.2rem;">
+      Verified Reviews
+    </div>
+    <div style="font-size:clamp(0.9rem, 2vw, 1rem); font-weight:200; color:rgba(255,255,255,0.7);">
+      Real experiences from residents
+    </div>
+  </div>
+
+</div>
+
 </section>
 <style>
-  .animated-section {
-    position: relative;
-    height: 50vh;
-    background: url('https://i.pinimg.com/1200x/70/48/cf/7048cf7da30a2ea730e38d92944a022b.jpg') center center/cover no-repeat;
-    overflow: hidden;
-    cursor: default;
-  }
+ .animated-section {
+  position: relative;
+  height: 50vh;
+  background: url('https://i.pinimg.com/1200x/70/48/cf/7048cf7da30a2ea730e38d92944a022b.jpg') center center/cover no-repeat;
+  overflow: hidden;
+  cursor: default;
+}
 
-  .animated-section::before {
-    content: "";
-    position: absolute;
-    inset: 0; /* cover entire section */
-    background-color: rgba(0, 0, 0, 0.5); /* dark tint */
-    z-index: 1;
-  }
+.animated-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
 
-  .animated-section > * {
-    position: relative; /* stack above overlay */
-    z-index: 2;
-  }
+.animated-section > * {
+  position: relative;
+  z-index: 2;
+}
 
-  .text1, .see-store-button {
-    position: absolute;
-    opacity: 0;
-    transition: transform 1s ease, opacity 1s ease;
-  }
+.text1,
+.see-store-button {
+  position: absolute;
+  opacity: 1;
+  transition: transform 1s ease, opacity 1s ease;
+}
 
-  .text1 {
-    top: 10%;
-    right: 10%;
-    transform: translateY(-100%);
-    font-size: 6rem;
-    color: var(--secondary-color);
-    font-weight: 700;
-  }
+/* --- Main styles --- */
+.text1 {
+  top: 10%;
+  right: 10%;
+  transform: translateY(-100%);
+  font-size: clamp(2rem, 6vw, 6rem); /* responsive size */
+  color: var(--secondary-color);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: right;
+}
 
-  .see-store-button {
-    bottom: 10%;
-    left: 10%;
-    transform: translateY(100%);
-    font-size: 1rem;
-    color: white;
-    font-weight: 400px;
-    background: var(--secondary-color);
-    padding: 0.6em 1.2em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-    opacity: 0;
-  }
-  .see-store-button:hover {
-    bottom: 10%;
-    left: 10%;
-    transform: translateY(100%);
-    font-size: 1rem;
-    color: var(--secondary-color);
-    font-weight: 400px;
-    background: white;
-    padding: 0.6em 1.2em;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-    opacity: 0;
-  }
+.see-store-button {
+  bottom: 10%;
+  left: 10%;
+  transform: translateY(100%);
+  font-size: clamp(0.9rem, 2vw, 1.2rem); /* responsive size */
+  color: white;
+  background: var(--secondary-color);
+  padding: clamp(0.5em, 2vw, 0.8em) clamp(1em, 3vw, 1.5em);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-  .text1.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.see-store-button:hover {
+  background: white;
+  color: var(--secondary-color);
+  border-radius: 4px;
+}
 
-  .see-store-button.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* --- Animation visibility --- */
+.text1.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* --- Animation visibility --- */
+.see-store-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  /* Tablet layout */
+/* --- Tablet layout --- */
 @media (max-width: 1024px) {
   .text1 {
-    font-size: 4rem;
     top: 8%;
     right: 8%;
   }
 
   .see-store-button {
-    font-size: 1.2rem;
     bottom: 8%;
     left: 8%;
-    padding: 0.5em 1em;
   }
 }
 
-/* Phone layout */
-@media (max-width: 480px) {
+/* --- Phone layout --- */
+@media (max-width: 600px) {
+  .animated-section {
+    height: 60vh; /* slightly taller for text */
+  }
+
   .text1 {
-    font-size: 2.5rem;
-    top: 6%;
-    right: 6%;
+    font-size: clamp(1.0rem, 8vw, 3rem);
+    top: 12%;
+    right: 5%;
+    text-align: center;
   }
 
   .see-store-button {
-    font-size: 1rem;
-    bottom: 6%;
-    left: 6%;
-    padding: 0.4em 0.8em;
+    font-size: clamp(0.8rem, 3vw, 1rem);
+    bottom: 12%;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    padding: 0.6em 1.2em;
   }
 }
+
 </style>
 
 <section class="animated-section" id="animatedSection">
-  <div class="text1" id="text1">  <span style="color: inherit; -webkit-text-fill-color: transparent; -webkit-text-stroke: 2px currentColor; text-stroke: 2px currentColor;"> What are you <br /> waiting for?</span></div>
+  <div class="text1" id="text1">  <span style="color: inherit; -webkit-text-fill-color: transparent; -webkit-text-stroke: 1.5px currentColor; text-stroke: 2px currentColor;"> What are you <br /> waiting for?</span></div>
  <a href="parents.html#assurance__header" class="see-store-button" id="seeStoreButton" role="button">See what's in store</a>
 
 </section>
-
-<script>
-  const section = document.getElementById('animatedSection');
-  const text1 = document.getElementById('text1');
-  const button = document.getElementById('seeStoreButton');
-
-  // Ensure button hidden initially and positioned
-  button.style.opacity = 'o.5';
-
-  // Intersection observer to detect when section is at least 50% visible
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) {
-        // Trigger text1 animation sliding down
-        text1.classList.add('visible');
-
-        // After text1 finishes sliding down, trigger button
-        text1.addEventListener('transitionend', () => {
-          button.classList.add('visible');
-        }, {once: true});
-
-        // Stop observing after first trigger
-        observer.unobserve(section);
-      }
-    });
-  }, {threshold: 0.5});
-
-  observer.observe(section);
-</script>
-
 
 <!-- ================= Partners Section (inline) ================= -->
 <section class="partners" id="partners">
@@ -691,7 +611,7 @@
       <div class="news__card">
         <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=600" alt="Open Day" />
         <div class="news__card__title">
-          <p>13th October 2025</p>
+          <p>13th November 2025</p>
           <p>For Parents & Residents</p>
         </div>
         <h4>Open Day: Explore Scholar's Nest</h4>

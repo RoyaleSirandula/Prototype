@@ -1,5 +1,3 @@
-// GitHub Copilot
-
 // Toggle mobile menu button and icon
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
@@ -22,18 +20,20 @@ navLinks.addEventListener("click", (e) => {
 // Highlight effect on header H1 that follows the mouse via CSS variables
 const headerH1 = document.getElementById('highlightText');
 
-// Initialize CSS vars to a safe default
-headerH1.style.setProperty('--mouse-x', '100%');
-headerH1.style.setProperty('--mouse-y', '100%');
+if (headerH1) {
+  // Initialize CSS vars to a safe default
+  headerH1.style.setProperty('--mouse-x', '100%');
+  headerH1.style.setProperty('--mouse-y', '100%');
 
-headerH1.addEventListener('mousemove', (e) => {
-  // Calculate mouse position relative to element and set CSS vars
-  const rect = headerH1.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  headerH1.style.setProperty('--mouse-x', `${x}px`);
-  headerH1.style.setProperty('--mouse-y', `${y}px`);
-});
+  headerH1.addEventListener('mousemove', (e) => {
+    // Calculate mouse position relative to element and set CSS vars
+    const rect = headerH1.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    headerH1.style.setProperty('--mouse-x', `${x}px`);
+    headerH1.style.setProperty('--mouse-y', `${y}px`);
+  });
+}
 
 
 // Feature slides (carousel) with dots and autoplay
@@ -105,6 +105,7 @@ ScrollReveal().reveal(".header__container h1", {
   ...scrollRevealOption,
   delay: 500,
 });
+
 ScrollReveal().reveal(".about-label", {
   ...scrollRevealOption,
   delay: 200,
@@ -209,75 +210,54 @@ document.addEventListener("DOMContentLoaded", function () {
   paragraphs.forEach(el => observer.observe(el));
 });
 
-// Initialize Google map (replace with actual API call & key)
-// This function is intended to be used as the callback for the Google Maps API script
-function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -1.2692, lng: 36.8148 }, // Coordinates near Westlands Nairobi
-    zoom: 15,
-    styles: [
-      {
-        "featureType": "water",
-        "stylers": [{ "color": "#245401" }]
-      },
-      {
-        "featureType": "landscape",
-        "stylers": [{ "color": "#f6ac0f" }]
-      },
-      {
-        "featureType": "road",
-        "stylers": [{ "color": "#357d01" }]
-      }
-    ],
-  });
-}
-
 // Intersection Observer to fade in overlay text on scroll into view for the intro section
 const introSection = document.getElementById('introSection');
 const overlay = document.getElementById('overlayContent');
 const video = document.getElementById('introVideo');
 const toggleBtn = document.getElementById('toggleBtn');
 
-const options = {
-  root: null,
-  threshold: 0.5,
-};
+if (introSection && video && toggleBtn) {
+  const options = {
+    root: null,
+    threshold: 0.5,
+  };
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // When intro section is at least 50% visible, show overlay text
-      introSection.classList.add('show');
-    } else {
-      // If not intersecting and video isn't active, hide overlay
-      if(!introSection.classList.contains('video-active')) {
-        introSection.classList.remove('show');
+  const introObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // When intro section is at least 50% visible, show overlay text
+        introSection.classList.add('show');
+      } else {
+        // If not intersecting and video isn't active, hide overlay
+        if(!introSection.classList.contains('video-active')) {
+          introSection.classList.remove('show');
+        }
       }
+    });
+  }, options);
+
+  introObserver.observe(introSection);
+
+  let playing = false;
+
+  // Toggle play/pause of intro video and adjust overlay classes
+  toggleBtn.addEventListener('click', () => {
+    if (!playing) {
+      introSection.classList.add('video-active');
+      introSection.classList.remove('show');
+      video.play();
+      playing = true;
+    } else {
+      video.pause();
+      introSection.classList.remove('video-active');
+      introSection.classList.add('show');
+      playing = false;
     }
   });
-}, options);
 
-observer.observe(introSection);
-
-let playing = false;
-
-// Toggle play/pause of intro video and adjust overlay classes
-toggleBtn.addEventListener('click', () => {
-  if (!playing) {
-    introSection.classList.add('video-active');
-    introSection.classList.remove('show');
-    video.play();
-    playing = true;
-  } else {
-    video.pause();
-    introSection.classList.remove('video-active');
-    introSection.classList.add('show');
-    playing = false;
-  }
-});
-
-// Ensure video starts paused and possibly blurred/overlaid
-video.pause(); // Start paused and blurred
+  // Ensure video starts paused and possibly blurred/overlaid
+  video.pause(); // Start paused and blurred
+}
 
 const currentPage = window.location.pathname.split('/').pop();
 
@@ -286,3 +266,121 @@ document.querySelectorAll('.nav__links a').forEach(link => {
     link.classList.add('active');
   }
 });
+
+// --- GOOGLE MAP INITIALIZATION ---
+window.initMap = function () {
+  const mapElement = document.getElementById("map");
+  if (!mapElement) return; // Stop if map div not found
+
+  const nyali = { lat: -4.0346, lng: 39.6995 }; // Nyali Estate, Mombasa
+
+  const map = new google.maps.Map(mapElement, {
+    center: nyali,
+    zoom: 15,
+    styles: [
+      { featureType: "water", stylers: [{ color: "#245401" }] },
+      { featureType: "landscape", stylers: [{ color: "#f6ac0f" }] },
+      { featureType: "road", stylers: [{ color: "#357d01" }] },
+    ],
+  });
+
+  new google.maps.Marker({
+    position: nyali,
+    map,
+    title: "Nyali Estate, Mombasa",
+  });
+};
+
+// --- DYNAMICALLY LOAD GOOGLE MAPS SCRIPT ---
+(function loadGoogleMaps() {
+  const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
+  if (existingScript) return; // Avoid duplicates
+
+  const script = document.createElement("script");
+  script.src =
+    "https://maps.googleapis.com/maps/api/js?key=AIzaSyADsn9oO6AC1SKgikn6adoZHrfh77yDA0U&callback=initMap"; // Dummy key for testing
+  script.async = true;
+  document.head.appendChild(script);
+})();
+// --- END GOOGLE MAP INITIALIZATION ---
+
+
+  const section = document.getElementById('animatedSection');
+  const text1 = document.getElementById('text1');
+  const button = document.getElementById('seeStoreButton');
+
+  if (section && text1 && button) {
+    // Ensure button hidden initially and positioned
+    button.style.opacity = '0.5';
+
+    // Intersection observer to detect when section is at least 50% visible
+    const animatedSectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          // Trigger text1 animation sliding down
+          text1.classList.add('visible');
+
+          // After text1 finishes sliding down, trigger button
+          text1.addEventListener('transitionend', () => {
+            button.classList.add('visible');
+          }, {once: true});
+
+          // Stop observing after first trigger
+          animatedSectionObserver.unobserve(section);
+        }
+      });
+    }, {threshold: 0.5});
+
+    animatedSectionObserver.observe(section);
+  }
+
+  const slider = document.querySelector('.carousel-wrapper');
+  
+  if (slider) {
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true; 
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+    slider.addEventListener('mousemove', (e) => {
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 2; 
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  }
+   // Count up animation
+  function countUp(element, target, duration = 2000) {
+    let start = 0;
+    const stepTime = Math.max(Math.floor(duration / target), 20);
+    function step() {
+      start++;
+      element.textContent = start + "+";
+      if (start < target) {
+        setTimeout(step, stepTime);
+      }
+    }
+    step();
+  }
+
+  // Trigger when page loads
+  window.addEventListener('load', () => {
+    const numbers = document.querySelectorAll('.stat-number');
+    numbers.forEach((numEl) => {
+      const target = parseInt(numEl.getAttribute('data-target'), 10);
+      countUp(numEl, target, 1500);
+    });
+  });
