@@ -384,3 +384,95 @@ window.initMap = function () {
       countUp(numEl, target, 1500);
     });
   });
+
+  // Shader loading animation (vanilla JS version)
+
+let camera, scene, renderer, uniforms;
+let canvas = document.getElementById("shader-canvas");
+
+function initShader() {
+  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  scene = new THREE.Scene();
+  camera = new THREE.Camera();
+  camera.position.z = 1;
+
+  const geometry = new THREE.PlaneGeometry(2, 2);
+
+  const vertexShader = `
+    void main() {
+      gl_Position = vec4(position, 1.0);
+    }
+  `;
+
+  const fragmentShader = `
+    precision highp float;
+
+    uniform vec2 resolution;
+    uniform float time;
+
+    void main() {
+      vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / 
+                min(resolution.x, resolution.y);
+
+      float t = time * 0.05;
+      float lineWidth = 0.002;
+
+      vec3 color = vec3(0.0);
+
+      for(int j = 0; j < 3; j++){
+        for(int i = 0; i < 5; i++){
+          color[j] += lineWidth * float(i*i) / 
+                      abs(fract(t - 0.01*float(j) + float(i)*0.01)*5.0 
+                      - length(uv) 
+                      + mod(uv.x+uv.y, 0.2));
+        }
+      }
+
+      gl_FragColor = vec4(color, 1.0);
+    }
+  `;
+
+  uniforms = {
+    time: { value: 1.0 },
+    resolution: { value: new THREE.Vector2() }
+  };
+
+  const material = new THREE.ShaderMaterial({
+    uniforms,
+    vertexShader,
+    fragmentShader
+  });
+
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  resizeShader();
+  window.addEventListener("resize", resizeShader);
+
+  animate();
+}
+
+function resizeShader() {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  renderer.setSize(w, h);
+  uniforms.resolution.value.set(w, h);
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  uniforms.time.value += 0.03;
+  renderer.render(scene, camera);
+}
+
+initShader();
+
+// ▶ Hide loading screen when page fully loads
+window.addEventListener("load", () => {
+  const loader = document.getElementById("shader-loader");
+  loader.classList.add("fade-out");
+
+  setTimeout(() => loader.remove(), 1000);
+});
