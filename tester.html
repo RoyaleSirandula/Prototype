@@ -1,103 +1,88 @@
-<section class="partners-section" aria-label="Strategic Partners">
-  <div class="partners-pretitle">Our Network</div>
-  <h2 class="partners-title">Trusted Alliances, Unmatched Impact</h2>
-  <p class="partners-summary">
-    We forge partnerships with industry leaders and innovative disruptors—each synergy engineered for transformative growth and unparalleled service excellence.
-  </p>
-  <div class="partners-grid">
-    <div class="partner-logo"><img src="ahrefs.png" alt="Ahrefs"></div>
-    <div class="partner-logo"><img src="microsoft.png" alt="Microsoft"></div>
-    <div class="partner-logo"><img src="helpscout.png" alt="HelpScout"></div>
-    <div class="partner-logo"><img src="jotform.png" alt="Jotform"></div>
-    <div class="partner-logo"><img src="amazon.png" alt="Amazon"></div>
-    <div class="partner-logo"><img src="notion.png" alt="Notion"></div>
-    <div class="partner-logo"><img src="linkedin.png" alt="LinkedIn"></div>
-    <div class="partner-logo"><img src="circle.png" alt="Circle"></div>
+<section class="carousel-section" style="background:var(--white); padding:2rem; display:flex; justify-content:center; font-family:Arial,sans-serif;">
+  <div class="carousel-container" style="max-width:90%; width:100%;">
+    <img class="main-image" src="" alt="Main Image" 
+      style="width:100%; height:500px; object-fit:cover; border-radius:1px; box-shadow:0 4px 12px rgba(0,0,0,0.1); margin-bottom:0.5rem;">
+    <div class="thumbnails" style="display:flex; gap:2px; overflow-x:auto; padding-bottom:0.5rem;"></div>
+    <div class="counter" style="text-align:center; font-size:0.9rem; color:#000; margin-top:0.5rem;"></div>
   </div>
-  <button class="partner-cta">Become a Partner</button>
 </section>
 
-<style>
-.partners-section {
-  max-width: 900px;
-  margin: 0 auto 4rem auto;
-  padding: 2.5rem 1rem;
-  background: #fff;
-  text-align: center;
-}
-.partners-pretitle {
-  font-size: 0.88rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #7b68ee;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-}
-.partners-title {
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
-  color: #121228;
-}
-.partners-summary {
-  color: #555;
-  max-width: 530px;
-  margin: 0 auto 2.5rem auto;
-  font-size: 1.13rem;
-  font-weight: 400;
-}
-.partners-grid {
-  display: grid;
-  grid-template-columns: repeat( auto-fit, minmax(150px, 1fr) );
-  gap: 1.6rem 2.4rem;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto 2.5rem auto;
-  max-width: 700px;
-}
-/* Ensure max 4 columns, center grid if row is partially filled */
-@media (min-width: 800px) {
-  .partners-grid {
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
+
+<script>
+(function(){
+  const items1 = [
+    {id:1, url:'https://i.pinimg.com/1200x/c6/fd/8e/c6fd8e98a08483e742f8926c9139a39a.jpg', title:'Image 1'},
+    {id:2, url:'https://i.pinimg.com/736x/58/3f/95/583f9558b60da8c93c2041fbfd7a41b2.jpg', title:'Image 2'},
+    {id:3, url:'https://i.pinimg.com/736x/94/ce/30/94ce30d224f63d6c2def219553b1bd94.jpg', title:'Image 3'},
+    {id:4, url:'https://i.pinimg.com/736x/00/fb/51/00fb5125029c7815db0afe3e6f3c8e94.jpg', title:'Image 4'},
+    {id:5, url:'https://i.pinimg.com/1200x/b0/eb/c1/b0ebc15be702d3a3f6577fcd25992542.jpg', title:'Image 5'},
+    {id:6, url:'https://i.pinimg.com/736x/3c/a1/ff/3ca1ffcc770daaf1cf12c4f344e8240c.jpg', title:'Image 6'},
+    {id:7, url:'https://i.pinimg.com/1200x/d7/6b/57/d76b574cfea0bc5fd171d1279cfd2116.jpg', title:'Image 7'},
+    {id:8, url:'https://i.pinimg.com/736x/15/6b/80/156b800a9067d3cba451f0d2fed555cd.jpg', title:'Image 8'},
+    {id:9, url:'https://i.pinimg.com/736x/af/51/5d/af515de3c9b6fe3ab6343206bff3673e.jpg', title:'Image 9'}
+  ];
+
+  const items2 = [
+    {id:1, url:'https://i.pinimg.com/1200x/d3/fc/ae/d3fcae632f4ba9d3d48098800545e7b3.jpg', title:'Image 1'},
+    {id:2, url:'https://i.pinimg.com/736x/81/be/9b/81be9b09413bb17321632c65895a4a3e.jpg', title:'Image 2'},
+    {id:3, url:'https://i.pinimg.com/736x/45/72/8f/45728f59ef78839bcf6a932ea1157eaa.jpg', title:'Image 3'},
+    {id:4, url:'https://i.pinimg.com/736x/c0/ee/76/c0ee76c5fdf7943e24dabd726d7ac83a.jpg', title:'Image 4'},
+    {id:5, url:'https://i.pinimg.com/1200x/41/cb/9b/41cb9b4c61ee3dc396844b166c4fb462.jpg', title:'Image 5'},
+    {id:6, url:'https://i.pinimg.com/1200x/eb/45/41/eb45418f1b028bd24daa2f8d51797a83.jpg', title:'Image 6'},
+    {id:7, url:'', title:'Image 7'},
+    {id:8, url:'https://plus.unsplash.com/premium_photo-1761940415449-c09ef466c698?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=715', title:'Image 8'},
+    {id:9, url:'https://i.pinimg.com/736x/ca/37/eb/ca37eb543533c505df8df8b4b29db824.jpg', title:'Image 9'}
+  ];
+
+  function createCarousel(container, items) {
+    const mainImage = container.querySelector('.main-image');
+    const thumbnailsDiv = container.querySelector('.thumbnails');
+    const counterDiv = container.querySelector('.counter');
+    let currentIndex = 0;
+
+    function updateCarousel(index) {
+      currentIndex = index;
+      mainImage.src = items[index].url;
+      mainImage.alt = items[index].title;
+      counterDiv.textContent = (index + 1) + ' / ' + items.length;
+
+      const thumbnails = thumbnailsDiv.querySelectorAll('img');
+      thumbnails.forEach((thumb, i) => {
+        thumb.classList.toggle('selected', i === index);
+        thumb.style.width = i === index ? '120px' : '60px';
+        thumb.style.opacity = i === index ? '1' : '0.6';
+        thumb.style.borderColor = i === index ? '#0051ff' : 'transparent';
+      });
+
+      const thumb = thumbnails[index];
+      const containerWidth = thumbnailsDiv.clientWidth;
+      const scrollLeft = thumb.offsetLeft - (containerWidth / 2 - thumb.clientWidth / 2);
+      thumbnailsDiv.scroll({left: scrollLeft, behavior:'smooth'});
+    }
+
+    items.forEach((item, index) => {
+      const img = document.createElement('img');
+      img.src = item.url;
+      img.alt = item.title;
+      img.className = 'thumbnail';
+      img.style.flexShrink = '0';
+      img.style.cursor = 'pointer';
+      img.style.borderRadius = '3px';
+      img.style.transition = 'all 0.3s ease';
+      img.style.width = '60px';
+      img.style.height = '40px';
+      img.style.objectFit = 'cover';
+      img.style.border = '1px solid transparent';
+      img.style.opacity = '0.6';
+      img.addEventListener('click', () => updateCarousel(index));
+      thumbnailsDiv.appendChild(img);
+    });
+
+    updateCarousel(0);
   }
-}
-.partner-logo {
-  background: #fafafc;
-  border: 1px solid #ececf4;
-  border-radius: 12px;
-  padding: 1.3rem 1.5rem;
-  min-height: 58px;
-  min-width: 140px;
-  box-shadow: 0 2px 6px rgb(123 104 238 / 0.04);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: box-shadow 0.25s;
-}
-.partner-logo:hover {
-  box-shadow: 0 6px 18px rgb(123 104 238 / 0.11);
-}
-.partner-logo img {
-  max-height: 36px;
-  max-width: 100%;
-  object-fit: contain;
-}
-.partner-cta {
-  background: #7b68ee;
-  color: #fff;
-  font-family: inherit;
-  font-weight: 700;
-  font-size: 1.04rem;
-  border: none;
-  border-radius: 2rem;
-  padding: 0.75rem 2.35rem;
-  margin-top: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
-  box-shadow: 0 2px 8px #bdb6ee33;
-}
-.partner-cta:hover {
-  background: #604bcc;
-}
-</style>
+
+  const carousels = document.querySelectorAll('.carousel-section .carousel-container');
+  createCarousel(carousels[0], items1);
+  createCarousel(carousels[1], items2);
+})();
+</script>

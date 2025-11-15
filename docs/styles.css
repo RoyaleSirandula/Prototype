@@ -18,7 +18,7 @@
 #shader-loader {
   position: fixed;
   inset: 0;
-  background: #000;
+  background: #ffffff;
   z-index: 9999;
   overflow: hidden;
   display: flex;
